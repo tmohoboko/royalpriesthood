@@ -1,9 +1,6 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/royal_priesthood_interactive_programme.html"
-    }
-  ]
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [{"source": "/((?!assets/|images/).*)", "destination": "/index.html"}]
 }

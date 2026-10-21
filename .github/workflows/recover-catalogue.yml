@@ -1,0 +1,32 @@
+name: Recover approved catalogue and verify release
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: python3 scripts/recover-catalogue.py
+      - run: npm ci --no-audit --no-fund
+      - run: node scripts/preflight.mjs
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - name: Preserve verified originals and evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/images/catalog/*.png qa/evidence/
+          git commit -m 'Preserve pixel-verified approved catalogue originals and browser evidence'
+          git push origin HEAD:${{ github.ref_name }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: catalogue-release-evidence
+          path: qa/evidence/

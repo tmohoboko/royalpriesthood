@@ -1,0 +1,784 @@
+[
+  {
+    "name": "src",
+    "type": "directory",
+    "mode": 16749,
+    "children": [
+      {
+        "name": ".env.example",
+        "type": "file",
+        "mode": 33188,
+        "uid": "f5358653d8fc81511d4d44abe54ac40e90138a75"
+      },
+      {
+        "name": "README.md",
+        "type": "file",
+        "mode": 33188,
+        "uid": "a0132dc126b03c5b32533bda45c01c1a7ca9a804"
+      },
+      {
+        "name": "RELEASE_HANDOFF.md",
+        "type": "file",
+        "mode": 33188,
+        "uid": "fc69208aa2d0d60d751cff8c63793915c845e44a"
+      },
+      {
+        "name": "dist",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "assets",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "index-0Rdqa_Aq.js",
+                "type": "file",
+                "mode": 33188,
+                "uid": "732de1e0b23d549dd63b556c0762f92bbddf9fdc"
+              },
+              {
+                "name": "index-FXDO56dy.css",
+                "type": "file",
+                "mode": 33188,
+                "uid": "c4f6a0eaa661f819489854d637acb165bd06bea2"
+              }
+            ]
+          },
+          {
+            "name": "images",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": ".brand-white.png.PegPKh",
+                "type": "file",
+                "mode": 33152,
+                "uid": "6067909a2e2c46e79bdb91887a70e0b588db6bc8"
+              },
+              {
+                "name": "brand-black.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "05cc89bd64cd5cd30e1aba16cf12c0cb1a6fd875"
+              },
+              {
+                "name": "brand-white.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "614603402cba54f52dc4d214e06aaeee7e5a0ae0"
+              },
+              {
+                "name": "catalog",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "01_Women_Black_Statement.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "612fdf6b3a2f91bf3e3e366e380624aa5620e4b0"
+                  },
+                  {
+                    "name": "02_Women_White_Minimal.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "78c22a786ba030ca8441fcb80bc2e944345f97df"
+                  },
+                  {
+                    "name": "03_Women_Gold_Crest.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "fa8870fc375121eb59d1bb9921e4bb7bd4f66a1e"
+                  },
+                  {
+                    "name": "04_Women_Weekend.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "d620b0df20c3a01fd9c1b7f5808121a648fa7d78"
+                  },
+                  {
+                    "name": "05_Men_Black_Statement.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "f262e1e8699773264001cd55c043561b6694e445"
+                  },
+                  {
+                    "name": "06_Men_White_Minimal.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "730c8d278685b0e29965600357504ce9833b0f78"
+                  },
+                  {
+                    "name": "07_Men_Gold_Crest.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "a74bd1aec64d4d257c086fea620fbb11feac285d"
+                  },
+                  {
+                    "name": "08_Men_Weekend.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "9e723253ebc28d02a603acc395c7619eec529869"
+                  },
+                  {
+                    "name": "09_Tshirt_Front_Black.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "71e1fa67a057198acebed1218ca78d3bd117aed2"
+                  },
+                  {
+                    "name": "10_Tshirt_Back_Black.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "a7bd5c69e20e110933ee728e1d8dca5e03aadd53"
+                  },
+                  {
+                    "name": "11_Tshirt_Front_White.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "ddfa4e2608cd64e594c80ed6a74220425025f9ab"
+                  },
+                  {
+                    "name": "12_Tshirt_Back_White.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "c45feceb05951f7f251de12e99571ceb44eaffab"
+                  },
+                  {
+                    "name": "13_Size_Tag_Detail.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "b6d1c7864cc66e96c9e95935602b6a3c46c0d483"
+                  },
+                  {
+                    "name": "14_Logo_Embroidery_Detail.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "8a4d6a8c552df413df491534906357c84b0a1f4a"
+                  },
+                  {
+                    "name": "15_Bag_Collection.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "159089a4a173f0e7af18ad8687959a03be4981d8"
+                  },
+                  {
+                    "name": "16_Cap_Collection.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "0245ba27a710f0a1df9f858cea0ba02b63fb76bb"
+                  },
+                  {
+                    "name": "17_Bonus_Men_Lookbook.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "8bb28c154acd98eacf31f48c5001ec32824136c5"
+                  },
+                  {
+                    "name": "18_Bonus_Women_Lookbook.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "51b35c5707bf63ae0a948d6892f2511b95044583"
+                  }
+                ]
+              },
+              {
+                "name": "hem-black.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "5a250fa60359117ab0d27863306c9fe15220a326"
+              },
+              {
+                "name": "royal",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "Black Royal Priesthood Monogram Tee.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "17c19d62c56dab2ba24de11d9a38488a2e9c4f1a"
+                  },
+                  {
+                    "name": "Black Royal Priesthood Outfit Mockup.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "4a80413eef3def24f6e1d4db21c57b8afb9ae254"
+                  },
+                  {
+                    "name": "Gold Royal Priesthood logo on black tee.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "594001e34a564bdb9eaa9f45d611890ab8157e8a"
+                  },
+                  {
+                    "name": "Royal Priesthood Canvas Bag Collection.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "2af3a0b81748b86fba491c01e2b13521409e9022"
+                  },
+                  {
+                    "name": "Royal Priesthood Collar Detail.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "614e131396972ef716b41da488e68923070ff31f"
+                  },
+                  {
+                    "name": "Royal Priesthood Gold Crest Look.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "6af10a90cd508be6920e451efe5f715802b7dbe8"
+                  },
+                  {
+                    "name": "Royal Priesthood Gold Logo Tee Close-Up.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "b93092d9eff6486ff9514bb835e5172d50e8cb83"
+                  },
+                  {
+                    "name": "Royal Priesthood Hat Collection.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "7f6c4d1f0f1d541e1dad195089c764a17ee31d4e"
+                  },
+                  {
+                    "name": "Royal Priesthood Logo on White.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "74212db7c0807d2fb91ec763d951f883e32b19fd"
+                  },
+                  {
+                    "name": "Royal Priesthood Weekend Ensemble.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "bca113b2d8339702f155888aae9161b6b27e3997"
+                  },
+                  {
+                    "name": "Royal Priesthood White Tee Ensemble.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "823a6bfa0e05a7c7c7f96578725381b8ef53c6d8"
+                  },
+                  {
+                    "name": "Royal Priesthood black tee with gold back logo.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "39afb0b03f183d712b12014a1ccdaf3855a6d069"
+                  },
+                  {
+                    "name": "Royal Priesthood mirrored monogram logo.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "d1be5f04c45628d9567542cf6c933dcba138bf10"
+                  },
+                  {
+                    "name": "White tee with gold Royal Priesthood logo.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "67604ccbdb5a32a226cd16fca92b6e9b8ae71ee4"
+                  },
+                  {
+                    "name": "Women's Royal Priesthood Gold Crest.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "0209cbbf97c10ba0efe2d007584309188471b149"
+                  }
+                ]
+              },
+              {
+                "name": "tree-black.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "ed8c7d9f1da0ee4fa04d4aa0dd6ae7e51e5b2d90"
+              },
+              {
+                "name": "tree-white.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "cc498821fb68a6245d1b040f17ae628ba74f6117"
+              }
+            ]
+          },
+          {
+            "name": "index.html",
+            "type": "file",
+            "mode": 33188,
+            "uid": "02d3f541908c0ec385dc4ca1fa6cc3b58efd484e"
+          }
+        ]
+      },
+      {
+        "name": "public",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "images",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": ".brand-white.png.PegPKh",
+                "type": "file",
+                "mode": 33152,
+                "uid": "6067909a2e2c46e79bdb91887a70e0b588db6bc8"
+              },
+              {
+                "name": "brand-black.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "05cc89bd64cd5cd30e1aba16cf12c0cb1a6fd875"
+              },
+              {
+                "name": "brand-white.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "614603402cba54f52dc4d214e06aaeee7e5a0ae0"
+              },
+              {
+                "name": "catalog",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "01_Women_Black_Statement.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "612fdf6b3a2f91bf3e3e366e380624aa5620e4b0"
+                  },
+                  {
+                    "name": "02_Women_White_Minimal.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "78c22a786ba030ca8441fcb80bc2e944345f97df"
+                  },
+                  {
+                    "name": "03_Women_Gold_Crest.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "fa8870fc375121eb59d1bb9921e4bb7bd4f66a1e"
+                  },
+                  {
+                    "name": "04_Women_Weekend.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "d620b0df20c3a01fd9c1b7f5808121a648fa7d78"
+                  },
+                  {
+                    "name": "05_Men_Black_Statement.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "f262e1e8699773264001cd55c043561b6694e445"
+                  },
+                  {
+                    "name": "06_Men_White_Minimal.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "730c8d278685b0e29965600357504ce9833b0f78"
+                  },
+                  {
+                    "name": "07_Men_Gold_Crest.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "a74bd1aec64d4d257c086fea620fbb11feac285d"
+                  },
+                  {
+                    "name": "08_Men_Weekend.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "9e723253ebc28d02a603acc395c7619eec529869"
+                  },
+                  {
+                    "name": "09_Tshirt_Front_Black.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "71e1fa67a057198acebed1218ca78d3bd117aed2"
+                  },
+                  {
+                    "name": "10_Tshirt_Back_Black.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "a7bd5c69e20e110933ee728e1d8dca5e03aadd53"
+                  },
+                  {
+                    "name": "11_Tshirt_Front_White.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "ddfa4e2608cd64e594c80ed6a74220425025f9ab"
+                  },
+                  {
+                    "name": "12_Tshirt_Back_White.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "c45feceb05951f7f251de12e99571ceb44eaffab"
+                  },
+                  {
+                    "name": "13_Size_Tag_Detail.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "b6d1c7864cc66e96c9e95935602b6a3c46c0d483"
+                  },
+                  {
+                    "name": "14_Logo_Embroidery_Detail.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "8a4d6a8c552df413df491534906357c84b0a1f4a"
+                  },
+                  {
+                    "name": "15_Bag_Collection.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "159089a4a173f0e7af18ad8687959a03be4981d8"
+                  },
+                  {
+                    "name": "16_Cap_Collection.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "0245ba27a710f0a1df9f858cea0ba02b63fb76bb"
+                  },
+                  {
+                    "name": "17_Bonus_Men_Lookbook.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "8bb28c154acd98eacf31f48c5001ec32824136c5"
+                  },
+                  {
+                    "name": "18_Bonus_Women_Lookbook.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "51b35c5707bf63ae0a948d6892f2511b95044583"
+                  }
+                ]
+              },
+              {
+                "name": "hem-black.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "5a250fa60359117ab0d27863306c9fe15220a326"
+              },
+              {
+                "name": "royal",
+                "type": "directory",
+                "mode": 16749,
+                "children": [
+                  {
+                    "name": "Black Royal Priesthood Monogram Tee.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "17c19d62c56dab2ba24de11d9a38488a2e9c4f1a"
+                  },
+                  {
+                    "name": "Black Royal Priesthood Outfit Mockup.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "4a80413eef3def24f6e1d4db21c57b8afb9ae254"
+                  },
+                  {
+                    "name": "Gold Royal Priesthood logo on black tee.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "594001e34a564bdb9eaa9f45d611890ab8157e8a"
+                  },
+                  {
+                    "name": "Royal Priesthood Canvas Bag Collection.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "2af3a0b81748b86fba491c01e2b13521409e9022"
+                  },
+                  {
+                    "name": "Royal Priesthood Collar Detail.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "614e131396972ef716b41da488e68923070ff31f"
+                  },
+                  {
+                    "name": "Royal Priesthood Gold Crest Look.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "6af10a90cd508be6920e451efe5f715802b7dbe8"
+                  },
+                  {
+                    "name": "Royal Priesthood Gold Logo Tee Close-Up.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "b93092d9eff6486ff9514bb835e5172d50e8cb83"
+                  },
+                  {
+                    "name": "Royal Priesthood Hat Collection.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "7f6c4d1f0f1d541e1dad195089c764a17ee31d4e"
+                  },
+                  {
+                    "name": "Royal Priesthood Logo on White.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "74212db7c0807d2fb91ec763d951f883e32b19fd"
+                  },
+                  {
+                    "name": "Royal Priesthood Weekend Ensemble.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "bca113b2d8339702f155888aae9161b6b27e3997"
+                  },
+                  {
+                    "name": "Royal Priesthood White Tee Ensemble.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "823a6bfa0e05a7c7c7f96578725381b8ef53c6d8"
+                  },
+                  {
+                    "name": "Royal Priesthood black tee with gold back logo.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "39afb0b03f183d712b12014a1ccdaf3855a6d069"
+                  },
+                  {
+                    "name": "Royal Priesthood mirrored monogram logo.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "d1be5f04c45628d9567542cf6c933dcba138bf10"
+                  },
+                  {
+                    "name": "White tee with gold Royal Priesthood logo.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "67604ccbdb5a32a226cd16fca92b6e9b8ae71ee4"
+                  },
+                  {
+                    "name": "Women's Royal Priesthood Gold Crest.png",
+                    "type": "file",
+                    "mode": 33188,
+                    "uid": "0209cbbf97c10ba0efe2d007584309188471b149"
+                  }
+                ]
+              },
+              {
+                "name": "tree-black.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "ed8c7d9f1da0ee4fa04d4aa0dd6ae7e51e5b2d90"
+              },
+              {
+                "name": "tree-white.png",
+                "type": "file",
+                "mode": 33188,
+                "uid": "cc498821fb68a6245d1b040f17ae628ba74f6117"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "index.html",
+        "type": "file",
+        "mode": 33188,
+        "uid": "e5c405007ec39f5916774bac15f3c8531c96255e"
+      },
+      {
+        "name": "package-lock.json",
+        "type": "file",
+        "mode": 33188,
+        "uid": "1d7a288d4355a992063a555f1d519117e65a67de"
+      },
+      {
+        "name": "package.json",
+        "type": "file",
+        "mode": 33188,
+        "uid": "f1c6348df1cf236785e2f81089b4d04e5836fa13"
+      },
+      {
+        "name": "playwright.config.js",
+        "type": "file",
+        "mode": 33188,
+        "uid": "76c00a0464ca1b36ab8785b3c66259303f3c43cd"
+      },
+      {
+        "name": "qa",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "VALIDATION_2026-10-17.md",
+            "type": "file",
+            "mode": 33188,
+            "uid": "ea4adc71bda18191ae39b31fcc52abcb95c45db7"
+          }
+        ]
+      },
+      {
+        "name": "scripts",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "preflight.mjs",
+            "type": "file",
+            "mode": 33188,
+            "uid": "49c15bf81d30339769773d9b57ca1cb3369c5ba5"
+          },
+          {
+            "name": "release-vercel.sh",
+            "type": "file",
+            "mode": 33261,
+            "uid": "9d7b73a56f7abfeb54394bf93d415b5ea6add8ad"
+          }
+        ]
+      },
+      {
+        "name": "src",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "Scene.jsx",
+            "type": "file",
+            "mode": 33188,
+            "uid": "2bd5d11d73490296c01b57b63525f27c5e5e3e76"
+          },
+          {
+            "name": "data.js",
+            "type": "file",
+            "mode": 33188,
+            "uid": "4f8037f4a07ce18130f4197a41ada85e0a90ee33"
+          },
+          {
+            "name": "main.jsx",
+            "type": "file",
+            "mode": 33188,
+            "uid": "e3250641eb4712fe22dccf2b9b0410dfedabbf79"
+          },
+          {
+            "name": "style.css",
+            "type": "file",
+            "mode": 33188,
+            "uid": "b4a96a16e161a2d73af1a4937d58673da4111d0c"
+          }
+        ]
+      },
+      {
+        "name": "test-results",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": ".last-run.json",
+            "type": "file",
+            "mode": 33188,
+            "uid": "00c743feb2819551dc492c2179b05af3b9e21a7b"
+          },
+          {
+            "name": ".playwright-artifacts-5",
+            "type": "directory",
+            "mode": 16877
+          },
+          {
+            "name": "storefront-all-33-slots-and-eight-released-looks-are-present",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "error-context.md",
+                "type": "file",
+                "mode": 33188,
+                "uid": "c8d5ed0154850b843e8e200cddd838a3d36ea7e5"
+              }
+            ]
+          },
+          {
+            "name": "storefront-featured-tee-ca-09aa6-ed-to-enquiry-never-charged",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "error-context.md",
+                "type": "file",
+                "mode": 33188,
+                "uid": "563f94b315dcc689b0305e539bf987b0b5d68c75"
+              }
+            ]
+          },
+          {
+            "name": "storefront-filters-isolate-featured-and-coming-soon",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "error-context.md",
+                "type": "file",
+                "mode": 33188,
+                "uid": "77a850da5b05aa8e25a9b4ef7b7bc9eeed7f39e2"
+              }
+            ]
+          },
+          {
+            "name": "storefront-gallery-switches-mockup-views",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "error-context.md",
+                "type": "file",
+                "mode": 33188,
+                "uid": "b22ac4821bd15c6bb07ef68351347e3bac5dfd15"
+              }
+            ]
+          },
+          {
+            "name": "storefront-hero-and-page-sections-render",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "error-context.md",
+                "type": "file",
+                "mode": 33188,
+                "uid": "1f9ed7e11d647be8ab6cbf15e74405123af68725"
+              }
+            ]
+          },
+          {
+            "name": "storefront-mobile-menu-and-no-horizontal-overflow",
+            "type": "directory",
+            "mode": 16749,
+            "children": [
+              {
+                "name": "error-context.md",
+                "type": "file",
+                "mode": 33188,
+                "uid": "d0a521e864b8a906f53ff446cf3f542ae1381a3f"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "tests",
+        "type": "directory",
+        "mode": 16749,
+        "children": [
+          {
+            "name": "storefront.spec.js",
+            "type": "file",
+            "mode": 33188,
+            "uid": "0f2f7b6a5f87bbc2d8c95fc32e7719cef8774844"
+          }
+        ]
+      },
+      {
+        "name": "vercel.json",
+        "type": "file",
+        "mode": 33188,
+        "uid": "65a7bbc688afa8bc86758cd4e8dd1644f6e97ca0"
+      },
+      {
+        "name": "vite.config.js",
+        "type": "file",
+        "mode": 33188,
+        "uid": "3ec4b29f1a7ba9aa6756889e52c33ecef5378d75"
+      }
+    ]
+  }
+]

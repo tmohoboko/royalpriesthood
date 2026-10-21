@@ -1,3 +1,8 @@
-.vercel/
 node_modules/
-*.log
+dist/
+.vercel/
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/
