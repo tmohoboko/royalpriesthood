@@ -1,5 +1,8 @@
 name: Recover approved catalogue and verify release
-on: workflow_dispatch
+on:
+  push:
+    branches: [release/catalogue-delivery-20261022]
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
