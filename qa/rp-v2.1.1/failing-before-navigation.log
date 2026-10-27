@@ -1,0 +1,51 @@
+
+> royal-priesthood-storefront@1.0.0 test:commerce
+> playwright test --config=playwright.commerce.config.js --grep RP211 canonical
+
+[WebServer] (node:109741) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:109771) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/commerce/stabilization.spec.js:2:1 › RP211 canonical Shop navigation preserves departments and legacy product access (6.5s)
+
+
+  1) tests/commerce/stabilization.spec.js:2:1 › RP211 canonical Shop navigation preserves departments and legacy product access 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('header .nav a').filter({ hasText: 'Catalogue' })
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('header .nav a').filter({ hasText: 'Catalogue' }) with timeout 5000ms
+      - waiting for locator('header .nav a').filter({ hasText: 'Catalogue' })
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      1 | import {test,expect} from '@playwright/test';
+      2 | test('RP211 canonical Shop navigation preserves departments and legacy product access',async({page})=>{
+    > 3 |  await page.goto('/');await expect(page.locator('header .nav a',{hasText:'Catalogue'})).toHaveCount(0);await expect(page.locator('header .nav a',{hasText:'Shop'})).toHaveCount(1);
+        |                                                                                         ^
+      4 |  for(const path of ['/#catalogue','/catalogue','/catalogue/products/RP-W01']){await page.goto(path);await expect(page).toHaveURL(/\/shop/);await expect(page.locator('header')).toHaveCount(1);}
+      5 |  await page.goto('/shop?category=Women');await expect(page.getByLabel('Category',{exact:true})).toHaveValue('Women');
+      6 |  await page.setViewportSize({width:375,height:850});await page.getByRole('button',{name:'Open menu'}).click();await expect(page.getByRole('navigation',{name:'Mobile navigation'}).getByRole('link',{name:'Shop',exact:true})).toHaveCount(1);
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/stabilization.spec.js:3:89
+
+    Error Context: test-results/stabilization-RP211-canoni-14586-s-and-legacy-product-access/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/stabilization-RP211-canoni-14586-s-and-legacy-product-access/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/stabilization-RP211-canoni-14586-s-and-legacy-product-access/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/commerce/stabilization.spec.js:2:1 › RP211 canonical Shop navigation preserves departments and legacy product access 

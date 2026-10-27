@@ -9,7 +9,7 @@ export async function wishlistApi(path = '', method = 'GET', body) {
   return data;
 }
 export default function Wishlist({ onClose }) {
-  const { wishlist, catalogue, refreshWishlist, setWishlist, refreshCart } = useStorefront();
+  const { wishlist, catalogue, refreshWishlist, setWishlist, refreshCart, refreshProducts } = useStorefront();
   const panel = useRef(null);
   const [error, setError] = useState(''), [busy, setBusy] = useState(false), [confirm, setConfirm] = useState(false);
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function Wishlist({ onClose }) {
   useEffect(()=>{if(panel.current && !panel.current.contains(document.activeElement))panel.current.querySelector('button')?.focus()},[wishlist.length]);
   async function action(item, move = false) {
     setBusy(true); setError('');
-    try { const r = await wishlistApi(`/${item.id}${move ? '/move' : ''}`, move ? 'POST' : 'DELETE', move ? {} : undefined); setWishlist(r.items); if (move) await refreshCart(); }
+    try { const r = await wishlistApi(`/${item.id}${move ? '/move' : ''}`, move ? 'POST' : 'DELETE', move ? {} : undefined); setWishlist(r.items); if (move) {await refreshCart();await refreshProducts().catch(()=>{});} }
     catch(e) { setError(e.message); } finally { setBusy(false); }
   }
   async function clear() {

@@ -33,5 +33,22 @@
   ],
   "proxy": {
     "entrypoint": "proxy.js"
-  }
+  },
+  "redirects": [
+    {
+      "source": "/catalogue",
+      "destination": "/shop",
+      "permanent": false
+    },
+    {
+      "source": "/catalogue/:path*",
+      "destination": "/shop/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/shop/catalogue",
+      "destination": "/shop",
+      "permanent": false
+    }
+  ]
 }

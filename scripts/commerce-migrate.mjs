@@ -10,6 +10,7 @@ await transaction(db, async (tx) => {
     ),
   );
   await tx.query(await readFile(new URL("../migrations/002-wishlist.sql", import.meta.url), "utf8"));
+  await tx.query(await readFile(new URL("../migrations/003-uat-catalogue.sql", import.meta.url), "utf8"));
   for (const p of products)
     await tx.query(
       "INSERT INTO products(id,name,image,category,description) VALUES($1,$2,$3,$4,$5) ON CONFLICT DO NOTHING",

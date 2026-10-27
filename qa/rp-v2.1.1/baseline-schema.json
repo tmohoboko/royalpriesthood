@@ -1,0 +1,278 @@
+[
+  {
+    "table_name": "cart_items",
+    "column_name": "cart_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "cart_items",
+    "column_name": "variant_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "cart_items",
+    "column_name": "quantity",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "order_items",
+    "column_name": "order_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "order_items",
+    "column_name": "variant_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "order_items",
+    "column_name": "name",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "order_items",
+    "column_name": "size",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "order_items",
+    "column_name": "colour",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "order_items",
+    "column_name": "quantity",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "order_items",
+    "column_name": "unit_price",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "user_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "idempotency_key",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "request_hash",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "status",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "subtotal",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "discount",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "shipping",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "total",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "address",
+    "data_type": "jsonb",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "created_at",
+    "data_type": "timestamp with time zone",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "expires_at",
+    "data_type": "timestamp with time zone",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "orders",
+    "column_name": "tracking",
+    "data_type": "text",
+    "is_nullable": "YES"
+  },
+  {
+    "table_name": "payment_events",
+    "column_name": "event_key",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "payment_events",
+    "column_name": "payment_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "payment_events",
+    "column_name": "status",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "payment_events",
+    "column_name": "created_at",
+    "data_type": "timestamp with time zone",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "payments",
+    "column_name": "id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "payments",
+    "column_name": "order_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "payments",
+    "column_name": "provider",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "payments",
+    "column_name": "status",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "payments",
+    "column_name": "provider_id",
+    "data_type": "text",
+    "is_nullable": "YES"
+  },
+  {
+    "table_name": "payments",
+    "column_name": "initiated_at",
+    "data_type": "timestamp with time zone",
+    "is_nullable": "YES"
+  },
+  {
+    "table_name": "payments",
+    "column_name": "updated_at",
+    "data_type": "timestamp with time zone",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "products",
+    "column_name": "id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "products",
+    "column_name": "name",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "products",
+    "column_name": "description",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "products",
+    "column_name": "image",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "products",
+    "column_name": "category",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "products",
+    "column_name": "active",
+    "data_type": "boolean",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "variants",
+    "column_name": "id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "variants",
+    "column_name": "product_id",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "variants",
+    "column_name": "size",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "variants",
+    "column_name": "colour",
+    "data_type": "text",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "variants",
+    "column_name": "price",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  },
+  {
+    "table_name": "variants",
+    "column_name": "stock",
+    "data_type": "integer",
+    "is_nullable": "NO"
+  }
+]

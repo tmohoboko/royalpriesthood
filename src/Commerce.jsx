@@ -12,7 +12,7 @@ async function api(path, method = "GET", data) {
     body: data ? JSON.stringify(data) : undefined,
   });
   const result = await response.json();
-  if (!response.ok) throw Error(result.error?.message || "Request failed");
+  if (!response.ok) throw Object.assign(Error(result.error?.message || "Request failed"),{code:result.error?.code});
   return result;
 }
 const provinces = [
@@ -96,13 +96,14 @@ export default function Commerce() {
     [message, setMessage] = useState(""),
     [busy, setBusy] = useState(false);
   const [query, setQuery] = useState(""),
-    [category, setCategory] = useState("All"),
+    [category, setCategory] = useState(()=>{const selected=new URLSearchParams(location.search).get("category");return categories.includes(selected)?selected:"All"}),
     [sort, setSort] = useState("name");
   const [register, setRegister] = useState(false),
     [auth, setAuth] = useState({ email: "", password: "", name: "" });
   const [address, setAddress] = useState({ country: "ZA" }),
     [shippingId, setShippingId] = useState(""),
     [code, setCode] = useState(""),
+    [discountError, setDiscountError] = useState(""),
     [review, setReview] = useState(null);
   const [orders, setOrders] = useState([]),
     [detail, setDetail] = useState(null),
@@ -127,6 +128,7 @@ export default function Commerce() {
     setAddresses(m.addresses);
     return m.user;
   }
+  useEffect(()=>setProducts(shared.catalogue),[shared.catalogue]);
   useEffect(()=>{if(shared.cartItems){setItems(shared.cartItems);setCartSummary(shared.cartSummary)}},[shared.cartItems,shared.cartSummary]);
   useEffect(()=>shared.setCartCount(items.reduce((n,i)=>n+i.quantity,0)),[items, shared.setCartCount]);
   useEffect(()=>shared.setUser(user),[user, shared.setUser]);
@@ -166,6 +168,7 @@ export default function Commerce() {
     };
   }, [path]);
   useEffect(() => {
+    if (detail?.order.status === "paid") shared.refreshProducts().catch(()=>{});
     if (!detail || detail.order.status !== "pending") return;
     const interval = setInterval(async () => {
       try {
@@ -186,6 +189,7 @@ export default function Commerce() {
     } catch (e) {
       setError(e.message);
     } finally {
+      await shared.refreshProducts().catch(()=>{});
       setBusy(false);
     }
   }
@@ -222,7 +226,10 @@ export default function Commerce() {
   function requestReview(e) {
     e.preventDefault();
     run(async () => {
-      setReview(await api("/quote", "POST", { shippingId, code }));
+      setReview(null);setDiscountError('');
+      try {setReview(await api("/quote", "POST", { shippingId, code:code.trim() }));}
+      catch(e){if(e.code==='INVALID_PROMOTION')setDiscountError(e.message);else throw e;}
+
     });
   }
   function pay(orderId) {
@@ -380,7 +387,7 @@ export default function Commerce() {
                 ) : (
                   <p>
                     No products available for this selection.{" "}
-                    <a href="/#catalogue">
+                    <a href="/shop">
                       Explore the catalogue and save your favourites.
                     </a>
                   </p>
@@ -397,7 +404,7 @@ export default function Commerce() {
               ) : (
                 <p>
                   This product is not available for purchase.{" "}
-                  <a href="/#catalogue">Browse catalogue</a>
+                  <a href="/shop">Browse Shop</a>
                 </p>
               ))}
             {path === "/shop/cart" && (
@@ -449,7 +456,7 @@ export default function Commerce() {
                       )}
                        . Shipping: calculated after delivery selection. Grand total: confirmed by the server at checkout.
                     </p>
-                    {cartSummary && <p>Shipping estimate ({cartSummary.shippingName}): {money(cartSummary.shipping)} · Estimated grand total: {money(cartSummary.total)}. Final delivery and discounts confirmed at checkout.</p>}
+                    {cartSummary && <p>Discount estimate −{money(cartSummary.discount)} · Shipping estimate ({cartSummary.shippingName}): {money(cartSummary.shipping)} · Estimated grand total: {money(cartSummary.total)}. Final delivery and discounts confirmed at checkout.</p>}
                     <a className="commerce-button" href="/shop/checkout">
                       Proceed to checkout
                     </a>
@@ -523,16 +530,19 @@ export default function Commerce() {
                         </select>
                       </label>
                       <label>
-                        Discount code
+                        Discount code (optional)
                         <input
                           maxLength="40"
+                          aria-invalid={!!discountError}
+                          aria-describedby={discountError?"discount-feedback":undefined}
                           value={code}
                           onChange={(e) =>
-                            setCode(e.target.value.toUpperCase())
+                            {setCode(e.target.value.toUpperCase());setDiscountError("");setReview(null)}
                           }
                         />
                       </label>
                     </fieldset>
+                    {discountError && <p id="discount-feedback" role="alert">{discountError}</p>}
                     <button disabled={busy}>Review order</button>
                     {review && (
                       <section className="commerce-summary">
@@ -565,7 +575,7 @@ export default function Commerce() {
                               const r = await api("/checkout", "POST", {
                                 address,
                                 shippingId,
-                                code,
+                                code:code.trim(),
                                 idempotencyKey: key,
                               });
                               sessionStorage.removeItem("rp:checkout-key");

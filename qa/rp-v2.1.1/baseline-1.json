@@ -1,0 +1,32 @@
+{
+  "result": {
+    "deployment": {
+      "id": "dpl_GssRABAMmYXbJB4sHFPSaA8Ep5om",
+      "name": "royalpriesthood",
+      "url": "royalpriesthood-3y2un7yq1-tmdev.vercel.app",
+      "type": "LAMBDAS",
+      "state": "READY",
+      "createdAt": 1793118935238,
+      "creator": {
+        "uid": "Bg3ycNf6BtqOog0jcKQjw837",
+        "username": "tmohoboko"
+      },
+      "project": {
+        "id": "prj_IZuPhIVC8rI7nLzV1SdJifoaQaRp",
+        "name": "royalpriesthood",
+        "framework": null
+      },
+      "meta": {},
+      "alias": [],
+      "target": null,
+      "regions": [
+        "iad1"
+      ],
+      "buildingAt": 1793118936166,
+      "ready": 1793118949140,
+      "readyState": "READY",
+      "source": "cli",
+      "aliasError": null
+    }
+  }
+}

@@ -1,0 +1,16 @@
+# RP-V2.1.1 confirmed baseline findings (before fixes)
+
+Starting HEAD eed3b6fca54079948088e61ae130d3ac13d7a4aa; clean tree, branch commerce/production-upgrade-20261027, two commits ahead of fetched origin. Canonical Preview serves d44eeecfacb864b1b13265f5c1dd79935d226fae, deployment dpl_GssRABAMmYXbJB4sHFPSaA8Ep5om. v2.1 evidence retained.
+
+ID | Work item | Confirmed cause / evidence | Planned bounded correction
+---|---|---|---
+211-D01 | RP-211-01 | Shared header contains Catalogue→/#catalogue and Shop→/shop; old URLs have no canonical redirect. Header source and hosted UI agree. | One Shop navigation action; preserve legacy access through redirect; Women/Men reach filtered Shop.
+211-D02 | RP-211-02 | Discount field lacks optional label/inline feedback. Literal empty string already succeeds; whitespace is truthy and queried as a promotion because server does not trim. Quote failures use global error; no order is created until review. | Normalize whitespace/case server-side and UI; inline invalid-code feedback; invalidate stale review.
+211-D03 | RP-211-03 | Product availability fetched once per page can remain stale after mutations/returning to tab. PostgreSQL and API currently agree that RP-QA-001 stock=0. | Refresh authoritative catalogue/Cart after relevant actions/focus; preserve locked reservation/payment idempotency contract.
+211-D04 | RP-211-04 | 16 original approved product records are inactive with no variants. Initial migration deliberately inserted illustrative references pending approved sale configuration. API retains all16 as pending-pricing references. No current DB-backed representative multi-category UAT set exists. | Separate explicitly synthetic preview-only fixture products/variants, idempotent seed and reversible deactivation, no original-price/stock overwrite.
+
+Inventory reconciliation: RP-QA-001 has four units in paid orders (1+1+2), one unit in an initiated/unresolved pending order, zero available. Orders/variant snapshots are in baseline-3.json; actual product state in baseline-2.json. Checkout reserves/decrements available stock before payment; COMPLETE notification confirms payment and does not deduct again. Initiated pending orders are intentionally not auto-released because late ITNs require reconciliation. No legitimate stock will be reset and no historical order/reservation will be rewritten.
+
+Existing limitations: receipt provider absent (queued is not delivered); inherited aggregate build fingerprint diagnostic (uploaded-source identity is verified independently). No earlier v2.1.1 fragments executed.
+
+Passing-after evidence: failing-before-discount.log and failing-before-navigation.log each reproduce the relevant baseline failure. Final check.log passes15 unit +24 API/integration cases, including whitespace/valid/invalid discounts, fixture guard, replay/reversal and inventory exact-once checks. Browser stabilization cases pass canonical redirects/departments and inline optional-discount behavior. Initial implementation's multi-statement ALTER was rejected by embedded prepared-query execution; changed to one additive ALTER statement (check-initial.log retained). PostgreSQL migration itself applied successfully on the isolated branch. No existing product stock was replenished.

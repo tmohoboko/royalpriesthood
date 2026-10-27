@@ -22,6 +22,7 @@ import {
 } from "./service.js";
 import { hostedPayment, verifyNotification, paymentConfig } from "./payfast.js";
 import { enqueue, deliverNotifications } from "./notifications.js";
+import { uatEnabled, requirePurchasableEnvironment } from "./uat-policy.js";
 const cookieName = "rp_session";
 const cookies = (req) =>
   Object.fromEntries(
@@ -288,7 +289,7 @@ export function createHandler({
           "SELECT v.* FROM variants v JOIN products p ON p.id=v.product_id WHERE p.active=true ORDER BY v.id",
         );
         return json({
-          products: resolveCatalogue(list, variants),
+          products: resolveCatalogue(list.filter(p=>!p.sandbox_only || uatEnabled(env)), variants),
           shipping: await rows(
             db,
             "SELECT * FROM shipping_options WHERE active=true ORDER BY price",
@@ -324,9 +325,10 @@ export function createHandler({
             const item=await one(tx,"SELECT * FROM wishlist_items WHERE id=$1 AND cart_id=$2 FOR UPDATE",[route[1],cartId]);
             if(!item) fail(404,"NOT_FOUND","Saved item not found");
             if(route[2]) {
-              const v=await one(tx,"SELECT v.*,p.active FROM variants v JOIN products p ON p.id=v.product_id WHERE v.id=$1 AND v.product_id=$2 FOR UPDATE OF v",[item.variant_id,item.product_id]);
+              const v=await one(tx,"SELECT v.*,p.active,p.sandbox_only FROM variants v JOIN products p ON p.id=v.product_id WHERE v.id=$1 AND v.product_id=$2 FOR UPDATE OF v",[item.variant_id,item.product_id]);
               const existing=await one(tx,"SELECT quantity FROM cart_items WHERE cart_id=$1 AND variant_id=$2",[cartId,item.variant_id]);
               const quantity=(existing?.quantity||0)+item.quantity;
+              if(v) requirePurchasableEnvironment([v],uatEnabled(env));
               if(!v || !v.active || !Number.isInteger(v.price) || v.price<500 || quantity>99 || quantity>v.stock) fail(409,"UNAVAILABLE","Current price, variant or inventory is unavailable. Item remains saved.");
               await tx.query("INSERT INTO cart_items(cart_id,variant_id,quantity) VALUES($1,$2,$3) ON CONFLICT(cart_id,variant_id) DO UPDATE SET quantity=excluded.quantity",[cartId,v.id,quantity]);
             }
@@ -352,10 +354,11 @@ export function createHandler({
           ]);
           const v = await one(
             tx,
-            "SELECT v.*,p.active FROM variants v JOIN products p ON p.id=v.product_id WHERE v.id=$1",
+            "SELECT v.*,p.active,p.sandbox_only FROM variants v JOIN products p ON p.id=v.product_id WHERE v.id=$1",
             [input.variantId],
           );
           if (!v) fail(404, "NOT_FOUND", "Variant not found");
+          if(input.quantity)requirePurchasableEnvironment([v],uatEnabled(env));
           if (input.quantity && (!v.active || !Number.isInteger(v.price) || v.price < 500 || input.quantity > v.stock))
             fail(409, "OUT_OF_STOCK", "Requested quantity is unavailable");
           if (!input.quantity)
@@ -376,18 +379,18 @@ export function createHandler({
         const input = z
           .object({
             shippingId: z.string().max(100),
-            code: z.string().max(40).default(""),
+            code: z.string().trim().max(40).default(""),
           })
           .parse(body);
         return json(
-          await quote(db, await ensureCart(), input.shippingId, input.code),
+          await quote(db, await ensureCart(), input.shippingId, input.code, uatEnabled(env)),
         );
       }
       if (path === "/checkout" && req.method === "POST") {
         requireUser();
         paymentConfig(env);
         return json(
-          { order: await checkout(db, user, await ensureCart(), body) },
+          { order: await checkout(db, user, await ensureCart(), body, uatEnabled(env)) },
           201,
         );
       }

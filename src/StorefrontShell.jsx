@@ -6,7 +6,7 @@ function Mark() {
 
 function Header({ count, onBag, cartCount, user }) {
   const [open, setOpen] = useState(false);
-  const links = [['Women', '/#women'], ['Men', '/#men'], ['Catalogue', '/#catalogue'], ['Shop', '/shop'], [user ? 'My account' : 'Account', '/shop/account'], ['Craft', '/#craft'], ['Contact', '/#contact'], ...(user?.role === 'admin' ? [['Admin', '/shop/admin']] : [])];
+  const links = [['Women', '/shop?category=Women'], ['Men', '/shop?category=Men'], ['Shop', '/shop'], [user ? 'My account' : 'Account', '/shop/account'], ['Craft', '/#craft'], ['Contact', '/#contact'], ...(user?.role === 'admin' ? [['Admin', '/shop/admin']] : [])];
   return <>
     <div className="topline"><span>ROYAL PRIESTHOOD / SOUTH AFRICA</span><span>MADE-TO-ORDER COLLECTION</span></div>
     <header className="header">

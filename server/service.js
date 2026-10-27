@@ -10,12 +10,13 @@ import {
   paymentTransition,
   canFulfil,
 } from "./domain.js";
+import { requirePurchasableEnvironment } from "./uat-policy.js";
 import { enqueue } from "./notifications.js";
 
 export async function cart(db, cartId) {
   return rows(
     db,
-    "SELECT v.*,p.name,p.image,p.active,c.quantity FROM cart_items c JOIN variants v ON v.id=c.variant_id JOIN products p ON p.id=v.product_id WHERE c.cart_id=$1 ORDER BY v.id",
+    "SELECT v.*,p.name,p.image,p.active,p.sandbox_only,c.quantity FROM cart_items c JOIN variants v ON v.id=c.variant_id JOIN products p ON p.id=v.product_id WHERE c.cart_id=$1 ORDER BY v.id",
     [cartId],
   );
 }
@@ -55,9 +56,11 @@ export async function mergeCart(db, guestId, userId) {
     return target.id;
   });
 }
-export async function quote(db, cartId, shippingId, code = "") {
+export async function quote(db, cartId, shippingId, code = "", allowUat = false) {
+  code=code.trim().toUpperCase();
   const items = await cart(db, cartId);
   requireStock(items);
+  requirePurchasableEnvironment(items,allowUat);
   const shipping = await one(
     db,
     "SELECT * FROM shipping_options WHERE id=$1 AND active=true",
@@ -79,10 +82,10 @@ export async function quote(db, cartId, shippingId, code = "") {
 const checkoutSchema = z.object({
   address: addressSchema,
   shippingId: z.string().min(1).max(100),
-  code: z.string().max(40).default(""),
+  code: z.string().trim().max(40).transform(v=>v.toUpperCase()).default(""),
   idempotencyKey: z.string().min(16).max(100),
 });
-export async function checkout(db, user, cartId, body) {
+export async function checkout(db, user, cartId, body, allowUat = false) {
   const input = checkoutSchema.parse(body);
   const fingerprint = hash(
     JSON.stringify({
@@ -125,7 +128,7 @@ export async function checkout(db, user, cartId, body) {
       await tx.query("SELECT id FROM variants WHERE id=$1 FOR UPDATE", [
         item.id,
       ]);
-    const q = await quote(tx, cartId, input.shippingId, input.code);
+    const q = await quote(tx, cartId, input.shippingId, input.code, allowUat);
     const orderId = id();
     const order = await one(
       tx,

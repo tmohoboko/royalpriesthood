@@ -14,7 +14,7 @@ function ProductCard({ item, index = 0, onPurchase, busy = false, commerce = fal
   const saved = wishlist.some(i=>i.product_id===item.id&&i.variant_id===(variant?.id||''));
   return <article className={`product-card ${commerce ? "commerce-product" : ""} ${index % 7 === 0 ? 'wide' : ''}`} data-testid="product-card" data-product-id={item.id} data-purchase-mode={item.purchaseMode}>
     <div className="product-media"><a href={`/shop/products/${item.id}`}><CatalogueImage src={item.image} alt={item.name} loading="lazy"/></a><span className="product-code">{item.id}</span><span className="product-department">{item.department}</span></div>
-    <div className="product-info"><div><p>{item.tone}</p><h3><a href={`/shop/products/${item.id}`}>{item.name}</a></h3></div>
+    <div className="product-info"><div>{item.sandbox_only && <p role="note">UAT TEST · Synthetic ZAR price · Sandbox only</p>}<p>{item.tone}</p><h3><a href={`/shop/products/${item.id}`}>{item.name}</a></h3></div>
       <div className="product-buy">{item.purchaseMode === 'direct' ? <>
         <label>VARIANT<select aria-label={`Variant for ${item.name}`} value={variant?.id || ''} onChange={e => setVariantId(e.target.value)}>{item.variants.map(v => <option key={v.id} value={v.id}>{v.size} / {v.colour} — R {(v.price/100).toFixed(2)}</option>)}</select></label>
         <button disabled={busy || !variant?.stock} onClick={async()=>{try{await (onPurchase || addToCart)(variant.id);if(!onPurchase)setMessage('Added to your cart.')}catch(e){setMessage(e.message)}}}>Add to cart</button>

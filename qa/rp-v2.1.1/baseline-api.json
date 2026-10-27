@@ -1,0 +1,330 @@
+{
+  "identity": {
+    "commit": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+    "sourceSha256": "7fadf9cb27113bf152dcf5619cb03010009900d00560d036e5297f4c57d13921",
+    "scope": "application source/config; excludes QA, docs and unchanged approved image assets"
+  },
+  "products": [
+    {
+      "id": "RP-W01",
+      "name": "Women's Black Statement",
+      "image": "/images/catalog/01_Women_Black_Statement.png",
+      "department": "Women",
+      "tags": [
+        "Women",
+        "T-Shirts",
+        "Pants",
+        "Shoes",
+        "Hats"
+      ],
+      "tone": "Black / Gold",
+      "category": "Women",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-W02",
+      "name": "Women's White Minimal",
+      "image": "/images/catalog/02_Women_White_Minimal.png",
+      "department": "Women",
+      "tags": [
+        "Women",
+        "T-Shirts",
+        "Pants",
+        "Shoes"
+      ],
+      "tone": "White / Gold",
+      "category": "Women",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-W03",
+      "name": "Women's Gold Crest",
+      "image": "/images/catalog/03_Women_Gold_Crest.png",
+      "department": "Women",
+      "tags": [
+        "Women",
+        "T-Shirts",
+        "Pants",
+        "Shoes"
+      ],
+      "tone": "Black / Gold",
+      "category": "Women",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-W04",
+      "name": "Women's Weekend",
+      "image": "/images/catalog/04_Women_Weekend.png",
+      "department": "Women",
+      "tags": [
+        "Women",
+        "T-Shirts",
+        "Pants",
+        "Shoes",
+        "Hats"
+      ],
+      "tone": "Black / Gold",
+      "category": "Women",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-M01",
+      "name": "Men's Black Statement",
+      "image": "/images/catalog/05_Men_Black_Statement.png",
+      "department": "Men",
+      "tags": [
+        "Men",
+        "T-Shirts",
+        "Pants",
+        "Shoes",
+        "Hats"
+      ],
+      "tone": "Black / Gold",
+      "category": "Men",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-M02",
+      "name": "Men's White Minimal",
+      "image": "/images/catalog/06_Men_White_Minimal.png",
+      "department": "Men",
+      "tags": [
+        "Men",
+        "T-Shirts",
+        "Pants",
+        "Shoes"
+      ],
+      "tone": "White / Gold",
+      "category": "Men",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-M03",
+      "name": "Men's Gold Crest",
+      "image": "/images/catalog/07_Men_Gold_Crest.png",
+      "department": "Men",
+      "tags": [
+        "Men",
+        "T-Shirts",
+        "Pants",
+        "Shoes"
+      ],
+      "tone": "Black / Gold",
+      "category": "Men",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-M04",
+      "name": "Men's Weekend",
+      "image": "/images/catalog/08_Men_Weekend.png",
+      "department": "Men",
+      "tags": [
+        "Men",
+        "T-Shirts",
+        "Pants",
+        "Shoes",
+        "Hats"
+      ],
+      "tone": "Black / Gold",
+      "category": "Men",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-T01",
+      "name": "Black Signature Tee — Front",
+      "image": "/images/catalog/09_Tshirt_Front_Black.png",
+      "department": "T-Shirts",
+      "tags": [
+        "Women",
+        "Men",
+        "T-Shirts"
+      ],
+      "tone": "Black / Gold",
+      "category": "T-Shirts",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-T02",
+      "name": "Black Signature Tee — Back",
+      "image": "/images/catalog/10_Tshirt_Back_Black.png",
+      "department": "T-Shirts",
+      "tags": [
+        "Women",
+        "Men",
+        "T-Shirts"
+      ],
+      "tone": "Black / Gold",
+      "category": "T-Shirts",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-T03",
+      "name": "White Signature Tee — Front",
+      "image": "/images/catalog/11_Tshirt_Front_White.png",
+      "department": "T-Shirts",
+      "tags": [
+        "Women",
+        "Men",
+        "T-Shirts"
+      ],
+      "tone": "White / Black",
+      "category": "T-Shirts",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-T04",
+      "name": "White Signature Tee — Back",
+      "image": "/images/catalog/12_Tshirt_Back_White.png",
+      "department": "T-Shirts",
+      "tags": [
+        "Women",
+        "Men",
+        "T-Shirts"
+      ],
+      "tone": "White / Black",
+      "category": "T-Shirts",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-A01",
+      "name": "Royal Carry Collection",
+      "image": "/images/catalog/15_Bag_Collection.png",
+      "department": "Accessories",
+      "tags": [
+        "Women",
+        "Men",
+        "Accessories"
+      ],
+      "tone": "Black / Gold",
+      "category": "Accessories",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-H01",
+      "name": "Crown Headwear Collection",
+      "image": "/images/catalog/16_Cap_Collection.png",
+      "department": "Hats",
+      "tags": [
+        "Women",
+        "Men",
+        "Hats"
+      ],
+      "tone": "Black / White / Gold",
+      "category": "Hats",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-M05",
+      "name": "Men's Complete Wardrobe",
+      "image": "/images/catalog/17_Bonus_Men_Lookbook.png",
+      "department": "Men",
+      "tags": [
+        "Men",
+        "T-Shirts",
+        "Pants",
+        "Shoes",
+        "Hats"
+      ],
+      "tone": "Black / Gold",
+      "category": "Men",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-W05",
+      "name": "Women's Complete Wardrobe",
+      "image": "/images/catalog/18_Bonus_Women_Lookbook.png",
+      "department": "Women",
+      "tags": [
+        "Women",
+        "T-Shirts",
+        "Pants",
+        "Shoes",
+        "Hats"
+      ],
+      "tone": "Black / Gold",
+      "category": "Women",
+      "description": "Catalogue reference. Confirm saleable contents, price and inventory before activation.",
+      "approved": true,
+      "purchaseMode": "quote",
+      "variants": []
+    },
+    {
+      "id": "RP-QA-001",
+      "name": "Royal Priesthood Test T-Shirt",
+      "description": "TEST ONLY — RP-QA-001 prototype acceptance fixture. No physical sale or delivery.",
+      "image": "/images/catalog/01_Women_Black_Statement.png",
+      "category": "T-Shirts",
+      "active": true,
+      "department": "T-Shirts",
+      "tags": [
+        "T-Shirts"
+      ],
+      "tone": "",
+      "approved": false,
+      "purchaseMode": "direct",
+      "variants": [
+        {
+          "id": "RP-QA-001",
+          "product_id": "RP-QA-001",
+          "size": "Medium",
+          "colour": "Black",
+          "price": 10000,
+          "stock": 0
+        }
+      ]
+    }
+  ],
+  "shipping": [
+    {
+      "id": "payment-gate-test-shipping",
+      "name": "TEST ONLY — No physical delivery",
+      "price": 0,
+      "active": true
+    }
+  ]
+}

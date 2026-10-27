@@ -5,9 +5,13 @@ import { categories, craft, stories } from './data';
 import './style.css';
 import { Header, Footer } from './StorefrontShell.jsx';
 import { StorefrontContext, useStorefront } from './StorefrontContext.jsx';
+import { legacyCatalogueTarget } from './navigation.js';
 import { resolveCatalogue } from './catalogue.js';
 import ProductCard, { CatalogueImage } from './CatalogueCard.jsx';
 import Wishlist, { wishlistApi } from './Wishlist.jsx';
+const followLegacyCatalogue = () => { const target=legacyCatalogueTarget(window.location);if(target)window.location.replace(target); };
+followLegacyCatalogue();
+window.addEventListener('hashchange',followLegacyCatalogue);
 const Commerce = React.lazy(() => import('./Commerce.jsx'));
 
 
@@ -99,8 +103,14 @@ function Storefront() {
   const [cartSummary, setCartSummary] = useState(null);
   const [user, setUser] = useState(null);
   async function refreshCart(){const r=await fetch('/api/commerce/cart');if(!r.ok)throw Error('Cart unavailable');const c=await r.json();setCartSummary(c.summary);setCartItems(c.items);setCartCount(c.items.reduce((n,i)=>n+i.quantity,0));return c.items;}
-  async function addToCart(variantId){const items=await refreshCart();const r=await fetch('/api/commerce/cart',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({variantId,quantity:(items.find(i=>i.id===variantId)?.quantity||0)+1})});const c=await r.json();if(!r.ok)throw Error(c.error?.message||'Cart unavailable');setCartSummary(c.summary);setCartItems(c.items);setCartCount(c.items.reduce((n,i)=>n+i.quantity,0));}
-  useEffect(()=>{fetch('/api/commerce/products').then(r=>{if(!r.ok)throw Error();return r.json()}).then(d=>setCatalogue(d.products)).catch(()=>{});refreshCart().catch(()=>{});fetch('/api/commerce/me').then(r=>r.json()).then(d=>setUser(d.user)).catch(()=>{});},[]);
+  async function addToCart(variantId){const items=await refreshCart();const r=await fetch('/api/commerce/cart',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({variantId,quantity:(items.find(i=>i.id===variantId)?.quantity||0)+1})});const c=await r.json();if(!r.ok){await refreshProducts().catch(()=>{});throw Error(c.error?.message||'Cart unavailable');}setCartSummary(c.summary);setCartItems(c.items);setCartCount(c.items.reduce((n,i)=>n+i.quantity,0));await refreshProducts().catch(()=>{});}
+  const refreshProducts = useCallback(async()=>{const r=await fetch('/api/commerce/products');if(!r.ok)throw Error('Catalogue unavailable');const d=await r.json();setCatalogue(d.products);return d;},[]);
+  useEffect(()=>{
+    refreshProducts().catch(()=>{});refreshCart().catch(()=>{});fetch('/api/commerce/me').then(r=>r.json()).then(d=>setUser(d.user)).catch(()=>{});
+    const refreshAvailability=()=>{if(!document.hidden){refreshProducts().catch(()=>{});refreshCart().catch(()=>{});}};
+    window.addEventListener('focus',refreshAvailability);document.addEventListener('visibilitychange',refreshAvailability);
+    return ()=>{window.removeEventListener('focus',refreshAvailability);document.removeEventListener('visibilitychange',refreshAvailability)};
+  },[refreshProducts]);
   const [wishlist, setWishlist] = useState([]);
   const [bagOpen, setBagOpen] = useState(false);
   const closeWishlist = useCallback(()=>setBagOpen(false), []);
@@ -113,11 +123,10 @@ function Storefront() {
     return !existing;
   }
   const goToCatalogue = category => {
-    setFilter(category);
-    document.querySelector('#catalogue')?.scrollIntoView({ behavior: 'smooth' });
+    window.location.assign('/shop'+(category==='All'?'':'?category='+encodeURIComponent(category)));
   };
   const commerce = window.location.pathname.startsWith('/shop');
-  return <StorefrontContext.Provider value={{ catalogue, setCatalogue, wishlist, setWishlist, refreshWishlist, toggleWishlist, cartCount, cartItems, cartSummary, setCartCount, refreshCart, addToCart, user, setUser }}>
+  return <StorefrontContext.Provider value={{ catalogue, setCatalogue, refreshProducts, wishlist, setWishlist, refreshWishlist, toggleWishlist, cartCount, cartItems, cartSummary, setCartCount, refreshCart, addToCart, user, setUser }}>
     <Header count={wishlist.length} onBag={() => setBagOpen(true)} cartCount={cartCount} user={user}/>
     {commerce ? <React.Suspense fallback={<p role="status">Loading shop…</p>}><Commerce/></React.Suspense> : <>
     <Hero onShop={() => goToCatalogue('All')}/>

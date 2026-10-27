@@ -20,7 +20,7 @@ const address = {
   postal_code: "2000",
   country: "ZA",
 };
-function client() {
+function client(handler=handle) {
   let cookies = {};
   return async (path, method = "GET", body, options = {}) => {
     const request = new Request(
@@ -38,7 +38,7 @@ function client() {
         ...(body ? { body: JSON.stringify(body) } : {}),
       },
     );
-    const response = await handle(request, "127.0.0.1");
+    const response = await handler(request, "127.0.0.1");
     for (const c of response.headers.getSetCookie()) {
       const [pair] = c.split(";");
       const [k, v] = pair.split("=");
@@ -696,4 +696,35 @@ test('WI-02/03 / SMK-08 / EXT-W02 validates variants and current stock/price; fa
   assert.equal(r.data.items.length,2);
   assert.equal((await c(`/wishlist/${valid.id}/move`,'POST',{})).status,404);
   assert.equal((await c('/cart')).data.items[0].quantity,1);
+});
+
+test('RP211 optional discounts normalize blank whitespace and preserve valid/invalid server validation',async()=>{
+ const c=await customer('rp211-discount');
+ await c('/cart','PUT',{variantId:'test-black-m',quantity:1});
+ for(const code of ['', '   ', '\t']) {
+   const r=await c('/quote','POST',{shippingId:'standard',code});assert.equal(r.status,200,`blank ${JSON.stringify(code)} should be optional`);assert.equal(r.data.discount,0);
+ }
+ const invalid=await c('/quote','POST',{shippingId:'standard',code:' NO-SUCH-CODE '});assert.equal(invalid.status,400);assert.equal(invalid.data.error.code,'INVALID_PROMOTION');
+ const valid=await c('/quote','POST',{shippingId:'standard',code:' test10 '});assert.equal(valid.status,200);assert.equal(valid.data.discount,3500);
+ assert.equal((await c('/orders')).data.orders.length,0);
+});
+test('RP211 synthetic fixture is visible/purchasable only in sandbox Preview or local tests',async()=>{
+ await db.query("INSERT INTO products(id,name,image,category,active,sandbox_only,fixture_version) VALUES('RP-UAT-API','UAT TEST API','/images/catalog/09_Tshirt_Front_Black.png','T-Shirts',true,true,'RP211-API-TEST')");
+ await db.query("INSERT INTO variants(id,product_id,size,colour,price,stock) VALUES('RP-UAT-API-M','RP-UAT-API','M','Black',10000,2)");
+ const c=client();assert.ok((await c('/products')).data.products.some(p=>p.id==='RP-UAT-API'));
+ assert.equal((await c('/cart','PUT',{variantId:'RP-UAT-API-M',quantity:1})).status,200);
+ const production=client(createHandler({db,env:{...fixtureEnv,NODE_ENV:'production',VERCEL_ENV:'production',RESEND_API_KEY:''}}));
+ assert.ok(!(await production('/products')).data.products.some(p=>p.id==='RP-UAT-API'));
+ assert.equal((await production('/cart','PUT',{variantId:'RP-UAT-API-M',quantity:1})).status,403);
+});
+test('RP211 available inventory is reserved once; verified COMPLETE and replay never deduct twice',async()=>{
+ const c=await customer('rp211-stock-ledger');
+ const before=(await one(db,"SELECT stock FROM variants WHERE id='test-black-m'")).stock;
+ const order=(await pending(c,'rp211-reservation-key-123')).data.order;
+ const reserved=(await one(db,"SELECT stock FROM variants WHERE id='test-black-m'")).stock;
+ assert.equal(reserved,before-2);
+ const payment=await one(db,'SELECT * FROM payments WHERE order_id=$1',[order.id]);
+ assert.equal((await notify(payment)).status,200);assert.equal((await notify(payment)).data.duplicate,true);
+ assert.equal((await one(db,"SELECT stock FROM variants WHERE id='test-black-m'")).stock,reserved);
+ assert.equal((await rows(db,'SELECT * FROM payment_events WHERE payment_id=$1',[payment.id])).length,1);
 });

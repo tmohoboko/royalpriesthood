@@ -9,14 +9,14 @@ test('new editorial storefront and departments render', async ({ page }) => {
 });
 
 test('the new catalogue replaces the placeholder range', async ({ page }) => {
-  await page.goto('/#catalogue');
+  await page.goto('/');
   await expect(page.getByTestId('product-card')).toHaveCount(16);
   await expect(page.locator('body')).not.toContainText('COMING SOON');
   await expect(page.locator('body')).not.toContainText('FUTURE DROP');
 });
 
 test('department filters show category-specific looks', async ({ page }) => {
-  await page.goto('/#catalogue');
+  await page.goto('/');
   await page.getByRole('button', { name: 'Hats', exact: true }).last().click();
   await expect(page.getByTestId('product-card')).toHaveCount(7);
   await page.getByRole('button', { name: 'Pants', exact: true }).last().click();
@@ -24,7 +24,7 @@ test('department filters show category-specific looks', async ({ page }) => {
 });
 
 test('a catalogue piece can be saved to Wishlist', async ({ page }) => {
-  await page.goto('/#catalogue');
+  await page.goto('/');
   await page.getByRole('button', { name: 'Save to Wishlist', exact: true }).first().click();
   await page.getByRole('button',{name:'Open Wishlist with 1 items'}).click();
   const drawer = page.getByRole('dialog', { name: 'My Wishlist' });
