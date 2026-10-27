@@ -4,82 +4,94 @@
 
 
 > royal-priesthood-storefront@1.0.0 lint
-> eslint server api src/Commerce.jsx scripts/commerce-*.mjs tests/unit tests/integration
+> eslint proxy.js server api src/Commerce.jsx scripts/commerce-*.mjs tests/unit tests/integration
 
 
 > royal-priesthood-storefront@1.0.0 test:unit
 > node --test tests/unit/*.test.js
 
 TAP version 13
-# Subtest: server totals use integer cents and floor percentage discount
-ok 1 - server totals use integer cents and floor percentage discount
+# Subtest: callback alias permits only exact sandbox preview POST and no query
+ok 1 - callback alias permits only exact sandbox preview POST and no query
   ---
-  duration_ms: 2.013259
+  duration_ms: 36.137267
+  type: 'test'
+  ...
+# Subtest: hosted fields use callback-only alias with no bypass secret
+ok 2 - hosted fields use callback-only alias with no bypass secret
+  ---
+  duration_ms: 1.64638
+  type: 'test'
+  ...
+# Subtest: server totals use integer cents and floor percentage discount
+ok 3 - server totals use integer cents and floor percentage discount
+  ---
+  duration_ms: 2.381971
   type: 'test'
   ...
 # Subtest: reject empty carts, invalid quantities, prices and zero totals
-ok 2 - reject empty carts, invalid quantities, prices and zero totals
+ok 4 - reject empty carts, invalid quantities, prices and zero totals
   ---
-  duration_ms: 0.725703
+  duration_ms: 0.648825
   type: 'test'
   ...
 # Subtest: stock must be available and product active
-ok 3 - stock must be available and product active
+ok 5 - stock must be available and product active
   ---
-  duration_ms: 0.364334
+  duration_ms: 0.272928
   type: 'test'
   ...
 # Subtest: payment transitions cannot regress successful payment
-ok 4 - payment transitions cannot regress successful payment
+ok 6 - payment transitions cannot regress successful payment
   ---
-  duration_ms: 0.325922
+  duration_ms: 0.228762
   type: 'test'
   ...
 # Subtest: fulfilment requires verified payment first
-ok 5 - fulfilment requires verified payment first
+ok 7 - fulfilment requires verified payment first
   ---
-  duration_ms: 0.321375
+  duration_ms: 0.317703
   type: 'test'
   ...
 # Subtest: password hashes are salted and verify correctly
-ok 6 - password hashes are salted and verify correctly
+ok 8 - password hashes are salted and verify correctly
   ---
-  duration_ms: 1245.004726
+  duration_ms: 1164.639948
   type: 'test'
   ...
 # Subtest: PayFast canonical encoding uses PHP form encoding and excludes signature
-ok 7 - PayFast canonical encoding uses PHP form encoding and excludes signature
+ok 9 - PayFast canonical encoding uses PHP form encoding and excludes signature
   ---
-  duration_ms: 0.918028
+  duration_ms: 0.860204
   type: 'test'
   ...
 # Subtest: live and unconfigured payments fail closed
-ok 8 - live and unconfigured payments fail closed
+ok 10 - live and unconfigured payments fail closed
   ---
-  duration_ms: 0.48365
+  duration_ms: 0.475155
   type: 'test'
   ...
 # Subtest: invalid callback signature rejected before network verification
-ok 9 - invalid callback signature rejected before network verification
+ok 11 - invalid callback signature rejected before network verification
   ---
-  duration_ms: 1.766129
+  duration_ms: 1.193839
   type: 'test'
   ...
 # Subtest: PayFast ITN retains empty fields and verifies source and server confirmation
-ok 10 - PayFast ITN retains empty fields and verifies source and server confirmation
+ok 12 - PayFast ITN retains empty fields and verifies source and server confirmation
   ---
-  duration_ms: 32.272479
+  duration_ms: 28.363118
   type: 'test'
   ...
-1..10
-# tests 10
+1..12
+# tests 12
 # suites 0
-# pass 10
+# pass 12
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 1455.225367
+# duration_ms 1369.616109
 
 > royal-priesthood-storefront@1.0.0 test:integration
 > node --test tests/integration/*.test.js
@@ -88,110 +100,119 @@ TAP version 13
 # Subtest: public catalogue and inventory; anonymous checkout/admin rejected
 ok 1 - public catalogue and inventory; anonymous checkout/admin rejected
   ---
-  duration_ms: 3994.259765
+  duration_ms: 3418.72504
   type: 'test'
   ...
 # Subtest: cross-origin mutations and invalid inputs rejected
 ok 2 - cross-origin mutations and invalid inputs rejected
   ---
-  duration_ms: 9.490915
+  duration_ms: 8.521436
   type: 'test'
   ...
 # Subtest: persistent guest cart merges exactly once across registration and login
 ok 3 - persistent guest cart merges exactly once across registration and login
   ---
-  duration_ms: 756.045696
+  duration_ms: 686.304749
   type: 'test'
   ...
 # Subtest: checkout validates stock and recalculates prices ignoring browser totals
 ok 4 - checkout validates stock and recalculates prices ignoring browser totals
   ---
-  duration_ms: 407.741961
+  duration_ms: 361.828324
   type: 'test'
   ...
 # Subtest: idempotency prevents duplicate orders and stock reservations
 ok 5 - idempotency prevents duplicate orders and stock reservations
   ---
-  duration_ms: 385.454472
+  duration_ms: 355.217909
   type: 'test'
   ...
 # Subtest: only order owner can see or initiate sandbox payment; redirect is not payment
 ok 6 - only order owner can see or initiate sandbox payment; redirect is not payment
   ---
-  duration_ms: 741.758593
+  duration_ms: 659.436862
   type: 'test'
   ...
-# {"event":"payment_notification_rejected","code":"AMOUNT_MISMATCH","payment":"0bded8e863cecb4f18543821fdeb89a2d2ce388334f508fa"}
+# {"event":"payment_notification_rejected","code":"AMOUNT_MISMATCH","payment":"ce24445898fdbf3a1bc324a42a75edc228a7d09e228c86d7"}
 # Subtest: verified callback marks paid, emits one receipt, rejects amount mismatch and replay
 ok 7 - verified callback marks paid, emits one receipt, rejects amount mismatch and replay
   ---
-  duration_ms: 421.369461
+  duration_ms: 395.578104
   type: 'test'
   ...
-# {"event":"payment_notification_rejected","code":"RECONCILIATION_REQUIRED","payment":"f6f017a0ad304722e0088345780275b68428a449b1eed01d"}
+# {"event":"payment_notification_rejected","code":"RECONCILIATION_REQUIRED","payment":"6fe2710329466dcf3cdd5015d048ad61d64d72abf9107b85"}
 # Subtest: failed and cancelled callbacks never issue receipt; cancel releases stock once
 ok 8 - failed and cancelled callbacks never issue receipt; cancel releases stock once
   ---
-  duration_ms: 766.752805
+  duration_ms: 718.003352
   type: 'test'
   ...
 # Subtest: administrator manages products and fulfilment; cannot dispatch unpaid orders
 ok 9 - administrator manages products and fulfilment; cannot dispatch unpaid orders
   ---
-  duration_ms: 754.434899
+  duration_ms: 667.455523
   type: 'test'
   ...
 # Subtest: inventory changes roll checkout back without partial order or stock mutation
 ok 10 - inventory changes roll checkout back without partial order or stock mutation
   ---
-  duration_ms: 361.668473
+  duration_ms: 326.942083
   type: 'test'
   ...
 # Subtest: invalid credentials, origin, forged callback and duplicate fields fail safely
 ok 11 - invalid credentials, origin, forged callback and duplicate fields fail safely
   ---
-  duration_ms: 315.657931
+  duration_ms: 304.251589
   type: 'test'
   ...
 # Subtest: verified cancellation preserves unpaid status and permits safe inventory release
 ok 12 - verified cancellation preserves unpaid status and permits safe inventory release
   ---
-  duration_ms: 381.256698
+  duration_ms: 358.618319
   type: 'test'
   ...
 # Subtest: failed email jobs retry with a stable idempotency key and do not regress payments
 ok 13 - failed email jobs retry with a stable idempotency key and do not regress payments
   ---
-  duration_ms: 384.641044
+  duration_ms: 353.934852
   type: 'test'
   ...
 # Subtest: SQL data and hashed sessions survive database close and reopen
 ok 14 - SQL data and hashed sessions survive database close and reopen
   ---
-  duration_ms: 4653.174788
+  duration_ms: 3878.314128
   type: 'test'
   ...
 # Subtest: production Node adapter preserves rewritten paths, raw bodies and session cookies
 ok 15 - production Node adapter preserves rewritten paths, raw bodies and session cookies
   ---
-  duration_ms: 363.96228
+  duration_ms: 381.968754
   type: 'test'
   ...
 # Subtest: concurrent customers competing for the last unit create exactly one order
 ok 16 - concurrent customers competing for the last unit create exactly one order
   ---
-  duration_ms: 757.089389
+  duration_ms: 673.857036
   type: 'test'
   ...
-1..16
-# tests 16
+# {"event":"payment_notification_rejected","code":"BAD_MERCHANT","payment":"8b20831a36fafb766fc34ea669a1922e52fbc8fda4f4982e"}
+# {"event":"payment_notification_rejected","code":"NOT_FOUND","payment":"ffffffffffffffffffffffffffffffffffffffffffffffff"}
+# {"event":"payment_notification_rejected","code":"BAD_STATUS","payment":"8b20831a36fafb766fc34ea669a1922e52fbc8fda4f4982e"}
+# Subtest: signed callbacks reject wrong merchant, unknown order reference and unsupported status
+ok 17 - signed callbacks reject wrong merchant, unknown order reference and unsupported status
+  ---
+  duration_ms: 342.540798
+  type: 'test'
+  ...
+1..17
+# tests 17
 # suites 0
-# pass 16
+# pass 17
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 15800.739539
+# duration_ms 14201.394051
 
 > royal-priesthood-storefront@1.0.0 build
 > vite build
@@ -206,4 +227,4 @@ dist/assets/Commerce-Br0KCqFX.css    3.21 kB │ gzip:  1.09 kB
 dist/assets/index-B1OKtYvZ.css      23.67 kB │ gzip:  6.13 kB
 dist/assets/Commerce-Bh4glz6b.js    20.37 kB │ gzip:  6.51 kB
 dist/assets/index-BNQGfJ9e.js      244.69 kB │ gzip: 77.06 kB
-✓ built in 3.27s
+✓ built in 3.06s

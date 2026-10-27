@@ -1,46 +1,95 @@
 {
   "date": "2026-10-27",
-  "project": "prj_IZuPhIVC8rI7nLzV1SdJifoaQaRp",
   "team": "tmdev",
+  "project": "prj_IZuPhIVC8rI7nLzV1SdJifoaQaRp",
   "branch": "commerce/production-upgrade-20261027",
-  "implementationCommit": "3d70341f66351976b19520c69be02428813337f4",
-  "deployment": "dpl_D9pfef8FbRdDsAsqaLz12tcRqjKn",
-  "state": "READY",
-  "environment": "preview (Vercel deployment target null; CLI explicitly --target preview)",
-  "source": "CLI upload; project has no Git connection",
+  "repositoryAcceptanceStartCommit": "51497d88ef604ce396698a5f8e9f0147c5034d91",
+  "deployedImplementationCommit": "7ec7a42c395b231a2dec028c1a2bd209f4d4dea4",
+  "finalEvidenceCommit": "Commit containing this report; final delivery provides exact hash",
+  "deployment": "dpl_9xC2hhfPwJTNY5jtWZoZfMekZgFk",
+  "deploymentState": "READY",
   "preview": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
-  "immutableUrl": "https://royalpriesthood-chtq7ptks-tmdev.vercel.app",
-  "productionAlias": "royalpriesthood-two.vercel.app",
-  "productionDeploymentBeforeAndAfter": "dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG",
-  "previewEnvironmentKeys": [
+  "immutablePreview": "https://royalpriesthood-4ojcibn9u-tmdev.vercel.app",
+  "origin": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "callback": "https://royalpriesthood-payfast-itn-tmdev.vercel.app/api/commerce/payfast/notify",
+  "mode": "sandbox",
+  "environmentKeysPreviewOnly": [
     "DATABASE_URL",
-    "APP_ORIGIN"
+    "APP_ORIGIN",
+    "PAYFAST_MODE",
+    "PAYFAST_MERCHANT_ID",
+    "PAYFAST_MERCHANT_KEY",
+    "PAYFAST_PASSPHRASE",
+    "PAYFAST_NOTIFY_ORIGIN"
   ],
-  "productionEnvironmentChanged": false,
-  "runtimeRole": {
-    "name": "rp_commerce_preview",
-    "superuser": false,
-    "createDatabase": false,
-    "createRole": false,
-    "createInPublicSchema": false
+  "secretsDisclosed": false,
+  "migration": {
+    "file": "migrations/001-commerce.sql",
+    "sha256": "04c5d2d147e2f668d10001aeb4d7ba66e1d59038fec2db933391571fdfc165b7",
+    "expectedPublicTables": 16,
+    "observedPublicTables": 16,
+    "newMigrationsNeeded": false,
+    "evidence": "prototype-database-state.json"
   },
-  "localTests": {
-    "passed": 40,
+  "databaseBranch": "br-calm-rice-b7mcxqw7",
+  "fixture": {
+    "sku": "RP-QA-001",
+    "name": "Royal Priesthood Test T-Shirt",
+    "variant": "Black / Medium",
+    "priceCents": 10000,
+    "initialStock": 5,
+    "remainingStock": 3,
+    "shippingCents": 0,
+    "reusable": "Upsert stable IDs; never automatically refill remaining stock"
+  },
+  "testAccounts": "Dedicated synthetic customer and operator-provisioned admin; generated passwords stored only in ignored mode0600 file; not included in artifacts",
+  "successfulOrder": {
+    "id": "cd487f247e02f59753974bceddc3161be56ca5d8648fafaf",
+    "status": "paid",
+    "total": 10000,
+    "subtotal": 10000,
+    "shipping": 0,
+    "payment_id": "bb0185e98b4350c14d3983df7b9d32beb9b7e3a12e428ea1",
+    "payment_status": "paid",
+    "provider_id": "3479203",
+    "verified_events": "1",
+    "receipts": "1",
+    "notifications_sent": "0"
+  },
+  "cancelledCheckoutOrder": {
+    "id": "6530405e4f72e118d9e90966742fc18ad339c9e2dd27dbb0",
+    "status": "pending",
+    "total": 10000,
+    "subtotal": 10000,
+    "shipping": 0,
+    "payment_id": "f34079bbcecc69b903843e6a9b79d9128499110f4ec4d8be",
+    "payment_status": "pending",
+    "provider_id": null,
+    "verified_events": "0",
+    "receipts": "0",
+    "notifications_sent": "0"
+  },
+  "regression": {
+    "passed": 43,
     "failed": 0,
-    "skipped": 0
-  },
-  "hostedSmokeChecks": {
-    "passed": 21,
-    "failed": 0
-  },
-  "optionalHostedIntegration": {
-    "passed": 0,
-    "failed": 16,
     "skipped": 0,
-    "reason": "ETIMEDOUT during before hook, before API assertions"
+    "unit": 12,
+    "api": 17,
+    "commerceBrowser": 7,
+    "originalBrowser": 7,
+    "lint": "PASS",
+    "build": "PASS",
+    "dependencyAudit": "0 vulnerabilities"
   },
-  "unauthenticatedGatewayCallbackHttpStatus": 302,
-  "gatewayCallbackBlocker": "Vercel authentication redirects external PayFast callbacks; needs approved provider-accessible callback route/host before real sandbox testing",
-  "payments": "disabled; merchant credentials not configured",
-  "email": "not configured; no real email sent"
+  "production": {
+    "changed": false,
+    "domain": "royalpriesthood-two.vercel.app",
+    "deploymentBeforeAndAfter": "dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG"
+  },
+  "gate": "BLOCKED",
+  "gateBlockers": [
+    "PAY-03: real provider FAILED scenario unavailable: sandbox wallet makes payments successful",
+    "PAY-05: required real validated-notification replay unavailable: sandbox sends notification once; raw provider notification not retained/exposed"
+  ],
+  "emailAcceptance": "Separate post-prototype backlog; Resend not configured; no receipt delivered"
 }

@@ -1,0 +1,250 @@
+{
+  "cases": [
+    {
+      "id": "ENV-01",
+      "status": "PASS",
+      "expected": "Existing Preview READY",
+      "actual": "Existing deployment inspected READY; no redeployment needed",
+      "evidence": "deployment-evidence.json"
+    },
+    {
+      "id": "ENV-02",
+      "status": "PASS",
+      "expected": "Authorized UI and API routes function",
+      "actual": "Real shop/product/cart/checkout/order/account/admin routes exercised",
+      "evidence": "prototype-journey-results.json"
+    },
+    {
+      "id": "ENV-03",
+      "status": "PASS",
+      "expected": "Preview PostgreSQL responds and migrations current",
+      "actual": "Real queries and all16 expected public tables; no outstanding migration",
+      "evidence": "prototype-database-state.json"
+    },
+    {
+      "id": "ENV-04",
+      "status": "PASS",
+      "expected": "Server-only sandbox settings and correct origin/callback",
+      "actual": "Runtime sandbox health, accepted signed R100 form, correct merchant/URLs; all configured keys target Preview",
+      "evidence": "deployment-evidence.json; prototype-journey-results.json"
+    },
+    {
+      "id": "ENV-05",
+      "status": "PASS",
+      "expected": "Provider callback accessible without broad protection disable",
+      "actual": "Invalid ITN400 BAD_SIGNATURE, alias root404, protected storefront302",
+      "evidence": "prototype-access-checks.json"
+    },
+    {
+      "id": "ENV-06",
+      "status": "PASS",
+      "expected": "Production unchanged; no live credentials or live payment",
+      "actual": "Production alias unchanged; Preview-only variables and fixed sandbox action verified",
+      "evidence": "deployment-evidence.json"
+    },
+    {
+      "id": "DATA-01",
+      "status": "PASS",
+      "expected": "One reusable requested test-only SKU, initial stock5, priceR100, shippingR0",
+      "actual": "Stable product/variant RP-QA-001 upserted; older R5 fixture deactivated; remaining stock3 after actual tests",
+      "evidence": "prototype-database-state.json; prototype-product.png"
+    },
+    {
+      "id": "DATA-02",
+      "status": "PASS",
+      "expected": "Secure test customer and authorized admin provisioned",
+      "actual": "Synthetic accounts registered through existing API; trusted operator promoted only designated admin; role tests passed",
+      "evidence": "prototype-journey-results.json; prototype-database-state.json"
+    },
+    {
+      "id": "JOURNEY-01",
+      "status": "PASS",
+      "expected": "Open authorized shop",
+      "actual": "Shop rendered",
+      "evidence": "prototype-journey-results.json"
+    },
+    {
+      "id": "JOURNEY-02",
+      "status": "PASS",
+      "expected": "Display test product",
+      "actual": "Product and variant selected",
+      "evidence": "prototype-journey-results.json; prototype-product.png"
+    },
+    {
+      "id": "JOURNEY-03",
+      "status": "PASS",
+      "expected": "Select Black/Medium",
+      "actual": "Product and variant selected",
+      "evidence": "prototype-journey-results.json; prototype-product.png"
+    },
+    {
+      "id": "JOURNEY-04",
+      "status": "PASS",
+      "expected": "Add one item to guest cart",
+      "actual": "Cart API and UI agree",
+      "evidence": "prototype-journey-results.json; prototype-cart.png"
+    },
+    {
+      "id": "JOURNEY-05",
+      "status": "PASS",
+      "expected": "Validate qty1 price/subtotalR100",
+      "actual": "Cart API and UI agree",
+      "evidence": "prototype-journey-results.json; prototype-cart.png"
+    },
+    {
+      "id": "JOURNEY-06",
+      "status": "PASS",
+      "expected": "Authenticate customer",
+      "actual": "Customer authenticated; cart retained",
+      "evidence": "prototype-journey-results.json"
+    },
+    {
+      "id": "JOURNEY-07",
+      "status": "PASS",
+      "expected": "Preserve cart across authentication",
+      "actual": "Customer authenticated; cart retained",
+      "evidence": "prototype-journey-results.json"
+    },
+    {
+      "id": "JOURNEY-08",
+      "status": "PASS",
+      "expected": "Enter test delivery details",
+      "actual": "Review displayed requested total",
+      "evidence": "prototype-journey-results.json; prototype-review.png"
+    },
+    {
+      "id": "JOURNEY-09",
+      "status": "PASS",
+      "expected": "Review authoritative totalR100",
+      "actual": "Review displayed requested total",
+      "evidence": "prototype-journey-results.json; prototype-review.png"
+    },
+    {
+      "id": "JOURNEY-10",
+      "status": "PASS",
+      "expected": "Submit checkout",
+      "actual": "Pending order and payment confirmed",
+      "evidence": "prototype-journey-results.json; prototype-pending.png"
+    },
+    {
+      "id": "JOURNEY-11",
+      "status": "PASS",
+      "expected": "Confirm pending order/payment",
+      "actual": "Pending order and payment confirmed",
+      "evidence": "prototype-journey-results.json; prototype-pending.png"
+    },
+    {
+      "id": "JOURNEY-12",
+      "status": "PASS",
+      "expected": "Validate reference, amount and stock reservation",
+      "actual": "Pending order and payment confirmed",
+      "evidence": "prototype-journey-results.json; prototype-pending.png"
+    },
+    {
+      "id": "PAY-01",
+      "status": "PASS",
+      "expected": "Real sandbox checkout, verified ITN and correct PAID order",
+      "actual": "Actual R100 wallet transaction3479203; one COMPLETE event, one paid order and queued receipt; browser return not used as verification",
+      "evidence": "prototype-paid.png; prototype-database-state.json"
+    },
+    {
+      "id": "PAY-02",
+      "status": "PASS",
+      "expected": "Actual gateway cancellation never marks order paid",
+      "actual": "Actual PayFast cancel dialog/return; order remains pending, zero events/receipts; stock held pending reconciliation",
+      "evidence": "prototype-cancelled.png; prototype-database-state.json"
+    },
+    {
+      "id": "PAY-03",
+      "status": "BLOCKED",
+      "expected": "Execute real provider-supported FAILED scenario",
+      "actual": "Provider docs: funded wallet only, all payments successful. Controlled FAILED tests pass but do not satisfy real-provider case",
+      "evidence": "payment-sandbox-results.md; check.log; commerce-e2e.log"
+    },
+    {
+      "id": "PAY-04",
+      "status": "PASS",
+      "expected": "Invalid/tampered notification rejected without paid mutation",
+      "actual": "Fresh external callback400 BAD_SIGNATURE; controlled forged-callback tests also pass",
+      "evidence": "prototype-access-checks.json; check.log"
+    },
+    {
+      "id": "PAY-05",
+      "status": "BLOCKED",
+      "expected": "Replay previously validated real provider notification and prove idempotency",
+      "actual": "Provider docs: notifications sent only once; no real replay obtained. Controlled valid-duplicate tests pass; not counted as real sandbox evidence",
+      "evidence": "payment-sandbox-results.md; check.log"
+    },
+    {
+      "id": "PAY-06",
+      "status": "PASS",
+      "expected": "Incorrect amount fails safely in controlled integration test",
+      "actual": "Signed callback with wrong amount rejected; no incorrect payment recorded. Controlled verification, not a real sandbox ITN",
+      "evidence": "check.log; tests/integration/commerce.test.js"
+    },
+    {
+      "id": "PAY-07",
+      "status": "PASS",
+      "expected": "Retry does not duplicate order/reservation/fulfillment",
+      "actual": "Real checkout repeated with same key returns same pending order; stock decreased once. Controlled event retries also pass",
+      "evidence": "prototype-journey-results.json; check.log"
+    },
+    {
+      "id": "REG-01",
+      "status": "PASS",
+      "expected": "Lint succeeds",
+      "actual": "PASS",
+      "evidence": "check.log"
+    },
+    {
+      "id": "REG-02",
+      "status": "PASS",
+      "expected": "Production build succeeds",
+      "actual": "PASS",
+      "evidence": "check.log"
+    },
+    {
+      "id": "REG-03",
+      "status": "PASS",
+      "expected": "Unit tests execute",
+      "actual": "12 passed/0failed/0skipped",
+      "evidence": "check.log"
+    },
+    {
+      "id": "REG-04",
+      "status": "PASS",
+      "expected": "API/integration suite executes",
+      "actual": "17 passed/0failed/0skipped",
+      "evidence": "check.log"
+    },
+    {
+      "id": "REG-05",
+      "status": "PASS",
+      "expected": "Commerce browser suite executes",
+      "actual": "7 passed/0failed/0skipped; mocked gateway explicitly labelled",
+      "evidence": "commerce-e2e.log"
+    },
+    {
+      "id": "REG-06",
+      "status": "PASS",
+      "expected": "Original regression executes",
+      "actual": "7 passed/0failed/0skipped",
+      "evidence": "regression.log"
+    },
+    {
+      "id": "MAP-01",
+      "status": "PASS",
+      "expected": "As-built flows, exceptions and states documented",
+      "actual": "Two Mermaid diagrams and API/state matrix label VERIFIED, IMPLEMENTED BUT UNTESTED or NOT IMPLEMENTED",
+      "evidence": "e2e-process-map.md"
+    }
+  ],
+  "totals": {
+    "PASS": 32,
+    "FAIL": 0,
+    "BLOCKED": 2,
+    "SKIPPED": 0
+  },
+  "verdict": "BLOCKED",
+  "email": "Excluded from prototype gate; separately blocked/post-prototype"
+}

@@ -1,0 +1,7 @@
+{
+  "initialReadAttempt": "Multiple SELECT commands in single prepared-statement tool",
+  "result": "rejected: cannot insert multiple commands into a prepared statement",
+  "repair": "Use supported transaction tool with separate statements",
+  "finalResult": "schema, fixture, user-role and order-state inspections succeeded",
+  "applicationMutationInFailedAttempt": false
+}

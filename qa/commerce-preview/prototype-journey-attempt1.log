@@ -1,0 +1,16 @@
+PASS JOURNEY-01 Shop rendered
+PASS ENV-API Runtime health confirmed
+PASS FIXTURE Requested product/variant available
+PASS JOURNEY-02-03 Product and variant selected
+PASS JOURNEY-04-05 Cart API and UI agree
+PASS JOURNEY-06-07 Customer authenticated; cart retained
+PASS JOURNEY-08-09 Review displayed requested total
+PASS JOURNEY-10-12 Pending order and payment confirmed
+PASS PAY-07 Same idempotency key returned same order; one reservation
+PASS AUTHZ-CUSTOMER Admin endpoint403
+PASS PAY-FIELDS Real PayFast page loaded and fields validated
+PASS PAY-01 Actual PayFast transaction verified and order paid
+locator.waitFor: Timeout 25000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('link', { name: 'cd487f247e02f59753974bceddc3161be56ca5d8648fafaf' }) to be visible[22m
+

@@ -1,0 +1,3 @@
+PASS ORDER-HISTORY Paid order appears in account
+PASS PAY-02 Actual PayFast cancel return leaves pending and no receipt
+PASS ADMIN Admin UI and protected APIs accessible

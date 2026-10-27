@@ -1,0 +1,15 @@
+[
+  {
+    "id": "callback-invalid",
+    "status": 400,
+    "error": "BAD_SIGNATURE"
+  },
+  {
+    "id": "callback-root-guard",
+    "status": 404
+  },
+  {
+    "id": "storefront-protected",
+    "status": 302
+  }
+]

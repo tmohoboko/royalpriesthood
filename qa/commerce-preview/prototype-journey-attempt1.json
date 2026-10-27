@@ -1,0 +1,144 @@
+{
+  "origin": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "implementationCommit": "7ec7a42c395b231a2dec028c1a2bd209f4d4dea4",
+  "deployment": "dpl_9xC2hhfPwJTNY5jtWZoZfMekZgFk",
+  "successOrder": "cd487f247e02f59753974bceddc3161be56ca5d8648fafaf",
+  "results": [
+    {
+      "id": "JOURNEY-01",
+      "expected": "Authorized storefront accessible",
+      "actual": "Shop rendered",
+      "status": "PASS"
+    },
+    {
+      "id": "ENV-API",
+      "expected": "Sandbox mode and database configured",
+      "actual": "Runtime health confirmed",
+      "status": "PASS",
+      "response": {
+        "status": 200,
+        "ok": true,
+        "databaseConfigured": true,
+        "paymentMode": "sandbox"
+      }
+    },
+    {
+      "id": "FIXTURE",
+      "expected": "Reusable R100 Black/Medium SKU",
+      "actual": "Requested product/variant available",
+      "status": "PASS",
+      "response": {
+        "id": "RP-QA-001",
+        "price": 10000,
+        "size": "Medium",
+        "colour": "Black",
+        "stockBefore": 5
+      }
+    },
+    {
+      "id": "JOURNEY-02-03",
+      "expected": "Display product and select Black/Medium",
+      "actual": "Product and variant selected",
+      "status": "PASS",
+      "screenshot": "prototype-product.png"
+    },
+    {
+      "id": "JOURNEY-04-05",
+      "expected": "Guest cart qty1 subtotalR100 persists refresh",
+      "actual": "Cart API and UI agree",
+      "status": "PASS",
+      "response": {
+        "status": 200,
+        "quantity": 1,
+        "price": 10000,
+        "subtotal": 10000
+      },
+      "screenshot": "prototype-cart.png"
+    },
+    {
+      "id": "JOURNEY-06-07",
+      "expected": "Authenticate and preserve guest cart",
+      "actual": "Customer authenticated; cart retained",
+      "status": "PASS",
+      "response": {
+        "quantity": 1
+      }
+    },
+    {
+      "id": "JOURNEY-08-09",
+      "expected": "Delivery and authoritative review totalR100 shippingR0",
+      "actual": "Review displayed requested total",
+      "status": "PASS",
+      "screenshot": "prototype-review.png"
+    },
+    {
+      "id": "JOURNEY-10-12",
+      "expected": "Backend creates valid PENDING order with correct price/reference",
+      "actual": "Pending order and payment confirmed",
+      "status": "PASS",
+      "response": {
+        "orderId": "cd487f247e02f59753974bceddc3161be56ca5d8648fafaf",
+        "status": "pending",
+        "paymentStatus": "pending",
+        "total": 10000,
+        "shipping": 0
+      },
+      "screenshot": "prototype-pending.png"
+    },
+    {
+      "id": "PAY-07",
+      "expected": "Checkout retry preserves order and inventory",
+      "actual": "Same idempotency key returned same order; one reservation",
+      "status": "PASS",
+      "response": {
+        "orderId": "cd487f247e02f59753974bceddc3161be56ca5d8648fafaf",
+        "stockAfterReservation": 4
+      }
+    },
+    {
+      "id": "AUTHZ-CUSTOMER",
+      "expected": "Customer denied admin access",
+      "actual": "Admin endpoint403",
+      "status": "PASS",
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "id": "PAY-FIELDS",
+      "expected": "Signed shared sandbox form with R100 and guarded notify URL",
+      "actual": "Real PayFast page loaded and fields validated",
+      "status": "PASS",
+      "response": {
+        "action": "https://sandbox.payfast.co.za/eng/process",
+        "amount": "100.00",
+        "merchantIsOfficialSharedSandbox": true,
+        "signaturePresent": true,
+        "paymentId": "bb0185e98b4350c14d3983df7b9d32beb9b7e3a12e428ea1",
+        "returnUrl": "https://royalpriesthood-commerce-preview-tmdev.vercel.app/shop/orders/cd487f247e02f59753974bceddc3161be56ca5d8648fafaf?payment=returned",
+        "cancelUrl": "https://royalpriesthood-commerce-preview-tmdev.vercel.app/shop/orders/cd487f247e02f59753974bceddc3161be56ca5d8648fafaf?payment=cancelled",
+        "notifyUrl": "https://royalpriesthood-payfast-itn-tmdev.vercel.app/api/commerce/payfast/notify",
+        "hasReusableBypassSecret": false
+      }
+    },
+    {
+      "id": "PAY-01",
+      "expected": "Real sandbox success requires validated ITN before PAID",
+      "actual": "Actual PayFast transaction verified and order paid",
+      "status": "PASS",
+      "response": {
+        "orderId": "cd487f247e02f59753974bceddc3161be56ca5d8648fafaf",
+        "paymentStatus": "paid",
+        "providerId": "3479203",
+        "total": 10000
+      },
+      "screenshot": "prototype-paid.png"
+    },
+    {
+      "id": "EXECUTION-ERROR",
+      "expected": "Complete bounded acceptance run",
+      "actual": "locator.waitFor: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'cd487f247e02f59753974bceddc3161be56ca5d8648fafaf' }) to be visible\u001b[22m\n",
+      "status": "FAIL"
+    }
+  ]
+}

@@ -73,3 +73,7 @@ Executed validation: **43 local tests passed /0 failed /0 skipped** (12 unit,17 
 Evidence: qa/payment-gate/gate-result.json, database-final.json, provider-outcome.json, live-assertions.json, order-evidence.json, screenshots and suite logs. The queued receipt has sent_at NULL and zero delivery attempts; **RESEND_API_KEY and verified EMAIL_FROM** remain required for app email acceptance. PayFast's own success-screen receipt message is not evidence of application email or inbox delivery.
 
 Production domain still resolves to original dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG. No production payment variables were configured and no promotion was performed. This sandbox gate does not authorize live processing or establish public-launch readiness.
+
+## Strict prototype closure gate
+
+The later master closure scope requires real provider failure and real valid-ITN replay. Final gate: **BLOCKED —32PASS/0FAIL/2BLOCKED**, despite verified real R100 success(transaction3479203) and43 passing regression tests. The PayFast sandbox cannot supply those two real scenarios under its documented funded-wallet/once-only notification behavior. Earlier payment-gate PASS used a narrower scope with clearly labelled controlled failure/replay coverage; it is not substituted for this stricter closure. Canonical closure package: qa/commerce-preview/prototype-closure-report.md. No runtime/production change was made during closure.
