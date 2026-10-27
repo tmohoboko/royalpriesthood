@@ -635,3 +635,21 @@ test("concurrent customers competing for the last unit create exactly one order"
   );
   await db.query("UPDATE variants SET stock=100 WHERE id='test-black-l'");
 });
+
+test('signed callbacks reject wrong merchant, unknown order reference and unsupported status', async () => {
+  const c = await customer('callback-negative');
+  const { data } = await pending(c);
+  const payment = await one(db, 'SELECT * FROM payments WHERE order_id=$1', [data.order.id]);
+  const merchant = await notify(payment, 'COMPLETE', {merchant_id:'wrong-merchant'});
+  assert.equal(merchant.status, 400);
+  assert.equal(merchant.data.error.code, 'BAD_MERCHANT');
+  const missing = await notify(payment, 'COMPLETE', {m_payment_id:'f'.repeat(48)});
+  assert.equal(missing.status, 404);
+  assert.equal(missing.data.error.code, 'NOT_FOUND');
+  const status = await notify(payment, 'UNSUPPORTED');
+  assert.equal(status.status, 400);
+  assert.equal(status.data.error.code, 'BAD_STATUS');
+  assert.equal((await one(db, 'SELECT status FROM orders WHERE id=$1', [data.order.id])).status, 'pending');
+  assert.equal((await rows(db, 'SELECT * FROM payment_events WHERE payment_id=$1', [payment.id])).length, 0);
+  assert.equal((await rows(db, 'SELECT * FROM notifications WHERE order_id=$1', [data.order.id])).length, 0);
+});

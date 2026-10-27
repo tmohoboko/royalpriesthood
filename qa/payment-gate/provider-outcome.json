@@ -1,0 +1,17 @@
+{
+  "provider": "PayFast sandbox",
+  "testAmountCents": 500,
+  "successfulTransactionId": "3479071",
+  "successfulOrder": "e5088faa6dae7ab37d23a2cc1f9836362b081e4197f007fd",
+  "providerSuccessMessageObserved": true,
+  "successfulOrderObservedPendingBeforeITN": true,
+  "actualGatewayWalletCompleteButtonClicked": true,
+  "actualGatewayCancelAndConfirmClicked": true,
+  "cancelledBrowserOrder": "a0c58b6385e93eb1d8fe937cd28bba6a7f38d68f16193e41",
+  "cancelledBrowserOrderStatus": "pending",
+  "cancelledBrowserPaymentStatus": "pending",
+  "cancelledOrderReceiptCount": 0,
+  "noRawCardDataCollected": true,
+  "appEmailDelivery": "not configured; queued receipt only",
+  "validDuplicateAndFailedStatusTests": "Automated gateway HTTP/DNS mocks; no claim of a second real provider ITN or a real gateway FAILED notification."
+}

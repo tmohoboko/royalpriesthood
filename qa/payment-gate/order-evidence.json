@@ -1,0 +1,12 @@
+{
+  "orderId": "e5088faa6dae7ab37d23a2cc1f9836362b081e4197f007fd",
+  "paymentId": "b53c7fed581fc2b4ae465137aaf4f51fcd92b941ebeff332",
+  "totalCents": 500,
+  "initialOrderStatus": "pending",
+  "mode": "sandbox",
+  "action": "https://sandbox.payfast.co.za/eng/process",
+  "notifyUrl": "https://royalpriesthood-payfast-itn-tmdev.vercel.app/api/commerce/payfast/notify",
+  "returnUrl": "https://royalpriesthood-commerce-preview-tmdev.vercel.app/shop/orders/e5088faa6dae7ab37d23a2cc1f9836362b081e4197f007fd?payment=returned",
+  "credentials": "omitted",
+  "actualGatewaySubmission": true
+}

@@ -1,0 +1,33 @@
+{
+  "gate": "PASS",
+  "scope": "sandbox payment acceptance; transactional email acceptance separate",
+  "date": "2026-10-27",
+  "deployment": "dpl_9xC2hhfPwJTNY5jtWZoZfMekZgFk",
+  "implementationCommit": "7ec7a42c395b231a2dec028c1a2bd209f4d4dea4",
+  "preview": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "immutablePreview": "https://royalpriesthood-4ojcibn9u-tmdev.vercel.app",
+  "callback": "https://royalpriesthood-payfast-itn-tmdev.vercel.app/api/commerce/payfast/notify",
+  "callbackAccess": "Dedicated alias exception plus fail-closed all-path routing guard. No browser-visible automation secret; storefront remains protected.",
+  "checkout": "PASS: authoritative R5 pending order, inventory reserved",
+  "payment": "PASS: actual PayFast sandbox wallet transaction 3479071",
+  "itn": "PASS: COMPLETE event verified by production signature/merchant/source/server validation path, amount/order checked and committed atomically",
+  "realCancellation": "PASS: PayFast cancellation UI exercised; browser return leaves pending with no receipt, requiring reconciliation before release",
+  "invalidSignature": "PASS: external unsigned/tampered POST returns BAD_SIGNATURE 400, no auth redirect",
+  "failedAndValidDuplicateCallbacks": "PASS: automated integration tests with explicit provider network/DNS mocks",
+  "localTests": {
+    "passed": 43,
+    "failed": 0,
+    "skipped": 0,
+    "unit": 12,
+    "integration": 17,
+    "storefrontBrowser": 7,
+    "commerceBrowser": 7
+  },
+  "liveAssertions": {
+    "passed": 12,
+    "failed": 0
+  },
+  "firstBrowserAttempt": "2 passed/5 failed because parallel build replaced dist; corrected by serializing build and browser execution; full rerun 7 passed",
+  "remainingAcceptanceBlocker": "App receipt email delivery: RESEND_API_KEY and verified EMAIL_FROM absent",
+  "production": "Unchanged: royalpriesthood-two.vercel.app still points to dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG"
+}

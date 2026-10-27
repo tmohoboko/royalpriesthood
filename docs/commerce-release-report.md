@@ -1,6 +1,6 @@
 # Royal Priesthood commerce release evidence — 2026-10-27
 
-**Status: implemented and locally verified; external acceptance incomplete. Not approved for production release.**
+**Status: sandbox payment acceptance PASSED; app email acceptance blocked. Not approved for production release.**
 
 ## A. Repository
 
@@ -23,7 +23,7 @@ Partial/missing:
 | Vercel preview | READY at https://royalpriesthood-commerce-preview-tmdev.vercel.app/ . Vercel authentication retained. 21 hosted smoke assertions pass; no production promotion. |
 | Persistent hosted backend | Existing Neon project discovered; isolated branch commerce-upgrade-20261027 migrated successfully with 16 tables and 16 inactive catalogue entries. Preview DATABASE_URL and APP_ORIGIN are now configured. Deployed API connectivity/session/address persistence passed; the optional integration suite still fails at connection setup from the local machine. Hosted contention remains unverified. |
 | Actual saleable catalogue | Owner-approved product contents/SKUs, ZAR prices, variant availability and shipping tariffs required. Migration seeds inactive catalogue references only. |
-| Actual sandbox payment | PAYFAST_MODE=sandbox, sandbox merchant ID/key/passphrase and a stable reachable HTTPS APP_ORIGIN required. Live mode is rejected in code. No real sandbox transaction executed. |
+| Actual sandbox payment | PASS: real R5 sandbox transaction 3479071, verified COMPLETE ITN, paid order. See acceptance gate evidence below. Live mode remains rejected. |
 | Actual email delivery | RESEND_API_KEY, EMAIL_FROM and verified sending domain needed, or adapt to an existing provider discovered after project access. Test delivery is mocked; sent means provider acceptance only. |
 | Notification automation | Durable retries and admin drain exist; unattended scheduler/queue and bounce/delivery callbacks are not configured. No scheduler was changed. |
 | Images | Existing approved asset path management works. New binary uploads need approved object storage and an upload endpoint. |
@@ -57,3 +57,19 @@ Provide the PayFast sandbox merchant ID/key/passphrase through Vercel Preview se
 Hosted verification update: migration and replay succeeded on isolated Neon, but hosted API attempts report 0 passed / 16 failed at connection setup (TCP timeout and WebSocket transport error). This remains an unresolved external test failure; 40 passing tests refer to local suites only. See deployment runbook and retained logs.
 
 Resume evidence: the earlier hosted-runtime connectivity limitation is resolved on Vercel for the exercised API paths; local TCP integration setup still fails. Final implementation CI passed: https://github.com/tmohoboko/royalpriesthood/actions/runs/40487058707 .
+
+## Sandbox payment acceptance gate — 2026-10-27
+
+**PASS for sandbox payments; actual email delivery remains a separate blocked item.** User-requested deployment dpl_9BVi3y2ByZ9FRkB7VJyBEWs7wCkn reached READY with sandbox mode loaded. The callback repair was deployed as dpl_9xC2hhfPwJTNY5jtWZoZfMekZgFk (READY), implementation 7ec7a42c395b231a2dec028c1a2bd209f4d4dea4. Stable preview: https://royalpriesthood-commerce-preview-tmdev.vercel.app/ . Immutable URL: https://royalpriesthood-4ojcibn9u-tmdev.vercel.app/ .
+
+A single clearly labelled TEST ONLY product/variant was created on isolated Neon branch br-calm-rice-b7mcxqw7: R5.00, initial stock ten, no physical delivery. No real catalogue stock/prices were activated. Actual PayFast sandbox wallet transaction **3479071** paid order **e5088faa6dae7ab37d23a2cc1f9836362b081e4197f007fd**, total 500 cents. Database was observed pending before gateway completion and paid after the real ITN. One COMPLETE payment event and one receipt job exist. Signature, merchant, DNS/source-IP and PayFast server VALID verification execute before authoritative order/amount/status processing; no test verifier was injected into the deployment.
+
+A second actual sandbox checkout was cancelled through PayFast's confirmation dialog. Order a0c58b6385e93eb1d8fe937cd28bba6a7f38d68f16193e41 remains pending with no provider ID, event or receipt. The browser cancellation is not proof of a verified cancellation: its reservation remains held for reconciliation. No database status or inventory was manually altered to simulate success/cancellation.
+
+Callback: https://royalpriesthood-payfast-itn-tmdev.vercel.app/api/commerce/payfast/notify . Automation bypass credentials are project-wide, and notify_url is browser-visible, so no bypass secret was exposed in the hosted form. Instead, a protection exception applies only to this dedicated preview alias; the routing guard allows only exact sandbox Preview POST to the ITN path, without query parameters. Other paths/methods, missing configuration and production/live environments fail closed. Storefront authentication and production protection settings remain unchanged. Never point this public callback alias at a deployment without the guard.
+
+Executed validation: **43 local tests passed /0 failed /0 skipped** (12 unit,17 API,7 original browser,7 commerce browser), lint/build passed, dependency audit zero vulnerabilities. **12 live assertions passed**, including public callback boundary, invalid-signature rejection, paid database evidence, cancelled order safety and storefront protection. One initial browser run collided with a parallel build deleting dist (2 passed/5 failed); serialized rerun passed all seven. Valid duplicate notification, FAILED status, signed wrong merchant, unknown payment reference, amount mismatch and unsupported status were exercised through automated gateway HTTP/DNS mocks. No second real provider notification or real FAILED provider event is claimed. Actual invalid-signature replays returned HTTP400 and left one paid event/one receipt.
+
+Evidence: qa/payment-gate/gate-result.json, database-final.json, provider-outcome.json, live-assertions.json, order-evidence.json, screenshots and suite logs. The queued receipt has sent_at NULL and zero delivery attempts; **RESEND_API_KEY and verified EMAIL_FROM** remain required for app email acceptance. PayFast's own success-screen receipt message is not evidence of application email or inbox delivery.
+
+Production domain still resolves to original dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG. No production payment variables were configured and no promotion was performed. This sandbox gate does not authorize live processing or establish public-launch readiness.

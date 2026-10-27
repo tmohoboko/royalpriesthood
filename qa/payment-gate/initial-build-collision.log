@@ -1,0 +1,182 @@
+
+> royal-priesthood-storefront@1.0.0 test:commerce
+> playwright test --config=playwright.commerce.config.js
+
+[WebServer] (node:54291) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:54385) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 1440 (10.8s)
+  ✓  2 tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 375 (9.1s)
+[WebServer] ENOENT: no such file or directory, open '/home/tmdev012/Reception/royalpriesthood-commerce/dist/index.html'
+[WebServer] node:_http_server:354
+[WebServer]     throw new ERR_HTTP_HEADERS_SENT('write');
+[WebServer]           ^
+[WebServer] 
+[WebServer] Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+[WebServer]     at ServerResponse.writeHead (node:_http_server:354:11)
+[WebServer]     at Server.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/scripts/commerce-test-server.mjs:113:9) {
+[WebServer]   code: 'ERR_HTTP_HEADERS_SENT'
+[WebServer] }
+[WebServer] 
+[WebServer] Node.js v22.22.0
+  ✘  3 tests/commerce/journey.spec.js:131:1 › failed payment remains unpaid and does not send receipt (45.1s)
+(node:54897) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 tests/commerce/journey.spec.js:151:1 › browser return does not mark paid; explicit cancellation is safe (459ms)
+(node:55028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 tests/commerce/journey.spec.js:167:1 › out of stock product cannot be added (530ms)
+(node:55156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  6 tests/commerce/journey.spec.js:174:1 › customer login and admin operations are protected (501ms)
+(node:55287) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  7 tests/commerce/journey.spec.js:199:1 › verified cancelled gateway payment can be cancelled without a receipt (493ms)
+
+
+  1) tests/commerce/journey.spec.js:131:1 › failed payment remains unpaid and does not send receipt 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Variant for Black Signature Tee — Front')
+
+
+       9 |   await page
+      10 |     .getByLabel("Variant for Black Signature Tee — Front")
+    > 11 |     .selectOption("test-black-l");
+         |      ^
+      12 |   await page.getByRole("button", { name: "Add to cart", exact: true }).click();
+      13 |   await expect(page.getByRole("status")).toContainText("Added");
+      14 |   await page.goto("/shop/cart");
+        at addToCart (/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:11:6)
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:134:3
+
+    Error Context: test-results/journey-failed-payment-rem-a0116-d-and-does-not-send-receipt/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-failed-payment-rem-a0116-d-and-does-not-send-receipt/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-failed-payment-rem-a0116-d-and-does-not-send-receipt/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/commerce/journey.spec.js:151:1 › browser return does not mark paid; explicit cancellation is safe 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/shop
+    Call log:
+      - navigating to "http://127.0.0.1:4173/shop", waiting until "load"
+
+
+      1 | import { test, expect } from "@playwright/test";
+      2 | async function addToCart(page) {
+    > 3 |   await page.goto("/shop");
+        |              ^
+      4 |   await page.getByLabel("Search products").fill("Black");
+      5 |   await page
+      6 |     .getByRole("heading", { name: "Black Signature Tee — Front", exact: true })
+        at addToCart (/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:3:14)
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:154:9
+
+    Error Context: test-results/journey-browser-return-doe-2993a-plicit-cancellation-is-safe/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-browser-return-doe-2993a-plicit-cancellation-is-safe/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-browser-return-doe-2993a-plicit-cancellation-is-safe/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/commerce/journey.spec.js:167:1 › out of stock product cannot be added ───────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/shop/products/RP-T03
+    Call log:
+      - navigating to "http://127.0.0.1:4173/shop/products/RP-T03", waiting until "load"
+
+
+      166 | });
+      167 | test("out of stock product cannot be added", async ({ page }) => {
+    > 168 |   await page.goto("/shop/products/RP-T03");
+          |              ^
+      169 |   await expect(page.getByText("R 350.00 · Out of stock")).toBeVisible();
+      170 |   await expect(
+      171 |     page.getByRole("button", { name: "Add to cart", exact: true }),
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:168:14
+
+    Error Context: test-results/journey-out-of-stock-product-cannot-be-added/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-out-of-stock-product-cannot-be-added/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-out-of-stock-product-cannot-be-added/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/commerce/journey.spec.js:174:1 › customer login and admin operations are protected ──────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/shop/admin
+    Call log:
+      - navigating to "http://127.0.0.1:4173/shop/admin", waiting until "load"
+
+
+      173 | });
+      174 | test("customer login and admin operations are protected", async ({ page }) => {
+    > 175 |   await page.goto("/shop/admin");
+          |              ^
+      176 |   await expect(
+      177 |     page.getByText("Administrator access required.", { exact: true }),
+      178 |   ).toBeVisible();
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:175:14
+
+    Error Context: test-results/journey-customer-login-and-admin-operations-are-protected/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-customer-login-and-admin-operations-are-protected/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-customer-login-and-admin-operations-are-protected/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/commerce/journey.spec.js:199:1 › verified cancelled gateway payment can be cancelled without a receipt 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:4173/shop
+    Call log:
+      - navigating to "http://127.0.0.1:4173/shop", waiting until "load"
+
+
+      1 | import { test, expect } from "@playwright/test";
+      2 | async function addToCart(page) {
+    > 3 |   await page.goto("/shop");
+        |              ^
+      4 |   await page.getByLabel("Search products").fill("Black");
+      5 |   await page
+      6 |     .getByRole("heading", { name: "Black Signature Tee — Front", exact: true })
+        at addToCart (/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:3:14)
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:202:9
+
+    Error Context: test-results/journey-verified-cancelled-c0aaa-cancelled-without-a-receipt/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-verified-cancelled-c0aaa-cancelled-without-a-receipt/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-verified-cancelled-c0aaa-cancelled-without-a-receipt/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    tests/commerce/journey.spec.js:131:1 › failed payment remains unpaid and does not send receipt ─
+    tests/commerce/journey.spec.js:151:1 › browser return does not mark paid; explicit cancellation is safe 
+    tests/commerce/journey.spec.js:167:1 › out of stock product cannot be added ────────────────────
+    tests/commerce/journey.spec.js:174:1 › customer login and admin operations are protected ───────
+    tests/commerce/journey.spec.js:199:1 › verified cancelled gateway payment can be cancelled without a receipt 
+  2 passed (1.4m)

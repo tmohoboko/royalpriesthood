@@ -1,0 +1,54 @@
+{
+  "results": [
+    {
+      "name": "real sandbox ITN paid expected R5 order",
+      "passed": true
+    },
+    {
+      "name": "one verified payment event and one receipt after invalid replays",
+      "passed": true
+    },
+    {
+      "name": "email delivery remains blocked and unsent",
+      "passed": true
+    },
+    {
+      "name": "real gateway cancellation did not assert paid or issue receipt",
+      "passed": true
+    },
+    {
+      "name": "public alias denies /",
+      "passed": true
+    },
+    {
+      "name": "public alias denies /shop",
+      "passed": true
+    },
+    {
+      "name": "public alias denies /api/commerce/me",
+      "passed": true
+    },
+    {
+      "name": "public alias denies /api/commerce?commercePath=payfast/notify",
+      "passed": true
+    },
+    {
+      "name": "public alias denies /api/commerce/payfast/notify?commercePath=admin/products",
+      "passed": true
+    },
+    {
+      "name": "actual callback rejects invalid-signature replay 1",
+      "passed": true
+    },
+    {
+      "name": "actual callback rejects invalid-signature replay 2",
+      "passed": true
+    },
+    {
+      "name": "storefront retains Vercel authentication",
+      "passed": true
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}

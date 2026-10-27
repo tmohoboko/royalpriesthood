@@ -1,0 +1,12 @@
+PASS real sandbox ITN paid expected R5 order
+PASS one verified payment event and one receipt after invalid replays
+PASS email delivery remains blocked and unsent
+PASS real gateway cancellation did not assert paid or issue receipt
+PASS public alias denies /
+PASS public alias denies /shop
+PASS public alias denies /api/commerce/me
+PASS public alias denies /api/commerce?commercePath=payfast/notify
+PASS public alias denies /api/commerce/payfast/notify?commercePath=admin/products
+PASS actual callback rejects invalid-signature replay 1
+PASS actual callback rejects invalid-signature replay 2
+PASS storefront retains Vercel authentication
