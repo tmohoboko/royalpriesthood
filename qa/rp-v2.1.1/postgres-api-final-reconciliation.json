@@ -1,0 +1,99 @@
+{
+  "publicProducts": 22,
+  "variants": [
+    {
+      "variantId": "RP-UAT211-A01-L",
+      "sqlPrice": 10500,
+      "apiPrice": 10500,
+      "sqlStock": 6,
+      "apiStock": 6,
+      "match": true
+    },
+    {
+      "variantId": "RP-UAT211-A01-M",
+      "sqlPrice": 9500,
+      "apiPrice": 9500,
+      "sqlStock": 6,
+      "apiStock": 6,
+      "match": true
+    },
+    {
+      "variantId": "RP-UAT211-H01-L",
+      "sqlPrice": 8500,
+      "apiPrice": 8500,
+      "sqlStock": 6,
+      "apiStock": 6,
+      "match": true
+    },
+    {
+      "variantId": "RP-UAT211-H01-M",
+      "sqlPrice": 7500,
+      "apiPrice": 7500,
+      "sqlStock": 6,
+      "apiStock": 6,
+      "match": true
+    },
+    {
+      "variantId": "RP-UAT211-M01-L",
+      "sqlPrice": 15500,
+      "apiPrice": 15500,
+      "sqlStock": 6,
+      "apiStock": 6,
+      "match": true
+    },
+    {
+      "variantId": "RP-UAT211-M01-M",
+      "sqlPrice": 14500,
+      "apiPrice": 14500,
+      "sqlStock": 6,
+      "apiStock": 6,
+      "match": true
+    },
+    {
+      "variantId": "RP-UAT211-T01-L",
+      "sqlPrice": 11000,
+      "apiPrice": 11000,
+      "sqlStock": 5,
+      "apiStock": 5,
+      "match": true
+    },
+    {
+      "variantId": "RP-UAT211-T01-M",
+      "sqlPrice": 10000,
+      "apiPrice": 10000,
+      "sqlStock": 6,
+      "apiStock": 6,
+      "match": true
+    },
+    {
+      "variantId": "RP-UAT211-W01-L",
+      "sqlPrice": 13500,
+      "apiPrice": 13500,
+      "sqlStock": 6,
+      "apiStock": 6,
+      "match": true
+    },
+    {
+      "variantId": "RP-UAT211-W01-M",
+      "sqlPrice": 12500,
+      "apiPrice": 12500,
+      "sqlStock": 6,
+      "apiStock": 6,
+      "match": true
+    }
+  ],
+  "order": {
+    "id": "a9383659c0a91752d67fa96a35c0d48ae1509caec73d136e",
+    "status": "paid",
+    "total": 11000,
+    "payment_id": "35ad83cfa02f458516c4ad6577b3e7d7c2a28e5ab76dbe39",
+    "payment_status": "paid",
+    "provider_id": "3479543",
+    "verified_events": 1,
+    "receipt_count": 1,
+    "receipt_status": "pending",
+    "receipt_sent_at": null,
+    "quantity": 1,
+    "variant_id": "RP-UAT211-T01-L"
+  }
+}

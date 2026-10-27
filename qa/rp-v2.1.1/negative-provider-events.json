@@ -1,0 +1,17 @@
+{
+  "actualTamperedPosts": [
+    {
+      "status": 400,
+      "code": "BAD_SIGNATURE"
+    },
+    {
+      "status": 400,
+      "code": "BAD_SIGNATURE"
+    },
+    {
+      "status": 400,
+      "code": "BAD_SIGNATURE"
+    }
+  ],
+  "verifiedFailedCancelledDuplicate": "local explicit gateway simulations, not genuine provider outcomes"
+}

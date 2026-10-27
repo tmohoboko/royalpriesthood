@@ -1,0 +1,143 @@
+{
+  "project": "Royal Priesthood Commerce",
+  "releaseVersion": "2.1.1-rc.1",
+  "changeRequest": "SASHICODEX RP-V2.1.1 MASTER STABILIZATION",
+  "date": "2026-10-27",
+  "branch": "commerce/production-upgrade-20261027",
+  "startingSHA": "eed3b6fca54079948088e61ae130d3ac13d7a4aa",
+  "implementationSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+  "finalEvidenceCommitReference": "refs/tags/v2.1.1-rc.1^{commit}",
+  "tag": "v2.1.1-rc.1",
+  "tagScope": "local annotated tag created after release gates; not pushed; no production authorization",
+  "baselinePreview": {
+    "implementationSHA": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+    "deploymentId": "dpl_GssRABAMmYXbJB4sHFPSaA8Ep5om"
+  },
+  "deployment": {
+    "id": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+    "previewURL": "https://royalpriesthood-commerce-preview-tmdev.vercel.app/",
+    "immutableURL": "https://royalpriesthood-1u6ed18te-tmdev.vercel.app/",
+    "environment": "preview",
+    "status": "READY",
+    "sourceIdentity": {
+      "liveCommitMatched": true,
+      "uploadedFilesMatched": 41,
+      "postBuildAggregateMatched": false,
+      "proof": "uploaded-source-digests.json and deployment-identity.json"
+    }
+  },
+  "workItems": [
+    {
+      "id": "RP-211-01",
+      "status": "PASS",
+      "implementationSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "evidence": "requirements-traceability.md"
+    },
+    {
+      "id": "RP-211-02",
+      "status": "PASS",
+      "implementationSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "evidence": "requirements-traceability.md"
+    },
+    {
+      "id": "RP-211-03",
+      "status": "PASS",
+      "implementationSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "evidence": "requirements-traceability.md"
+    },
+    {
+      "id": "RP-211-04",
+      "status": "PASS",
+      "implementationSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "evidence": "requirements-traceability.md"
+    }
+  ],
+  "fixtureVersion": "RP211-UAT-1",
+  "testSuiteVersion": "RP211-1",
+  "database": {
+    "projectId": "wandering-truth-80965521",
+    "branchId": "br-calm-rice-b7mcxqw7",
+    "name": "royalpriesthood",
+    "isolatedPreviewOnly": true,
+    "migration": "003-uat-catalogue.sql",
+    "totalProducts": 23,
+    "approvedReferences": 16,
+    "unchangedOriginalProducts": 18,
+    "newUatProducts": 5,
+    "newUatVariants": 10,
+    "totalVariants": 12,
+    "publicShopProducts": 22,
+    "initialSyntheticUnits": 60,
+    "finalSyntheticUnits": 59,
+    "legacyR100Stock": 0,
+    "seedReplay": "PASS without restock",
+    "reverseReapply": "PASS; deactivation preserves references"
+  },
+  "smoke": {
+    "PASS": 21,
+    "FAIL": 0,
+    "BLOCKED": 0
+  },
+  "regression": {
+    "unit": 15,
+    "apiIntegration": 24,
+    "commerceBrowser": 21,
+    "originalBrowser": 6,
+    "hostedFrontend": 10,
+    "PASS": 76,
+    "FAIL": 0,
+    "BLOCKED": 0,
+    "lint": "PASS",
+    "build": "PASS",
+    "additionalStaleBeforeAfterRecovery": "PASS; not counted twice"
+  },
+  "genuinePayFast": {
+    "transactionId": "3479543",
+    "orderId": "a9383659c0a91752d67fa96a35c0d48ae1509caec73d136e",
+    "paymentId": "35ad83cfa02f458516c4ad6577b3e7d7c2a28e5ab76dbe39",
+    "amountCents": 11000,
+    "currency": "ZAR",
+    "status": "paid",
+    "verifiedEvents": 1,
+    "receiptCount": 1,
+    "receiptState": "RECEIPT_QUEUED",
+    "receiptSentAt": null,
+    "applicationEmailDelivery": "not verified; unconfigured",
+    "noMocks": true
+  },
+  "inventoryFlow": {
+    "variantId": "RP-UAT211-T01-L",
+    "beforeCheckout": 6,
+    "pendingReservedAvailable": 5,
+    "paidAvailable": 5,
+    "verifiedDuplicateCoverage": "controlled local gateway simulation; no second genuine event claimed",
+    "staleBeforeAfter": "stale-tab-before-after.json",
+    "uninitiatedRecoveryOrderId": "3730e581e6d979cfe29b4c83eb9c3a1fda037add68f5e1ab",
+    "recoveryStatus": "cancelled",
+    "restoredAvailable": 5
+  },
+  "production": {
+    "deploymentId": "dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG",
+    "unchanged": true,
+    "deployed": false,
+    "promoted": false,
+    "pricingModified": false,
+    "livePaymentsActivated": false
+  },
+  "defectStatus": {
+    "RP211-D01": "CLOSED",
+    "RP211-D02": "CLOSED",
+    "RP211-D03": "CLOSED; legacy stock0 correct",
+    "RP211-D04": "CLOSED for isolated Preview UAT",
+    "hostedHarness": "fixed and full21 rerun passed; initial15/1/5 retained"
+  },
+  "acceptedLimitations": [
+    "16 approved references still lack approved production commercial configuration and remain blocked from purchase",
+    "Legacy R100 test stock0 and unresolved initiated reservation preserved for reconciliation",
+    "Application email delivery unconfigured; receipt queued only",
+    "Inherited post-build aggregate fingerprint mismatch; all41 uploaded source files match Git independently",
+    "No claim of hosted load testing or an additional genuine cancellation/failed/valid-duplicate provider transaction"
+  ],
+  "releaseVerdict": "ACCEPTED WITH LIMITATIONS",
+  "recommendedNextAction": "Perform owner UAT on the five documented synthetic fixture products in Preview; production remains unapproved."
+}

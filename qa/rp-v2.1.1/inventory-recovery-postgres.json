@@ -1,0 +1,11 @@
+[
+  {
+    "id": "3730e581e6d979cfe29b4c83eb9c3a1fda037add68f5e1ab",
+    "status": "cancelled",
+    "payment_status": "cancelled",
+    "initiated_at": null,
+    "receipt_count": "0",
+    "restored_fixture_stock": 5,
+    "unchanged_legacy_stock": 0
+  }
+]

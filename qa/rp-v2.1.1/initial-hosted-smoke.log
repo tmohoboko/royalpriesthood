@@ -1,0 +1,23 @@
+PASS SMK-211-17 PostgreSQL:23 products,16 approved references,5 new fixture products/10 variants,6 initial units per variant; original rows match baseline
+PASS SMK-211-01 Homepage200; accepted shared design and shell
+PASS SMK-211-02 Desktop/mobile each expose canonical Shop once; Catalogue absent
+PASS SMK-211-03 All four legacy routes resolve; Women/Men reach filtered Shop
+PASS SMK-211-04 All16 approved identities/images/categories present;16 remain pending-pricing;22 public cards
+PASS SMK-211-18 All10 SQL variants match API and UI, including synthetic sandbox labels
+PASS SMK-211-05 Saved entry survives refresh/navigation; removal persists and counters update
+PASS SMK-211-19 Five categories support Add to Cart with explicit L/Gold selection
+PASS SMK-211-06 Confirmed RP-UAT211-T01-L quantity1, unit priceR110.00
+PASS SMK-211-07 Quantity1;subtotalR110;discountR0;deliveryR0;estimated totalR110
+PASS SMK-211-08 Both requests409;Cart remains chosen quantity1;legacy stock unchanged at0
+PASS SMK-211-11 Registration/login retain and merge Cart;logout isolates account;Wishlist retained
+PASS SMK-211-09 Empty and whitespace-only discount accepted;no error;no order submitted
+PASS SMK-211-10 Inline INVALID_PROMOTION;review cleared;0 checkout requests/0 orders
+PASS SMK-211-20 Tampered quote remainsR110/discount0;quantity99 rejected409;pending order will also receive extra fake totals to verify server authority
+page.waitForURL: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/shop/orders/*" until "load"
+============================================================
+    at /home/tmdev012/Reception/royalpriesthood-commerce/qa/rp-v2.1.1/hosted-smoke.mjs:47:362
+    at async scenario (/home/tmdev012/Reception/royalpriesthood-commerce/qa/rp-v2.1.1/hosted-smoke.mjs:22:26)
+    at async file:///home/tmdev012/Reception/royalpriesthood-commerce/qa/rp-v2.1.1/hosted-smoke.mjs:47:2
+{"PASS":15,"FAIL":1,"BLOCKED":5}

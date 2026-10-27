@@ -1,0 +1,16 @@
+{
+  "baselineCommit": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+  "implementationCommit": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+  "variantId": "RP-UAT211-T01-L",
+  "before": 5,
+  "reserved": 4,
+  "baselineDisplayedAfterFocus": 5,
+  "expected": 4,
+  "baseline": "REPRODUCED_FAIL",
+  "fixedAfterFocus": "PASS:4 available",
+  "recoveryOrderId": "3730e581e6d979cfe29b4c83eb9c3a1fda037add68f5e1ab",
+  "recoveryStatus": "cancelled",
+  "afterSafeCancellation": 5,
+  "noProviderInitiation": true,
+  "originalStockUntouched": true
+}

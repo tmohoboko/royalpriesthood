@@ -1,0 +1,22 @@
+PASS SMK-211-17 PostgreSQL:23 products,16 approved references,5 new fixture products/10 variants,6 initial units per variant; original rows match baseline
+PASS SMK-211-01 Homepage200; accepted shared design and shell
+PASS SMK-211-02 Desktop/mobile each expose canonical Shop once; Catalogue absent
+PASS SMK-211-03 All four legacy routes resolve; Women/Men reach filtered Shop
+PASS SMK-211-04 All16 approved identities/images/categories present;16 remain pending-pricing;22 public cards
+PASS SMK-211-18 All10 SQL variants match API and UI, including synthetic sandbox labels
+PASS SMK-211-05 Saved entry survives refresh/navigation; removal persists and counters update
+PASS SMK-211-19 Five categories support Add to Cart with explicit L/Gold selection
+PASS SMK-211-06 Confirmed RP-UAT211-T01-L quantity1, unit priceR110.00
+PASS SMK-211-07 Quantity1;subtotalR110;discountR0;deliveryR0;estimated totalR110
+PASS SMK-211-08 Both requests409;Cart remains chosen quantity1;legacy stock unchanged at0
+PASS SMK-211-11 Registration/login retain and merge Cart;logout isolates account;Wishlist retained
+PASS SMK-211-09 Empty and whitespace-only discount accepted;no error;no order submitted
+PASS SMK-211-10 Inline INVALID_PROMOTION;review cleared;0 checkout requests/0 orders
+PASS SMK-211-20 Tampered quote remainsR110/discount0;quantity99 rejected409;pending order will also receive extra fake totals to verify server authority
+PASS SMK-211-12 One PENDING order a9383659c0a91752d67fa96a35c0d48ae1509caec73d136e;R110 despite tampered totals;stock6→5 once at reservation
+PASS SMK-211-13 Correct real sandbox endpoint,merchant fields/signature,R110,payment reference 35ad83cfa02f458516c4ad6577b3e7d7c2a28e5ab76dbe39
+PASS SMK-211-16 Three real tampered status posts rejected400 BAD_SIGNATURE;browser return leaves PENDING/no receipt;verified negative cases covered separately by local fixtures
+PASS SMK-211-14 Genuine PayFast transaction 3479543;R110;verified backendPAID
+PASS SMK-211-15 Paid orderR110 visible to owner;oneRECEIPT_QUEUED/unsent;other authenticated customer404;no delivery claim
+PASS SMK-211-21 Available stock6→5 at pending;remains5 after genuine PAID;existing tab focus/reload shows5;valid duplicate callback regression controlled separately
+{"PASS":21,"FAIL":0,"BLOCKED":0}

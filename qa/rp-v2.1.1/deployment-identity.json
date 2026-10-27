@@ -1,0 +1,17 @@
+{
+  "commit": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+  "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+  "preview": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "immutablePreview": "https://royalpriesthood-1u6ed18te-tmdev.vercel.app",
+  "uploadedSourceFiles": 41,
+  "uploadedSourceMatched": true,
+  "liveCommitMatched": true,
+  "liveBuildReport": {
+    "commit": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+    "sourceSha256": "4a27c88e5bf36db09bed67ae93989ab3a2551b758b85480b1489a6bf68c49465",
+    "scope": "application source/config; excludes QA, docs and unchanged approved image assets"
+  },
+  "aggregateFingerprint": "Inherited diagnostic; uploaded-source comparison is the source-identity proof",
+  "aggregatePostBuildMatched": false,
+  "localSourceSha256": "a6a04e87131df86cd76440c2cadb6ea1aa4608cd5181fa13bfe8862ee6604803"
+}

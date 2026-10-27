@@ -1,0 +1,9 @@
+{
+  "variantId": "RP-UAT211-T01-L",
+  "beforeCheckout": 6,
+  "pendingAvailable": 5,
+  "paidAvailable": 5,
+  "consumedOnce": true,
+  "focusRefreshMatched": true,
+  "validDuplicateNotificationEvidence": "check.log: RP211 reservation/COMPLETE/replay case uses explicit gateway simulation; genuine provider emitted one verified event"
+}

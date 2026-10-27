@@ -1,0 +1,381 @@
+{
+  "suite": "RP211-1",
+  "fixtureVersion": "RP211-UAT-1",
+  "origin": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+  "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+  "counts": {
+    "PASS": 21,
+    "FAIL": 0,
+    "BLOCKED": 0
+  },
+  "cases": [
+    {
+      "testId": "SMK-211-01",
+      "workItem": "RP-211-01",
+      "requirement": "Existing homepage design loads with one shared header/footer",
+      "preconditions": "Final Preview source identity verified",
+      "actions": "Open homepage and inspect shared shell",
+      "expectedResult": "Existing homepage design loads with one shared header/footer",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log"
+      ],
+      "actualResult": "Homepage200; accepted shared design and shell",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-02",
+      "workItem": "RP-211-01",
+      "requirement": "One Shop entry per menu, no Catalogue entry",
+      "preconditions": "Homepage loaded",
+      "actions": "Inspect desktop/mobile navigation",
+      "expectedResult": "One Shop entry per menu, no Catalogue entry",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/ui-acceptance-screenshots/mobile-navigation.png"
+      ],
+      "actualResult": "Desktop/mobile each expose canonical Shop once; Catalogue absent",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-03",
+      "workItem": "RP-211-01",
+      "requirement": "Legacy access resolves to Shop with products; Women/Men filters survive",
+      "preconditions": "Legacy and department URLs known",
+      "actions": "Navigate /catalogue, /catalogue/products/RP-W01, /#catalogue, /shop/catalogue and category journeys",
+      "expectedResult": "Legacy access resolves to Shop with products; Women/Men filters survive",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log"
+      ],
+      "actualResult": "All four legacy routes resolve; Women/Men reach filtered Shop",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-04",
+      "workItem": "RP-211-01,RP-211-04",
+      "requirement": "Approved image, category and product identity retained without invented live pricing",
+      "preconditions": "Original16 references retained",
+      "actions": "Compare API identities and load each original Shop image",
+      "expectedResult": "Approved image, category and product identity retained without invented live pricing",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/baseline-api.json",
+        "qa/rp-v2.1.1/fixture-postgres-before.json",
+        "qa/rp-v2.1.1/ui-acceptance-screenshots/seeded-shop.png"
+      ],
+      "actualResult": "All16 approved identities/images/categories present;16 remain pending-pricing;22 public cards",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-05",
+      "workItem": "RP-211-03",
+      "requirement": "Wishlist counter, saved state and persistence remain correct",
+      "preconditions": "Guest session; approved product available for saving",
+      "actions": "Save, navigate/reload, remove, save again",
+      "expectedResult": "Wishlist counter, saved state and persistence remain correct",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log"
+      ],
+      "actualResult": "Saved entry survives refresh/navigation; removal persists and counters update",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-06",
+      "workItem": "RP-211-03,RP-211-04",
+      "requirement": "Eligible selected variant remains in confirmed Cart",
+      "preconditions": "Multiple confirmed Cart lines",
+      "actions": "Retain one priced T-shirt L variant for checkout",
+      "expectedResult": "Eligible selected variant remains in confirmed Cart",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log"
+      ],
+      "actualResult": "Confirmed RP-UAT211-T01-L quantity1, unit priceR110.00",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-07",
+      "workItem": "RP-211-02,RP-211-03",
+      "requirement": "Quantity, subtotal, discount, delivery and total equal backend values",
+      "preconditions": "One Cart line R110, existing test deliveryR0",
+      "actions": "Read authoritative summary and inspect Cart",
+      "expectedResult": "Quantity, subtotal, discount, delivery and total equal backend values",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/ui-acceptance-screenshots/cart.png"
+      ],
+      "actualResult": "Quantity1;subtotalR110;discountR0;deliveryR0;estimated totalR110",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-08",
+      "workItem": "RP-211-03",
+      "requirement": "Reject excessive/unavailable quantities; original Cart unchanged",
+      "preconditions": "Stock6 and Cart quantity1",
+      "actions": "Submit quantity99 and out-of-stock legacy T-shirt",
+      "expectedResult": "Reject excessive/unavailable quantities; original Cart unchanged",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log"
+      ],
+      "actualResult": "Both requests409;Cart remains chosen quantity1;legacy stock unchanged at0",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-09",
+      "workItem": "RP-211-02",
+      "requirement": "Both blank forms accepted as optional with zero discount",
+      "preconditions": "Authenticated valid delivery and Cart",
+      "actions": "Review with literal empty input, then whitespace-only input",
+      "expectedResult": "Both blank forms accepted as optional with zero discount",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/final-browser-commerce.log"
+      ],
+      "actualResult": "Empty and whitespace-only discount accepted;no error;no order submitted",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-10",
+      "workItem": "RP-211-02",
+      "requirement": "Inline invalid-code feedback;no discount/no order submission",
+      "preconditions": "Blank quote previously accepted",
+      "actions": "Submit invalid nonempty code and inspect inline feedback/order count",
+      "expectedResult": "Inline invalid-code feedback;no discount/no order submission",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/ui-acceptance-screenshots/invalid-discount-inline.png"
+      ],
+      "actualResult": "Inline INVALID_PROMOTION;review cleared;0 checkout requests/0 orders",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-11",
+      "workItem": "RP-211-03",
+      "requirement": "Guest contents merge into account; logout/other customer cannot read order/account data",
+      "preconditions": "Guest Wishlist and valid Cart exist",
+      "actions": "Register through UI, logout, create guest line, login and inspect isolation",
+      "expectedResult": "Guest contents merge into account; logout/other customer cannot read order/account data",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log"
+      ],
+      "actualResult": "Registration/login retain and merge Cart;logout isolates account;Wishlist retained",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-12",
+      "workItem": "RP-211-02,RP-211-03,RP-211-04",
+      "requirement": "One correct PENDING order, immutable server totals and one stock reservation",
+      "preconditions": "Valid reviewed Cart/address;tampered extra browser totals intercepted",
+      "actions": "Place pending order and inspect persisted snapshots/customer/totals",
+      "expectedResult": "One correct PENDING order, immutable server totals and one stock reservation",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/postgres-final-evidence.json",
+        "qa/rp-v2.1.1/ui-acceptance-screenshots/checkout-review.png"
+      ],
+      "actualResult": "One PENDING order a9383659c0a91752d67fa96a35c0d48ae1509caec73d136e;R110 despite tampered totals;stock6\u21925 once at reservation",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-13",
+      "workItem": "RP-211-03,RP-211-04",
+      "requirement": "Sandbox endpoint, configured merchant/signature, matching payment reference andR110",
+      "preconditions": "Persisted pending order before payment",
+      "actions": "Request existing PayFast hosted-payment initiation",
+      "expectedResult": "Sandbox endpoint, configured merchant/signature, matching payment reference andR110",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/genuine-payment.json"
+      ],
+      "actualResult": "Correct real sandbox endpoint,merchant fields/signature,R110,payment reference 35ad83cfa02f458516c4ad6577b3e7d7c2a28e5ab76dbe39",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-14",
+      "workItem": "RP-211-03,RP-211-04",
+      "requirement": "Genuine provider-originated verified ITN produces PAID order",
+      "preconditions": "Genuine sandbox wallet available, pending orderR110",
+      "actions": "Submit actual provider form and click sandbox Complete Payment;poll authenticated backend",
+      "expectedResult": "Genuine provider-originated verified ITN produces PAID order",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/genuine-payment.json",
+        "qa/rp-v2.1.1/postgres-final-evidence.json",
+        "qa/rp-v2.1.1/ui-acceptance-screenshots/payfast-wallet-outcome.png"
+      ],
+      "actualResult": "Genuine PayFast transaction 3479543;R110;verified backendPAID",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-15",
+      "workItem": "RP-211-03",
+      "requirement": "Correct customer/order/amount/receipt-processing state;other customer denied",
+      "preconditions": "Genuine order is paid",
+      "actions": "View confirmation/receipt status and account history;test another authenticated customer",
+      "expectedResult": "Correct customer/order/amount/receipt-processing state;other customer denied",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/ui-acceptance-screenshots/paid-confirmation.png",
+        "qa/rp-v2.1.1/ui-acceptance-screenshots/order-history.png",
+        "qa/rp-v2.1.1/postgres-final-evidence.json"
+      ],
+      "actualResult": "Paid orderR110 visible to owner;oneRECEIPT_QUEUED/unsent;other authenticated customer404;no delivery claim",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-16",
+      "workItem": "RP-211-03",
+      "requirement": "Unverified/tampered events/browser return cannot mark PAID",
+      "preconditions": "Order pending and payment initiated, not yet completed",
+      "actions": "Send actual tampered COMPLETE/FAILED/CANCELLED callbacks and visit return URL",
+      "expectedResult": "Unverified/tampered events/browser return cannot mark PAID",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/negative-provider-events.json",
+        "qa/rp-v2.1.1/final-check.log"
+      ],
+      "actualResult": "Three real tampered status posts rejected400 BAD_SIGNATURE;browser return leaves PENDING/no receipt;verified negative cases covered separately by local fixtures",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-17",
+      "workItem": "RP-211-04",
+      "requirement": "Five owned synthetic fixture products, ten ZAR-priced variants; originals preserved",
+      "preconditions": "Guarded seed applied on verified isolated PostgreSQL branch",
+      "actions": "Read connected SQL fixture snapshot",
+      "expectedResult": "Five owned synthetic fixture products, ten ZAR-priced variants; originals preserved",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/fixture-postgres-before.json",
+        "qa/rp-v2.1.1/seed-replay-evidence.json",
+        "qa/rp-v2.1.1/seed-reverse-reapply-evidence.json"
+      ],
+      "actualResult": "PostgreSQL:23 products,16 approved references,5 new fixture products/10 variants,6 initial units per variant; original rows match baseline",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-18",
+      "workItem": "RP-211-04",
+      "requirement": "PostgreSQL, API and UI price/size/colour/stock agree",
+      "preconditions": "PostgreSQL snapshot has10 fixture variants",
+      "actions": "Compare each SQL variant to API values and rendered select/price/stock",
+      "expectedResult": "PostgreSQL, API and UI price/size/colour/stock agree",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/postgres-api-ui-reconciliation.json",
+        "qa/rp-v2.1.1/postgres-api-final-reconciliation.json"
+      ],
+      "actualResult": "All10 SQL variants match API and UI, including synthetic sandbox labels",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-19",
+      "workItem": "RP-211-04",
+      "requirement": "Five correct chosen variants are persisted in Cart",
+      "preconditions": "Five fixture categories, L variants in stock",
+      "actions": "Select L/Gold variant and Add to Cart for each fixture product",
+      "expectedResult": "Five correct chosen variants are persisted in Cart",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/postgres-api-ui-reconciliation.json"
+      ],
+      "actualResult": "Five categories support Add to Cart with explicit L/Gold selection",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-20",
+      "workItem": "RP-211-02,RP-211-03,RP-211-04",
+      "requirement": "Client totals/discount ignored;excessive inventory rejected",
+      "preconditions": "Server current priceR110 and stock6",
+      "actions": "Send tampered quote totals and quantity99; then retain authoritative review",
+      "expectedResult": "Client totals/discount ignored;excessive inventory rejected",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/postgres-final-evidence.json"
+      ],
+      "actualResult": "Tampered quote remainsR110/discount0;quantity99 rejected409;pending order will also receive extra fake totals to verify server authority; PostgreSQL independently confirms final orderR110 despite submitted total1/price1/discount999999",
+      "status": "PASS"
+    },
+    {
+      "testId": "SMK-211-21",
+      "workItem": "RP-211-03,RP-211-04",
+      "requirement": "One unit consumed across checkout/payment;updated API/UI stock5;no second deduction",
+      "preconditions": "Initialstock6, pending reservation5, genuine payment complete",
+      "actions": "Inspect post-payment API and refresh/focus existing product tab;cross-check exact-once local regression",
+      "expectedResult": "One unit consumed across checkout/payment;updated API/UI stock5;no second deduction",
+      "commitSHA": "5a5113e33287e150d1632d88e4ad06b6ad95763a",
+      "deploymentId": "dpl_3deczHMQtCM7tM8nyof5rCR2mLkj",
+      "evidence": [
+        "qa/rp-v2.1.1/smoke-results.json",
+        "qa/rp-v2.1.1/hosted-smoke.log",
+        "qa/rp-v2.1.1/inventory-flow.json",
+        "qa/rp-v2.1.1/postgres-final-evidence.json",
+        "qa/rp-v2.1.1/stale-tab-before-after.json",
+        "qa/rp-v2.1.1/ui-acceptance-screenshots/post-payment-stock.png"
+      ],
+      "actualResult": "Available stock6\u21925 at pending;remains5 after genuine PAID;existing tab focus/reload shows5;valid duplicate callback regression controlled separately",
+      "status": "PASS"
+    }
+  ],
+  "browserErrors": [],
+  "independentPostgresVerified": true
+}

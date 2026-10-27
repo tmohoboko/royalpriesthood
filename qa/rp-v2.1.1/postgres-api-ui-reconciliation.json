@@ -1,0 +1,112 @@
+[
+  {
+    "variantId": "RP-UAT211-A01-L",
+    "productId": "RP-UAT211-A01",
+    "sqlPrice": 10500,
+    "apiPrice": 10500,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "L",
+    "colour": "Gold",
+    "uiMatched": true
+  },
+  {
+    "variantId": "RP-UAT211-A01-M",
+    "productId": "RP-UAT211-A01",
+    "sqlPrice": 9500,
+    "apiPrice": 9500,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "M",
+    "colour": "Black",
+    "uiMatched": true
+  },
+  {
+    "variantId": "RP-UAT211-H01-L",
+    "productId": "RP-UAT211-H01",
+    "sqlPrice": 8500,
+    "apiPrice": 8500,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "L",
+    "colour": "Gold",
+    "uiMatched": true
+  },
+  {
+    "variantId": "RP-UAT211-H01-M",
+    "productId": "RP-UAT211-H01",
+    "sqlPrice": 7500,
+    "apiPrice": 7500,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "M",
+    "colour": "Black",
+    "uiMatched": true
+  },
+  {
+    "variantId": "RP-UAT211-M01-L",
+    "productId": "RP-UAT211-M01",
+    "sqlPrice": 15500,
+    "apiPrice": 15500,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "L",
+    "colour": "Gold",
+    "uiMatched": true
+  },
+  {
+    "variantId": "RP-UAT211-M01-M",
+    "productId": "RP-UAT211-M01",
+    "sqlPrice": 14500,
+    "apiPrice": 14500,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "M",
+    "colour": "Black",
+    "uiMatched": true
+  },
+  {
+    "variantId": "RP-UAT211-T01-L",
+    "productId": "RP-UAT211-T01",
+    "sqlPrice": 11000,
+    "apiPrice": 11000,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "L",
+    "colour": "Gold",
+    "uiMatched": true
+  },
+  {
+    "variantId": "RP-UAT211-T01-M",
+    "productId": "RP-UAT211-T01",
+    "sqlPrice": 10000,
+    "apiPrice": 10000,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "M",
+    "colour": "Black",
+    "uiMatched": true
+  },
+  {
+    "variantId": "RP-UAT211-W01-L",
+    "productId": "RP-UAT211-W01",
+    "sqlPrice": 13500,
+    "apiPrice": 13500,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "L",
+    "colour": "Gold",
+    "uiMatched": true
+  },
+  {
+    "variantId": "RP-UAT211-W01-M",
+    "productId": "RP-UAT211-W01",
+    "sqlPrice": 12500,
+    "apiPrice": 12500,
+    "sqlStock": 6,
+    "apiStock": 6,
+    "size": "M",
+    "colour": "Black",
+    "uiMatched": true
+  }
+]
