@@ -12,12 +12,12 @@ export const fixtureEnv = {
   EMAIL_FROM: "test@example.invalid",
 };
 export async function seedFixtures(db) {
-  await db.exec(
-    await readFile(
-      new URL("../migrations/001-commerce.sql", import.meta.url),
-      "utf8",
-    ),
+  const schema = await readFile(
+    new URL("../migrations/001-commerce.sql", import.meta.url),
+    "utf8",
   );
+  if (db.exec) await db.exec(schema);
+  else await db.query(schema);
   await db.query(
     "INSERT INTO products(id,name,image,category,active,description) VALUES('RP-T01','Black Signature Tee — Front','/images/catalog/09_Tshirt_Front_Black.png','T-Shirts',true,'AUTOMATED TEST FIXTURE: one tee only, not the complete styled look.'),('RP-T03','White Signature Tee — Front','/images/catalog/11_Tshirt_Front_White.png','T-Shirts',true,'AUTOMATED TEST FIXTURE') ON CONFLICT DO NOTHING",
   );

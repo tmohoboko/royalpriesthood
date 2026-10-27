@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-27",
+  "project": "wandering-truth-80965521",
+  "branch": "br-calm-rice-b7mcxqw7",
+  "branch_name": "commerce-upgrade-20261027",
+  "parent": "br-curly-lab-b7tn8197",
+  "parent_modified": false,
+  "migration_script": "completed successfully",
+  "additive_replay_statements": 19,
+  "commerce_tables": 16,
+  "public_counts": {
+    "products": 16,
+    "active_products": 0,
+    "variants": 0,
+    "orders": 0
+  },
+  "runtime_tests": "blocked at connection setup; see hosted logs"
+}

@@ -1,5 +1,6 @@
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
+import pg from "pg";
 import { PGlite } from "@electric-sql/pglite";
 import { createHandler } from "../../server/handler.js";
 import { seedFixtures, fixtureEnv } from "../../server/fixtures.js";
@@ -90,7 +91,53 @@ async function notify(payment, status = "COMPLETE", overrides = {}) {
   return { status: r.status, data: await r.json() };
 }
 before(async () => {
-  db = new PGlite();
+  if (process.env.COMMERCE_HOSTED_TEST === "1") {
+    if (!process.env.DATABASE_URL)
+      throw Error("Hosted tests require an isolated test-branch DATABASE_URL");
+    const url = new URL(process.env.DATABASE_URL);
+    url.searchParams.set("sslmode", "verify-full");
+    const schema = `commerce_qa_${Date.now()}`;
+    let HostedPool = pg.Pool;
+    if (process.env.COMMERCE_HOSTED_TRANSPORT === "websocket") {
+      const neon = await import("@neondatabase/serverless");
+      neon.neonConfig.webSocketConstructor = globalThis.WebSocket;
+      HostedPool = neon.Pool;
+    }
+    const pool = new HostedPool({
+      connectionString: url.toString(),
+      max: 8,
+      connectionTimeoutMillis: 10000,
+    });
+    await pool.query(`CREATE SCHEMA ${schema}`);
+    db = {
+      async connect() {
+        const c = await pool.connect();
+        try {
+          await c.query(`SET search_path TO ${schema}`);
+          return c;
+        } catch (e) {
+          c.release();
+          throw e;
+        }
+      },
+      async query(sql, params) {
+        const c = await this.connect();
+        try {
+          return await c.query(sql, params);
+        } finally {
+          c.release();
+        }
+      },
+      end: () => pool.end(),
+    };
+    assert.equal(
+      (await one(db, "SELECT current_schema() AS schema")).schema,
+      schema,
+    );
+    console.log(
+      `Hosted PostgreSQL integration schema: ${schema} (retained as test evidence)`,
+    );
+  } else db = new PGlite();
   await seedFixtures(db);
   handle = createHandler({
     db,
@@ -113,7 +160,10 @@ before(async () => {
     },
   });
 });
-after(async () => db.close());
+after(async () => {
+  if (db?.end) await db.end();
+  else if (db?.close) await db.close();
+});
 test("public catalogue and inventory; anonymous checkout/admin rejected", async () => {
   const c = client();
   assert.equal((await c("/products")).data.products.length, 2);
@@ -549,4 +599,39 @@ test("production Node adapter preserves rewritten paths, raw bodies and session 
   } finally {
     await new Promise((resolve) => server.close(resolve));
   }
+});
+test("concurrent customers competing for the last unit create exactly one order", async () => {
+  const a = await customer("last-stock-a"),
+    b = await customer("last-stock-b");
+  for (const c of [a, b]) {
+    await c("/cart");
+    assert.equal(
+      (await c("/cart", "PUT", { variantId: "test-black-l", quantity: 1 }))
+        .status,
+      200,
+    );
+  }
+  await db.query("UPDATE variants SET stock=1 WHERE id='test-black-l'");
+  const attempt = (c, key) =>
+    c("/checkout", "POST", {
+      address,
+      shippingId: "standard",
+      idempotencyKey: key,
+    });
+  const results = await Promise.all([
+    attempt(a, "concurrent-checkout-a"),
+    attempt(b, "concurrent-checkout-b"),
+  ]);
+  assert.deepEqual(results.map((r) => r.status).sort(), [201, 409]);
+  assert.equal(
+    (await one(db, "SELECT stock FROM variants WHERE id='test-black-l'")).stock,
+    0,
+  );
+  const winner = results.findIndex((r) => r.status === 201);
+  const order = results[winner].data.order;
+  assert.equal(
+    (await [a, b][winner](`/orders/${order.id}/cancel`, "POST", {})).status,
+    200,
+  );
+  await db.query("UPDATE variants SET stock=100 WHERE id='test-black-l'");
 });

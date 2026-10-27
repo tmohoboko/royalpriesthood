@@ -27,7 +27,7 @@ Vercel project environment inventory could not be inspected: connected app retur
 ## Database migration and administration
 
 1. Provision/identify an isolated preview database in the approved region. Do not point development or test data at production. Use the existing provider if project inspection reveals one.
-2. Set DATABASE_URL locally in ignored .env or via a secure environment. Run `npm run db:migrate`. The initial migration is additive, transactional and rerunnable; it preserves existing records and inserts inactive catalogue references only. Migration execution against a hosted database remains unverified without a connection.
+2. Set DATABASE_URL locally in ignored .env or via a secure environment. Run `npm run db:migrate`. The initial migration is additive, transactional and rerunnable; it preserves existing records and inserts inactive catalogue references only. Hosted migration and additive replay were executed successfully on the isolated Neon branch described below.
 3. Use a migration-capable credential only for deployment setup. Give the runtime database account CRUD rights on commerce tables, with no DDL or unrelated schema access. Keep TLS verification enabled.
 4. Register the intended admin through the normal UI, then run `ADMIN_EMAIL=owner@example.com npm run admin:grant` as a trusted database operator. There is no automatic first-user administrator or hard-coded deployed admin password.
 5. Configure actual saleable products, descriptions identifying exactly what is sold, approved image paths, variant identities/prices/available stock, shipping prices and any promotion. The recovered catalogue includes styled looks and separate front/back views; deduplicate into real SKUs before activation. Do not use automated fixture prices/stock in a deployed catalogue.
@@ -64,3 +64,13 @@ Image management supports approved existing asset paths; binary uploads require 
 8. Repeat with sandbox failure/cancellation and an unavailable variant. Confirm no unpaid order gets a paid receipt, repeated ITNs do not duplicate receipts, unavailable stock prevents checkout, and customer accounts cannot open admin endpoints.
 
 External acceptance (steps involving real provider, mailbox, hosted database and preview) has NOT been executed in this environment.
+
+## Hosted database evidence — 2026-10-27
+
+The existing Neon project `royalpriesthood-customer-testing` (`wandering-truth-80965521`) was discovered through the connected service. Its original `customer-testing` branch had no tables. Created isolated child `commerce-upgrade-20261027` (`br-calm-rice-b7mcxqw7`) from `br-curly-lab-b7tn8197`; the parent was not changed. The first branch request with an explicit suspend timeout was rejected by the account; retry without that option succeeded.
+
+The migration script completed against hosted PostgreSQL; replay of its 19 additive statements through the connected SQL service also succeeded. Inspection confirmed all 16 expected tables, 16 inactive products, zero variants and zero orders in the public schema. Connection details are in owner-readable, ignored `.env.commerce-preview` (mode 0600), never committed. This setup credential should be replaced with a scoped runtime role before deployment.
+
+Subsequent direct TCP connections timed out. A standalone WebSocket SELECT succeeded, but the hosted integration suite failed during connection setup over both TCP and WebSocket transports: **0 passed, 16 failed, 0 skipped** per attempt, before API assertions. These failures do not invalidate local results and do not establish hosted runtime readiness. Logs are retained in qa/commerce-hosted-*.log. Hosted test schemas are isolated from public catalogue records and retained if created; no destructive cleanup was performed.
+
+Optional hosted verification (only an isolated approved database): `COMMERCE_HOSTED_TEST=1 node --env-file=.env.commerce-preview --test tests/integration/commerce.test.js`. Add `COMMERCE_HOSTED_TRANSPORT=websocket` for the dev-only Neon transport. Each run uses a new schema; it never replaces public catalogue data. The deployed application continues to use pg over verified TLS.

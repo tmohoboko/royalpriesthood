@@ -1,0 +1,81 @@
+/home/tmdev012/Reception/royalpriesthood-commerce/node_modules/pg-pool/index.js:45
+    Error.captureStackTrace(err)
+          ^
+
+AggregateError [ETIMEDOUT]: 
+    at /home/tmdev012/Reception/royalpriesthood-commerce/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async transaction (file:///home/tmdev012/Reception/royalpriesthood-commerce/server/db.js:22:18)
+    at async file:///home/tmdev012/Reception/royalpriesthood-commerce/scripts/commerce-migrate.mjs:5:1 {
+  code: 'ETIMEDOUT',
+  [errors]: [
+    Error: connect ETIMEDOUT 34.205.173.201:5432
+        at createConnectionError (node:net:1678:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1737:38)
+        at listOnTimeout (node:internal/timers:590:11)
+        at process.processTimers (node:internal/timers:523:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '34.205.173.201',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f18:2169:c124:ad8a:5673:72a8:6dfc:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1206:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1742:5)
+        at listOnTimeout (node:internal/timers:590:11)
+        at process.processTimers (node:internal/timers:523:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f18:2169:c124:ad8a:5673:72a8:6dfc',
+      port: 5432
+    },
+    Error: connect ETIMEDOUT 100.62.177.240:5432
+        at createConnectionError (node:net:1678:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1737:38)
+        at listOnTimeout (node:internal/timers:590:11)
+        at process.processTimers (node:internal/timers:523:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '100.62.177.240',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f18:2169:c112:7715:78f4:e470:f48e:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1206:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1742:5)
+        at listOnTimeout (node:internal/timers:590:11)
+        at process.processTimers (node:internal/timers:523:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f18:2169:c112:7715:78f4:e470:f48e',
+      port: 5432
+    },
+    Error: connect ETIMEDOUT 52.2.183.93:5432
+        at createConnectionError (node:net:1678:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1737:38)
+        at listOnTimeout (node:internal/timers:590:11)
+        at process.processTimers (node:internal/timers:523:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '52.2.183.93',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f18:2169:c100:134:5469:51ee:698a:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1206:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1742:5)
+        at listOnTimeout (node:internal/timers:590:11)
+        at process.processTimers (node:internal/timers:523:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f18:2169:c100:134:5469:51ee:698a',
+      port: 5432
+    }
+  ]
+}
+
+Node.js v22.22.0

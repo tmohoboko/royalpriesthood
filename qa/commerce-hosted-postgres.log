@@ -1,0 +1,250 @@
+TAP version 13
+# Subtest: public catalogue and inventory; anonymous checkout/admin rejected
+not ok 1 - public catalogue and inventory; anonymous checkout/admin rejected
+  ---
+  duration_ms: 831.85167
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:167:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: cross-origin mutations and invalid inputs rejected
+not ok 2 - cross-origin mutations and invalid inputs rejected
+  ---
+  duration_ms: 0.119062
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:174:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: persistent guest cart merges exactly once across registration and login
+not ok 3 - persistent guest cart merges exactly once across registration and login
+  ---
+  duration_ms: 0.072942
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:198:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: checkout validates stock and recalculates prices ignoring browser totals
+not ok 4 - checkout validates stock and recalculates prices ignoring browser totals
+  ---
+  duration_ms: 0.074228
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:218:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: idempotency prevents duplicate orders and stock reservations
+not ok 5 - idempotency prevents duplicate orders and stock reservations
+  ---
+  duration_ms: 0.120401
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:243:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: only order owner can see or initiate sandbox payment; redirect is not payment
+not ok 6 - only order owner can see or initiate sandbox payment; redirect is not payment
+  ---
+  duration_ms: 0.097049
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:266:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: verified callback marks paid, emits one receipt, rejects amount mismatch and replay
+not ok 7 - verified callback marks paid, emits one receipt, rejects amount mismatch and replay
+  ---
+  duration_ms: 0.079473
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:281:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: failed and cancelled callbacks never issue receipt; cancel releases stock once
+not ok 8 - failed and cancelled callbacks never issue receipt; cancel releases stock once
+  ---
+  duration_ms: 0.182092
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:314:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: administrator manages products and fulfilment; cannot dispatch unpaid orders
+not ok 9 - administrator manages products and fulfilment; cannot dispatch unpaid orders
+  ---
+  duration_ms: 0.30758
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:349:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: inventory changes roll checkout back without partial order or stock mutation
+not ok 10 - inventory changes roll checkout back without partial order or stock mutation
+  ---
+  duration_ms: 0.462725
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:398:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: invalid credentials, origin, forged callback and duplicate fields fail safely
+not ok 11 - invalid credentials, origin, forged callback and duplicate fields fail safely
+  ---
+  duration_ms: 0.10978
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:417:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: verified cancellation preserves unpaid status and permits safe inventory release
+not ok 12 - verified cancellation preserves unpaid status and permits safe inventory release
+  ---
+  duration_ms: 0.098941
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:450:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: failed email jobs retry with a stable idempotency key and do not regress payments
+not ok 13 - failed email jobs retry with a stable idempotency key and do not regress payments
+  ---
+  duration_ms: 0.096274
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:470:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: SQL data and hashed sessions survive database close and reopen
+not ok 14 - SQL data and hashed sessions survive database close and reopen
+  ---
+  duration_ms: 0.133845
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:507:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: production Node adapter preserves rewritten paths, raw bodies and session cookies
+not ok 15 - production Node adapter preserves rewritten paths, raw bodies and session cookies
+  ---
+  duration_ms: 0.092593
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:548:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+# Subtest: concurrent customers competing for the last unit create exactly one order
+not ok 16 - concurrent customers competing for the last unit create exactly one order
+  ---
+  duration_ms: 0.211182
+  type: 'test'
+  location: '/home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:603:1'
+  failureType: 'hookFailed'
+  error: 'Received network error or non-101 status code.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@neondatabase/serverless/index.mjs:1085:33
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async TestContext.<anonymous> (file:///home/tmdev012/Reception/royalpriesthood-commerce/tests/integration/commerce.test.js:111:5)
+    async TestHook.run (node:internal/test_runner/test:1054:7)
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 0
+# fail 16
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 865.765227

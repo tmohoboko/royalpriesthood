@@ -2,19 +2,19 @@
 > royal-priesthood-storefront@1.0.0 test:commerce
 > playwright test --config=playwright.commerce.config.js
 
-[WebServer] (node:20922) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:27392) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
 
 Running 7 tests using 1 worker
 
-(node:20953) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:27422) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
-  ✓  1 tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 1440 (8.6s)
+  ✓  1 tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 1440 (9.5s)
   ✓  2 tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 375 (8.0s)
-  ✓  3 tests/commerce/journey.spec.js:131:1 › failed payment remains unpaid and does not send receipt (7.7s)
-  ✓  4 tests/commerce/journey.spec.js:151:1 › browser return does not mark paid; explicit cancellation is safe (6.6s)
-  ✓  5 tests/commerce/journey.spec.js:167:1 › out of stock product cannot be added (1.5s)
-  ✓  6 tests/commerce/journey.spec.js:174:1 › customer login and admin operations are protected (3.4s)
-  ✓  7 tests/commerce/journey.spec.js:199:1 › verified cancelled gateway payment can be cancelled without a receipt (7.0s)
+  ✓  3 tests/commerce/journey.spec.js:131:1 › failed payment remains unpaid and does not send receipt (7.0s)
+  ✓  4 tests/commerce/journey.spec.js:151:1 › browser return does not mark paid; explicit cancellation is safe (6.9s)
+  ✓  5 tests/commerce/journey.spec.js:167:1 › out of stock product cannot be added (1.4s)
+  ✓  6 tests/commerce/journey.spec.js:174:1 › customer login and admin operations are protected (3.2s)
+  ✓  7 tests/commerce/journey.spec.js:199:1 › verified cancelled gateway payment can be cancelled without a receipt (8.1s)
 
-  7 passed (49.8s)
+  7 passed (51.0s)

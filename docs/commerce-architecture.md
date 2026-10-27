@@ -35,3 +35,5 @@ Responsive catalogue, variant selection, server cart, account/profile/addresses,
 - [PayFast integration and ITN documentation](https://developers.payfast.co.za/): signing, source authentication, amount matching and server verification.
 - [Vercel Node functions](https://vercel.com/docs/functions/runtimes/node-js), [request headers](https://vercel.com/docs/headers/request-headers).
 - [Resend send-email API](https://resend.com/docs/api-reference/emails/send-email).
+
+Hosted database update: the existing Neon customer-testing project now has isolated child branch `commerce-upgrade-20261027` with the additive schema applied and replayed. Public catalogue remains inactive. See commerce-deployment.md for exact branch IDs and unresolved hosted runtime connectivity; no production database was changed.

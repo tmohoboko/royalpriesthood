@@ -23,3 +23,5 @@ Baseline: npm ci passed; npm run build passed (Vite 7.3.7). npm test executed: 0
 ## Implemented result
 
 The local commerce journey, role-protected administration, SQL schema/migration, PayFast sandbox adapter and notification outbox are implemented and covered by executed tests. Full external acceptance is not complete: hosted database configuration, approved product inventory/prices, merchant sandbox credentials/callbacks, email sender and Vercel team access are still required. Real sandbox transactions and a working hosted preview have not been demonstrated. Binary image uploads, gateway refund execution, unattended notification scheduling and comprehensive static typing remain partial/missing; see release report for exact scope.
+
+Hosted database update: the existing Neon customer-testing project now has isolated child branch `commerce-upgrade-20261027` with the additive schema applied and replayed. Public catalogue remains inactive. See commerce-deployment.md for exact branch IDs and unresolved hosted runtime connectivity; no production database was changed.

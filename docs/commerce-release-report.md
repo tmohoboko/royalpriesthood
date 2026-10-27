@@ -21,7 +21,7 @@ Partial/missing:
 | Dependency or feature | Exact release limitation |
 |---|---|
 | Vercel preview | Existing team's connected-app grant returns 403. No preview URL or hosted acceptance evidence yet. No production promotion occurred. |
-| Persistent hosted backend | PostgreSQL DATABASE_URL is absent locally; Vercel env inventory inaccessible. Migration is executed in embedded SQL tests, not on a hosted database. |
+| Persistent hosted backend | Existing Neon project discovered; isolated branch commerce-upgrade-20261027 migrated successfully with 16 tables and 16 inactive catalogue entries. Vercel env inventory remains inaccessible. Hosted API tests failed at connection setup; runtime connectivity/concurrency remains unverified. |
 | Actual saleable catalogue | Owner-approved product contents/SKUs, ZAR prices, variant availability and shipping tariffs required. Migration seeds inactive catalogue references only. |
 | Actual sandbox payment | PAYFAST_MODE=sandbox, sandbox merchant ID/key/passphrase and a stable reachable HTTPS APP_ORIGIN required. Live mode is rejected in code. No real sandbox transaction executed. |
 | Actual email delivery | RESEND_API_KEY, EMAIL_FROM and verified sending domain needed, or adapt to an existing provider discovered after project access. Test delivery is mocked; sent means provider acceptance only. |
@@ -34,7 +34,7 @@ Partial/missing:
 
 ## C. Test evidence
 
-Final local automated result: **39 passed, 0 failed, 0 skipped** (10 unit, 15 API/integration, 7 existing browser regression, 7 commerce browser). `npm run check` runs lint, both Node test suites and production build. Both Playwright suites ran with installed Chromium via PLAYWRIGHT_CHROMIUM_EXECUTABLE. Exact logs/results/screenshots are in `qa/commerce-*`; details in [commerce-test-matrix.md](commerce-test-matrix.md). Dependency audit result is in `qa/commerce-audit.log`.
+Final local automated result: **40 passed, 0 failed, 0 skipped** (10 unit, 16 API/integration, 7 existing browser regression, 7 commerce browser). `npm run check` runs lint, both Node test suites and production build. Both Playwright suites ran with installed Chromium via PLAYWRIGHT_CHROMIUM_EXECUTABLE. Exact logs/results/screenshots are in `qa/commerce-*`; details in [commerce-test-matrix.md](commerce-test-matrix.md). Dependency audit result is in `qa/commerce-audit.log`.
 
 The gateway's DNS and verification response and the email HTTP API are mocked. Production verifier logic still executes in integration tests. No live payment, actual PayFast sandbox success, external mailbox receipt or hosted deployment was fabricated. Initial missing-browser failures, the wrong test vector and browser-discovered login defect were resolved before final passing runs. No outstanding failing local tests are known; external acceptance and the partial features above remain outstanding.
 
@@ -50,4 +50,6 @@ Full exact external procedure is in [commerce-deployment.md](commerce-deployment
 
 ## F. Highest-priority next action
 
-Restore the connected app's access to the existing tmdev Vercel team. This permits inspection of existing environment/backend integrations and creation of the required acceptance preview without replacing the project. Then configure an isolated preview database and the documented merchant/email dependencies. Production release still needs separate approval.
+Restore the connected app's access to the existing tmdev Vercel team. This permits inspection of existing environment/backend integrations and creation of the required acceptance preview without replacing the project. Then connect the prepared isolated Neon branch to preview and configure the documented merchant/email dependencies. Production release still needs separate approval.
+
+Hosted verification update: migration and replay succeeded on isolated Neon, but hosted API attempts report 0 passed / 16 failed at connection setup (TCP timeout and WebSocket transport error). This remains an unresolved external test failure; 40 passing tests refer to local suites only. See deployment runbook and retained logs.

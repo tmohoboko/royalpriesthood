@@ -41,6 +41,10 @@ qa/commerce-baseline-browser.json
 qa/commerce-check.log
 qa/commerce-e2e-results.json
 qa/commerce-e2e.log
+qa/commerce-hosted-migration.json
+qa/commerce-hosted-postgres.log
+qa/commerce-hosted-tcp-failure.log
+qa/commerce-hosted-tcp-migration-failure.log
 qa/commerce-regression-results.json
 qa/commerce-regression.log
 qa/commerce-regression/local-1440.png

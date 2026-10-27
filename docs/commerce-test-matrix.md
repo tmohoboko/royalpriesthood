@@ -1,11 +1,11 @@
 # Executed test matrix — 2026-10-27
 
-Final local result: **39 passed, 0 failed, 0 skipped** across the four automated suites. Lint and Vite production build passed. Production dependency audit: see `qa/commerce-audit.log`. No TypeScript configuration existed; no TypeScript type-check was performed or claimed. ESLint validates JavaScript, React hook placement and module syntax; Zod validates server inputs. Full static type coverage remains an explicit limitation.
+Final local result: **40 passed, 0 failed, 0 skipped** across the four automated suites. Lint and Vite production build passed. Production dependency audit: see `qa/commerce-audit.log`. No TypeScript configuration existed; no TypeScript type-check was performed or claimed. ESLint validates JavaScript, React hook placement and module syntax; Zod validates server inputs. Full static type coverage remains an explicit limitation.
 
 | Suite/command | Passed | Failed | Skipped | Evidence |
 |---|---:|---:|---:|---|
 | npm run test:unit | 10 | 0 | 0 | qa/commerce-check.log |
-| npm run test:integration | 15 | 0 | 0 | qa/commerce-check.log |
+| npm run test:integration | 16 | 0 | 0 | qa/commerce-check.log |
 | npm test | 7 | 0 | 0 | qa/commerce-regression.log and commerce-regression-results.json |
 | npm run test:commerce | 7 | 0 | 0 | qa/commerce-e2e.log and commerce-e2e-results.json |
 | npm run lint | pass | — | — | qa/commerce-check.log |
@@ -49,3 +49,9 @@ npm run test:commerce
 ```
 
 For an already installed supported Chromium, set PLAYWRIGHT_CHROMIUM_EXECUTABLE as above. Tests use local fixtures and do not need merchant/email/database credentials. The fixture server refuses production/Vercel execution and is excluded from deployment source.
+
+## Hosted PostgreSQL attempts
+
+Hosted migration and 19-statement idempotence replay succeeded on isolated Neon branch `br-calm-rice-b7mcxqw7`; all 16 commerce tables exist. API suites did not reach assertions: direct TCP timed out and WebSocket setup returned a network/non-101 error. Each final attempt reports **0 passed, 16 failed, 0 skipped**; see qa/commerce-hosted-tcp-failure.log and qa/commerce-hosted-postgres.log. These are unresolved external connectivity failures, reported separately from the 40 passing local tests. The added last-unit contention test passes locally; PGlite serialization does not prove hosted multi-connection behavior.
+
+CI for implementation commit cc5860cd585670f56fd7b623154716f649a4a11b passed: https://github.com/tmohoboko/royalpriesthood/actions/runs/40484438035 . Subsequent database-test evidence changes require their own CI result.
