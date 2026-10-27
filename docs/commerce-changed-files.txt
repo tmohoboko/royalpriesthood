@@ -68,6 +68,7 @@ qa/commerce-preview/prototype-closure-report.md
 qa/commerce-preview/prototype-credential-path-attempt.log
 qa/commerce-preview/prototype-customer-journey.mjs
 qa/commerce-preview/prototype-database-state.json
+qa/commerce-preview/prototype-inspection-attempt.json
 qa/commerce-preview/prototype-journey-attempt1.json
 qa/commerce-preview/prototype-journey-attempt1.log
 qa/commerce-preview/prototype-journey-results.json
