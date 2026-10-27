@@ -1,0 +1,231 @@
+.commerce {
+  background: #f8f5ee;
+  color: #171714;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+.commerce header {
+  position: static;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 24px 5%;
+  border-bottom: 1px solid #c4aa6d;
+  gap: 20px;
+}
+.commerce-brand {
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.commerce-brand small {
+  display: block;
+  font-size: 10px;
+  margin-top: 6px;
+}
+.commerce nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.commerce main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 24px;
+  min-height: 70vh;
+}
+.commerce h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 5vw, 56px);
+  margin: 24px 0;
+}
+.commerce h2 {
+  font-family: Georgia, serif;
+  font-size: 26px;
+  margin: 24px 0 12px;
+}
+.commerce h3 {
+  overflow-wrap: anywhere;
+}
+.commerce p {
+  line-height: 1.65;
+  margin: 12px 0;
+  overflow-wrap: anywhere;
+}
+.commerce a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.commerce label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0;
+  font-size: 14px;
+}
+.commerce input,
+.commerce select {
+  background: white;
+  color: #171714;
+  border: 1px solid #857c68;
+  padding: 12px;
+  min-height: 44px;
+  width: 100%;
+  border-radius: 3px;
+}
+.commerce input[type="checkbox"] {
+  width: 24px;
+}
+.commerce button,
+.commerce-button {
+  display: inline-block;
+  background: #171714;
+  color: #fff;
+  padding: 13px 20px;
+  border: 1px solid #171714;
+  min-height: 44px;
+  cursor: pointer;
+  margin: 8px 8px 8px 0;
+  border-radius: 3px;
+}
+.commerce button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.commerce .secondary {
+  background: transparent;
+  color: #171714;
+}
+.commerce :focus-visible {
+  outline: 3px solid #9a7022;
+  outline-offset: 3px;
+}
+.commerce form {
+  max-width: 800px;
+  margin: 20px 0;
+}
+.commerce fieldset {
+  padding: 16px;
+  border: 1px solid #baac8b;
+}
+.commerce-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+}
+.commerce-toolbar {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.commerce-toolbar label {
+  flex: 1;
+  min-width: 180px;
+}
+.commerce-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.commerce-product {
+  min-width: 0;
+  background: #fff;
+  padding: 16px;
+}
+.commerce-product img {
+  width: 100%;
+  max-height: 580px;
+  object-fit: contain;
+}
+.commerce-product h2 {
+  font-size: 24px;
+}
+.commerce-notice {
+  padding: 12px;
+  background: #e5d7b4;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.commerce [role="alert"] {
+  background: #fbe4e0;
+  padding: 16px;
+  border: 1px solid #9b3325;
+}
+.commerce [role="status"] {
+  padding: 12px;
+  background: #ece9dc;
+}
+.commerce-cart {
+  list-style: none;
+  padding: 0;
+}
+.commerce-cart li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-bottom: 1px solid #baac8b;
+  padding: 20px 0;
+}
+.commerce-cart li > div {
+  flex: 1;
+  min-width: 180px;
+}
+.commerce-cart input {
+  max-width: 100px;
+}
+.commerce-progress {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0;
+  margin: 20px 0;
+}
+.commerce-progress li {
+  padding: 12px;
+  background: #e7e0d0;
+}
+.commerce-progress [aria-current="step"] {
+  background: #171714;
+  color: white;
+}
+.commerce-summary {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #baac8b;
+  margin: 24px 0;
+}
+.commerce footer {
+  padding: 30px 5%;
+  background: #171714;
+  color: #fff;
+}
+.commerce form > button {
+  margin-top: 16px;
+}
+@media (max-width: 700px) {
+  .commerce-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .commerce-fields {
+    grid-template-columns: 1fr;
+  }
+  .commerce main {
+    padding: 20px 16px;
+  }
+  .commerce nav {
+    gap: 14px;
+  }
+}
+@media (max-width: 450px) {
+  .commerce-grid {
+    grid-template-columns: 1fr;
+  }
+  .commerce-cart li {
+    display: block;
+  }
+  .commerce-product {
+    padding: 12px;
+  }
+}

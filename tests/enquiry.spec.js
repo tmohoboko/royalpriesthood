@@ -32,7 +32,7 @@ test('catalogue images load on desktop/mobile and drawer traps keyboard focus',a
   for(const img of await page.locator('img').all())await img.scrollIntoViewIfNeeded();
   await expect.poll(()=>page.locator('img').evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth>0))).toBe(true);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await page.screenshot({path:`qa/evidence/2026-10-22/${process.env.BASE_URL?'hosted':'local'}-${width}.png`,fullPage:true});
+  await page.screenshot({path:`qa/commerce-regression/${process.env.BASE_URL?'hosted':'local'}-${width}.png`,fullPage:true});
  }
  await page.getByRole('button',{name:/Open enquiry bag/}).click();
  await expect(page.getByRole('button',{name:'Close enquiry bag'})).toBeFocused();

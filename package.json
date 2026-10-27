@@ -7,20 +7,37 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:unit": "node --test tests/unit/*.test.js",
+    "test:integration": "node --test tests/integration/*.test.js",
+    "test:commerce": "playwright test --config=playwright.commerce.config.js",
+    "db:migrate": "node --env-file-if-exists=.env scripts/commerce-migrate.mjs",
+    "lint": "eslint server api src/Commerce.jsx scripts/commerce-*.mjs tests/unit tests/integration",
+    "check": "npm run lint && npm run test:unit && npm run test:integration && npm run build",
+    "dev:commerce": "node --env-file-if-exists=.env scripts/commerce-dev.mjs",
+    "admin:grant": "node --env-file-if-exists=.env scripts/commerce-admin.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
     "gsap": "^3.13.0",
     "lucide-react": "^0.468.0",
+    "pg": "^8.23.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "three": "^0.179.0"
+    "three": "^0.179.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.12",
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.56.1",
     "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "tailwindcss": "^4.1.12",
     "vite": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=22.22.0 <25"
   }
 }

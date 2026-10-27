@@ -2,3 +2,11 @@
 *.pptx
 *.jpeg
 README.md
+
+# Automated fixtures/evidence are local and must not ship as deployment source.
+qa/
+tests/
+server/fixtures.js
+scripts/commerce-test-server.mjs
+.env
+.env.*

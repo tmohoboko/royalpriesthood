@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { ArrowRight, ArrowUpRight, Check, Copy, Menu, Minus, Plus, Search, ShoppingBag, Trash2, X } from 'lucide-react';
 import { categories, craft, products, stories } from './data';
 import './style.css';
+const Commerce = React.lazy(() => import('./Commerce.jsx'));
+
 
 function CatalogueImage({src,...props}){
  const base=src?.startsWith('/images/catalog/')?src.replace('/images/catalog/','/images/catalog/web/').replace(/\.png$/,''):null;
@@ -20,7 +22,7 @@ function Mark() {
 
 function Header({ count, onBag }) {
   const [open, setOpen] = useState(false);
-  const links = [['Women', '#women'], ['Men', '#men'], ['Catalogue', '#catalogue'], ['Craft', '#craft'], ['Contact', '#contact']];
+  const links = [['Women', '#women'], ['Men', '#men'], ['Catalogue', '#catalogue'], ['Shop', '/shop'], ['Account', '/shop/account'], ['Craft', '#craft'], ['Contact', '#contact']];
   return <>
     <div className="topline"><span>ROYAL PRIESTHOOD / SOUTH AFRICA</span><span>MADE-TO-ORDER COLLECTION</span></div>
     <header className="header">
@@ -88,7 +90,7 @@ function ProductCard({ item, index, onAdd }) {
         <label>SIZE<select aria-label={`Size for ${item.name}`} value={size} onChange={event => setSize(event.target.value)}>{SIZES.map(value => <option key={value}>{value}</option>)}</select></label>
         <button type="button" onClick={() => onAdd({ ...item, size, quantity: 1 })}>ADD <Plus size={17}/></button>
       </div>
-      <small>Price and availability on request</small>
+      <small>Price and availability on request · <a href={`/shop/products/${item.id}`}>View purchase options</a></small>
     </div>
   </article>;
 }
@@ -213,4 +215,4 @@ function App() {
   </>;
 }
 
-createRoot(document.getElementById('root')).render(<App/>);
+createRoot(document.getElementById('root')).render(window.location.pathname.startsWith('/shop') ? <React.Suspense fallback={<p role="status">Loading shop…</p>}><Commerce/></React.Suspense> : <App/>);

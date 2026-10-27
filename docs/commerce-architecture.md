@@ -1,0 +1,37 @@
+# Architecture
+
+The existing React/Vite editorial site, enquiry bag, mark and all original product assets remain in place. `/shop` is a lazily loaded commerce entry in the same application. It uses ordinary addressable paths and a Vercel SPA fallback, with independent API routing. No framework migration or replacement identity.
+
+`api/commerce.js` is a Node.js Vercel Function that adapts incoming HTTP requests to the shared Web Request handler in `server/handler.js`. This supports a production HTTP adapter and separately testable request handling. PostgreSQL via `pg` is the only deployed persistent store; missing DATABASE_URL returns 503, never a fake in-memory shop. Pool connections are checked out for complete transactions. PGlite is a development dependency providing a real embedded PostgreSQL engine for automated SQL tests; its serialized transactions do not prove multi-connection hosted PostgreSQL behavior.
+
+## Domain and transaction boundaries
+
+The additive SQL migration defines users, sessions, categories, products, variants (available inventory), guest/customer carts and cart items, addresses, shipping options, promotions, immutable order-item snapshots, orders, payments, event deduplication, notification outbox and authentication attempt windows. Catalogue seed data starts inactive with no variants, price or stock. Styled looks and front/back photos are not assumed to be separate saleable SKUs. Administrators must supply approved product contents and variants.
+
+Prices are integer ZAR cents. Server quote validates active products, quantities, stock, promotion expiration and shipping option. Percentage discounts round down to a cent. Checkout locks the customer, cart and variants in a stable order, recalculates totals, reserves inventory with a conditional decrement, snapshots order items and address, creates one pending payment, stores the address and clears the cart in one transaction. Database uniqueness on customer/idempotency key plus a delivery-input hash protects retries. A customer has at most one pending order through serialized creation. Reservation window is 30 minutes for payment initiation; stock is never silently released by a timer while a hosted payment can complete.
+
+Guest cart capability is a random 192-bit HttpOnly cookie. Customer carts are bound to user IDs. Login merges and deletes the guest cart in a transaction, serialized against concurrent logins. Customer identity, role, prices and totals are never trusted from browser input. Guest catalogue and cart work before authentication; checkout requires an authenticated customer.
+
+Sessions use 192-bit opaque tokens, SHA-256 token hashes in the database, seven-day expiry, HttpOnly/SameSite=Lax cookies and Secure cookies for configured HTTPS origins. Passwords use unique salts and Node scrypt (N=32768, r=8, p=3; 64 MiB max memory). All mutations except verified ITN require the configured exact Origin and application/json; body size is bounded. Credentials have persistent attempt throttling. RBAC and order ownership are enforced at each server route. All SQL values are parameterized. Error responses are structured; server logs contain event/code only, never passwords, SQL, addresses or payment secrets. Public registration always creates a customer; an operator separately promotes an existing user with `npm run admin:grant`.
+
+## Payment safety
+
+Only PayFast sandbox is enabled. Blank, live or incomplete configuration prevents pending-order creation and payment initiation. Payment form fields are signed server-side and sent to PayFast's hosted sandbox page. Same pending payment/reference is reused on retries. PayFast's merchant key necessarily appears in its hosted checkout fields per its protocol; the signing passphrase remains server-only. No card data is accepted or stored.
+
+ITN requires signature over all notification fields (including empty fields), matching merchant, source IP resolved against official PayFast hostnames, and a TLS server verification request returning VALID. Vercel ingress supplies the trusted client IP. The order amount must match exactly. Payment/order rows are locked and the gateway event key and provider reference are unique. Verified COMPLETE updates paid state and inserts the deduplicated receipt outbox record in one transaction. Later failed events never regress paid status. Browser returns only display server state. Pending payment pages poll every five seconds.
+
+Payment initiation and cancellation lock the order before its payment. Before a payment is issued, explicit cancellation restores reserved stock once. After initiation a pending payment cannot be cancelled locally until verified failure/cancellation or operator reconciliation. Verified failed/cancelled payments may be cancelled and recreated with a new order; a late success after cancellation is rejected for manual reconciliation rather than consuming released inventory. There is no arbitrary admin endpoint for marking payment paid. Refund states exist in the data model, but gateway refund execution/synchronization is deliberately blocked pending provider-specific merchant capabilities and verification.
+
+## Email
+
+A durable outbox deduplicates welcome, verified-payment confirmation/receipt, failure and fulfilment updates. Confirmation and receipt are combined into one complete email. Resend is configurable through server environment variables. Worker locks due rows, uses stable provider idempotency keys and retries failures after 15 minutes (up to eight attempts). Request-triggered processing plus a protected admin retry operation is implemented. No new scheduler was installed. For unattended retries, configure an approved scheduler/queue after inspecting the target hosting configuration. The outbox remains pending when no email service is configured. `sent` means accepted by the provider, not proven inbox delivery; delivery/bounce webhooks are not yet integrated. Resend idempotency retention limits must be respected during long recovery outages.
+
+## Frontend and operational limits
+
+Responsive catalogue, variant selection, server cart, account/profile/addresses, checkout review, order tracking and role-protected administration use the existing palette. Admin image management selects approved image paths already hosted in `/images`; new binary image uploads need a storage provider and are not implemented. Admin order list is limited to the latest 200 with local filtering; high-volume pagination remains future work. Search/filter/sort operate on the returned active catalogue, suitable for this small existing collection. No invented promotions are shown before an administrator configures them. Account recovery, email verification and MFA are not implemented and should be added before broad public launch.
+
+## References consulted
+
+- [PayFast integration and ITN documentation](https://developers.payfast.co.za/): signing, source authentication, amount matching and server verification.
+- [Vercel Node functions](https://vercel.com/docs/functions/runtimes/node-js), [request headers](https://vercel.com/docs/headers/request-headers).
+- [Resend send-email API](https://resend.com/docs/api-reference/emails/send-email).
