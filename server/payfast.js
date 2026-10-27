@@ -1,6 +1,7 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { resolve4 } from "node:dns/promises";
 import { fail } from "./domain.js";
+import { callbackHost } from "./callback-policy.js";
 const encodeRaw = (v) =>
   encodeURIComponent(String(v))
     .replace(
@@ -43,7 +44,14 @@ export function paymentConfig(env = process.env) {
       "PAYMENTS_DISABLED",
       "PayFast sandbox credentials and HTTPS APP_ORIGIN are required",
     );
+  let notifyOrigin = new URL(env.APP_ORIGIN).origin;
+  if (env.PAYFAST_NOTIFY_ORIGIN) {
+    if (env.VERCEL_ENV !== 'preview' || env.PAYFAST_NOTIFY_ORIGIN !== `https://${callbackHost}`)
+      fail(503, 'PAYMENTS_DISABLED', 'Invalid sandbox callback origin');
+    notifyOrigin = env.PAYFAST_NOTIFY_ORIGIN;
+  }
   return {
+    notifyOrigin,
     host: "sandbox.payfast.co.za",
     merchantId: env.PAYFAST_MERCHANT_ID,
     merchantKey: env.PAYFAST_MERCHANT_KEY,
@@ -58,7 +66,7 @@ export function hostedPayment(order, payment, user, env = process.env) {
     merchant_key: config.merchantKey,
     return_url: `${config.origin}/shop/orders/${order.id}?payment=returned`,
     cancel_url: `${config.origin}/shop/orders/${order.id}?payment=cancelled`,
-    notify_url: `${config.origin}/api/commerce/payfast/notify`,
+    notify_url: `${config.notifyOrigin}/api/commerce/payfast/notify`,
     email_address: user.email,
     m_payment_id: payment.id,
     amount: (order.total / 100).toFixed(2),

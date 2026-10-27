@@ -12,13 +12,14 @@
     "test:integration": "node --test tests/integration/*.test.js",
     "test:commerce": "playwright test --config=playwright.commerce.config.js",
     "db:migrate": "node --env-file-if-exists=.env scripts/commerce-migrate.mjs",
-    "lint": "eslint server api src/Commerce.jsx scripts/commerce-*.mjs tests/unit tests/integration",
+    "lint": "eslint proxy.js server api src/Commerce.jsx scripts/commerce-*.mjs tests/unit tests/integration",
     "check": "npm run lint && npm run test:unit && npm run test:integration && npm run build",
     "dev:commerce": "node --env-file-if-exists=.env scripts/commerce-dev.mjs",
     "admin:grant": "node --env-file-if-exists=.env scripts/commerce-admin.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
+    "@vercel/functions": "3.6.1",
     "gsap": "^3.13.0",
     "lucide-react": "^0.468.0",
     "pg": "^8.23.1",

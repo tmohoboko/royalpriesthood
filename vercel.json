@@ -30,5 +30,8 @@
         }
       ]
     }
-  ]
+  ],
+  "proxy": {
+    "entrypoint": "proxy.js"
+  }
 }
