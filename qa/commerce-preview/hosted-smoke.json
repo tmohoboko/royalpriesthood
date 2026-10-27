@@ -1,0 +1,93 @@
+{
+  "origin": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "deployment": "dpl_D9pfef8FbRdDsAsqaLz12tcRqjKn",
+  "implementationCommit": "3d70341f66351976b19520c69be02428813337f4",
+  "results": [
+    {
+      "name": "direct navigation /shop",
+      "passed": true
+    },
+    {
+      "name": "direct navigation /shop/checkout",
+      "passed": true
+    },
+    {
+      "name": "direct navigation /shop/account",
+      "passed": true
+    },
+    {
+      "name": "direct navigation /shop/products/unavailable",
+      "passed": true
+    },
+    {
+      "name": "direct navigation /shop/orders/unavailable",
+      "passed": true
+    },
+    {
+      "name": "health, database configured, payments disabled",
+      "passed": true
+    },
+    {
+      "name": "real database catalogue (inactive products)",
+      "passed": true
+    },
+    {
+      "name": "anonymous admin rejected",
+      "passed": true
+    },
+    {
+      "name": "hosted customer registration",
+      "passed": true
+    },
+    {
+      "name": "secure HttpOnly session cookie",
+      "passed": true
+    },
+    {
+      "name": "session survives reload",
+      "passed": true
+    },
+    {
+      "name": "save delivery address",
+      "passed": true
+    },
+    {
+      "name": "persisted delivery address",
+      "passed": true
+    },
+    {
+      "name": "customer order history",
+      "passed": true
+    },
+    {
+      "name": "customer admin rejected",
+      "passed": true
+    },
+    {
+      "name": "logout",
+      "passed": true
+    },
+    {
+      "name": "session revoked",
+      "passed": true
+    },
+    {
+      "name": "hosted customer login",
+      "passed": true
+    },
+    {
+      "name": "address retained across login",
+      "passed": true
+    },
+    {
+      "name": "mobile shop has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "no uncaught browser errors",
+      "passed": true
+    }
+  ],
+  "payment": "disabled; no gateway or email mock injected into deployed application",
+  "testData": "One synthetic example.test customer and delivery address retained in isolated preview database; no admin or order created."
+}

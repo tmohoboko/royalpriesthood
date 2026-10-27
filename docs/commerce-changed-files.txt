@@ -45,6 +45,17 @@ qa/commerce-hosted-migration.json
 qa/commerce-hosted-postgres.log
 qa/commerce-hosted-tcp-failure.log
 qa/commerce-hosted-tcp-migration-failure.log
+qa/commerce-preview/check.log
+qa/commerce-preview/commerce-e2e.log
+qa/commerce-preview/dependency-audit.log
+qa/commerce-preview/deployment-evidence.json
+qa/commerce-preview/desktop-account.png
+qa/commerce-preview/hosted-integration-setup-failure.log
+qa/commerce-preview/hosted-smoke-script.mjs
+qa/commerce-preview/hosted-smoke.json
+qa/commerce-preview/hosted-smoke.log
+qa/commerce-preview/mobile-shop.png
+qa/commerce-preview/regression.log
 qa/commerce-regression-results.json
 qa/commerce-regression.log
 qa/commerce-regression/local-1440.png

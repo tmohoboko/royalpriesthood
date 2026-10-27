@@ -20,8 +20,8 @@ Partial/missing:
 
 | Dependency or feature | Exact release limitation |
 |---|---|
-| Vercel preview | Existing team's connected-app grant returns 403. No preview URL or hosted acceptance evidence yet. No production promotion occurred. |
-| Persistent hosted backend | Existing Neon project discovered; isolated branch commerce-upgrade-20261027 migrated successfully with 16 tables and 16 inactive catalogue entries. Vercel env inventory remains inaccessible. Hosted API tests failed at connection setup; runtime connectivity/concurrency remains unverified. |
+| Vercel preview | READY at https://royalpriesthood-commerce-preview-tmdev.vercel.app/ . Vercel authentication retained. 21 hosted smoke assertions pass; no production promotion. |
+| Persistent hosted backend | Existing Neon project discovered; isolated branch commerce-upgrade-20261027 migrated successfully with 16 tables and 16 inactive catalogue entries. Preview DATABASE_URL and APP_ORIGIN are now configured. Deployed API connectivity/session/address persistence passed; the optional integration suite still fails at connection setup from the local machine. Hosted contention remains unverified. |
 | Actual saleable catalogue | Owner-approved product contents/SKUs, ZAR prices, variant availability and shipping tariffs required. Migration seeds inactive catalogue references only. |
 | Actual sandbox payment | PAYFAST_MODE=sandbox, sandbox merchant ID/key/passphrase and a stable reachable HTTPS APP_ORIGIN required. Live mode is rejected in code. No real sandbox transaction executed. |
 | Actual email delivery | RESEND_API_KEY, EMAIL_FROM and verified sending domain needed, or adapt to an existing provider discovered after project access. Test delivery is mocked; sent means provider acceptance only. |
@@ -42,7 +42,9 @@ The gateway's DNS and verification response and the email HTTP API are mocked. P
 
 Target remains existing project prj_IZuPhIVC8rI7nLzV1SdJifoaQaRp under tmdev, with production domain https://royalpriesthood-two.vercel.app/. Public production HEAD returned HTTP 200 during audit; this does not verify new commerce code there. Production domain, payment settings and production branch were not changed.
 
-Preview URL: unavailable at report creation. Vercel project reads returned 403 for missing team authorization. Git-based preview availability, if triggered by pushing this feature branch, must be checked separately and must not be confused with a working backend. The [deployment runbook](commerce-deployment.md) specifies environment variables, additive migrations, scoped database access, administrator provisioning, callback reachability, preview commands and rollback. The old production release script must not be used for this preview.
+Preview: https://royalpriesthood-commerce-preview-tmdev.vercel.app/ (Vercel authentication required). Immutable deployment: https://royalpriesthood-chtq7ptks-tmdev.vercel.app/ , ID dpl_D9pfef8FbRdDsAsqaLz12tcRqjKn, READY. Deployed implementation is exactly 3d70341f66351976b19520c69be02428813337f4; later commit contains evidence/docs only. Existing project has no connected Git repository, so used authenticated CLI source upload with explicit --target preview after checking the linked team/project. DATABASE_URL (sensitive) and APP_ORIGIN are preview-only; production variables remain untouched. Production alias still resolves to dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG, matching the pre-deployment state.
+
+All 40 local tests passed on resumption. Additional deployed checks: **21 passed, 0 failed** covering deep links, actual Neon catalogue, registration/login/logout, secure session cookie, refresh persistence, saved address, history, authorization and mobile layout. See qa/commerce-preview/. Optional hosted integration: 0 passed / 16 setup failures from local TCP timeout. Deployed checkout/payment/receipts were not exercised because catalogue/shipping and gateway/email credentials are absent. External unauthenticated notify POST returned 302 to Vercel authentication, requiring an approved callback-access solution before real PayFast sandbox acceptance.
 
 ## E. Acceptance testing
 
@@ -50,6 +52,8 @@ Full exact external procedure is in [commerce-deployment.md](commerce-deployment
 
 ## F. Highest-priority next action
 
-Restore the connected app's access to the existing tmdev Vercel team. This permits inspection of existing environment/backend integrations and creation of the required acceptance preview without replacing the project. Then connect the prepared isolated Neon branch to preview and configure the documented merchant/email dependencies. Production release still needs separate approval.
+Provide the PayFast sandbox merchant ID/key/passphrase through Vercel Preview secrets and approve a provider-accessible callback route/host. PAYFAST_MODE must remain disabled until these dependencies and owner-approved saleable products/shipping are configured. Add RESEND_API_KEY and verified EMAIL_FROM for real receipts. No production promotion is authorized.
 
 Hosted verification update: migration and replay succeeded on isolated Neon, but hosted API attempts report 0 passed / 16 failed at connection setup (TCP timeout and WebSocket transport error). This remains an unresolved external test failure; 40 passing tests refer to local suites only. See deployment runbook and retained logs.
+
+Resume evidence: the earlier hosted-runtime connectivity limitation is resolved on Vercel for the exercised API paths; local TCP integration setup still fails. Final implementation CI passed: https://github.com/tmohoboko/royalpriesthood/actions/runs/40487058707 .

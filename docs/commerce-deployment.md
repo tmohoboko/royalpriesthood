@@ -22,7 +22,7 @@ Configure through Vercel's secret settings; never send credentials in chat or co
 | EMAIL_FROM | Approved sender on a verified sending domain |
 | VITE_CONTACT_EMAIL | Optional public catalogue enquiry recipient |
 
-Vercel project environment inventory could not be inspected: connected app returns 403 team access required. No relevant server environment variables were present in this local process. This does not prove Vercel has none. Preserve any existing values after access is restored; inspect names/targets without printing decrypted values first.
+Resumed authenticated inventory returned no existing variables. Configured DATABASE_URL as sensitive and APP_ORIGIN as plain, Preview only. No production variables changed. The project has no Git connection, so branch-specific variables are unavailable; these two apply to Preview generally, using an isolated development database. Merchant/email variables remain absent.
 
 ## Database migration and administration
 
@@ -74,3 +74,15 @@ The migration script completed against hosted PostgreSQL; replay of its 19 addit
 Subsequent direct TCP connections timed out. A standalone WebSocket SELECT succeeded, but the hosted integration suite failed during connection setup over both TCP and WebSocket transports: **0 passed, 16 failed, 0 skipped** per attempt, before API assertions. These failures do not invalidate local results and do not establish hosted runtime readiness. Logs are retained in qa/commerce-hosted-*.log. Hosted test schemas are isolated from public catalogue records and retained if created; no destructive cleanup was performed.
 
 Optional hosted verification (only an isolated approved database): `COMMERCE_HOSTED_TEST=1 node --env-file=.env.commerce-preview --test tests/integration/commerce.test.js`. Add `COMMERCE_HOSTED_TRANSPORT=websocket` for the dev-only Neon transport. Each run uses a new schema; it never replaces public catalogue data. The deployed application continues to use pg over verified TLS.
+
+## Resumed preview release evidence
+
+Stable preview: https://royalpriesthood-commerce-preview-tmdev.vercel.app/ . Immutable deployment: https://royalpriesthood-chtq7ptks-tmdev.vercel.app/ . Deployment ID dpl_D9pfef8FbRdDsAsqaLz12tcRqjKn, READY. Implementation commit 3d70341f66351976b19520c69be02428813337f4 was uploaded through CLI 62.2.0 using `deploy --target preview --project prj_IZuPhIVC8rI7nLzV1SdJifoaQaRp --scope tmdev --yes --no-wait`; no production flag or promotion was run. Git deployment was rejected because the project has no Git connection. No Git integration was added.
+
+The isolated database now uses rp_commerce_preview with CRUD on commerce tables; it cannot create schemas/tables, databases or roles and is not superuser. Setup-owner credentials were not deployed. APP_ORIGIN matches the stable preview hostname; use that hostname for forms and acceptance. The immutable hostname can serve read requests but its mutation origin differs from configured APP_ORIGIN.
+
+Protection is preserved. Sign into Vercel as an authorized tmdev member to open the preview; automated requests used the linked project's short-lived development OIDC token, never committed. 21 deployed smoke checks passed, including database-backed registration, secure session cookies, reload/login persistence, delivery addresses, order history and role denial. One synthetic example.test customer/address remains on the isolated preview branch; no admin was granted and no order/payment was created. Screenshots, script and logs are in qa/commerce-preview/.
+
+Real PayFast testing is blocked by missing sandbox merchant ID/key/passphrase and PAYFAST_MODE, missing owner-approved product variants/stock/prices and shipping, and callback reachability: unauthenticated notify POST returns HTTP 302 to Vercel authentication. Resolve access specifically for the approved callback route/host without broadly disabling deployment protection. Real receipts need RESEND_API_KEY and a verified EMAIL_FROM; no email credential or sender is configured. The test welcome job is queued/retryable, not proof of delivery.
+
+Production alias was inspected after preview deployment and still points to original dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG. Production environment/domain/payment settings were not changed.

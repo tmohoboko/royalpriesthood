@@ -37,3 +37,5 @@ Responsive catalogue, variant selection, server cart, account/profile/addresses,
 - [Resend send-email API](https://resend.com/docs/api-reference/emails/send-email).
 
 Hosted database update: the existing Neon customer-testing project now has isolated child branch `commerce-upgrade-20261027` with the additive schema applied and replayed. Public catalogue remains inactive. See commerce-deployment.md for exact branch IDs and unresolved hosted runtime connectivity; no production database was changed.
+
+Preview verification update: Node 24 Vercel deployment of commit 3d70341 is READY with verified-TLS pg connectivity to the isolated Neon branch, using restricted runtime role rp_commerce_preview. Registration/session/address/history/authz boundaries passed 21 hosted smoke checks. Preview has Vercel authentication; external PayFast notify requests currently redirect (302), so real sandbox checkout remains disabled pending callback access and merchant configuration.

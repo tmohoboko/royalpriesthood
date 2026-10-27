@@ -1,0 +1,21 @@
+PASS direct navigation /shop
+PASS direct navigation /shop/checkout
+PASS direct navigation /shop/account
+PASS direct navigation /shop/products/unavailable
+PASS direct navigation /shop/orders/unavailable
+PASS health, database configured, payments disabled
+PASS real database catalogue (inactive products)
+PASS anonymous admin rejected
+PASS hosted customer registration
+PASS secure HttpOnly session cookie
+PASS session survives reload
+PASS save delivery address
+PASS persisted delivery address
+PASS customer order history
+PASS customer admin rejected
+PASS logout
+PASS session revoked
+PASS hosted customer login
+PASS address retained across login
+PASS mobile shop has no horizontal overflow
+PASS no uncaught browser errors

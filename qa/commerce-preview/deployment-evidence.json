@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-27",
+  "project": "prj_IZuPhIVC8rI7nLzV1SdJifoaQaRp",
+  "team": "tmdev",
+  "branch": "commerce/production-upgrade-20261027",
+  "implementationCommit": "3d70341f66351976b19520c69be02428813337f4",
+  "deployment": "dpl_D9pfef8FbRdDsAsqaLz12tcRqjKn",
+  "state": "READY",
+  "environment": "preview (Vercel deployment target null; CLI explicitly --target preview)",
+  "source": "CLI upload; project has no Git connection",
+  "preview": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "immutableUrl": "https://royalpriesthood-chtq7ptks-tmdev.vercel.app",
+  "productionAlias": "royalpriesthood-two.vercel.app",
+  "productionDeploymentBeforeAndAfter": "dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG",
+  "previewEnvironmentKeys": [
+    "DATABASE_URL",
+    "APP_ORIGIN"
+  ],
+  "productionEnvironmentChanged": false,
+  "runtimeRole": {
+    "name": "rp_commerce_preview",
+    "superuser": false,
+    "createDatabase": false,
+    "createRole": false,
+    "createInPublicSchema": false
+  },
+  "localTests": {
+    "passed": 40,
+    "failed": 0,
+    "skipped": 0
+  },
+  "hostedSmokeChecks": {
+    "passed": 21,
+    "failed": 0
+  },
+  "optionalHostedIntegration": {
+    "passed": 0,
+    "failed": 16,
+    "skipped": 0,
+    "reason": "ETIMEDOUT during before hook, before API assertions"
+  },
+  "unauthenticatedGatewayCallbackHttpStatus": 302,
+  "gatewayCallbackBlocker": "Vercel authentication redirects external PayFast callbacks; needs approved provider-accessible callback route/host before real sandbox testing",
+  "payments": "disabled; merchant credentials not configured",
+  "email": "not configured; no real email sent"
+}
