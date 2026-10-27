@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'../../tests/commerce',testMatch:'frontend.spec.js',workers:1,timeout:45000,reporter:[['list'],['json',{outputFile:'hosted-frontend-results.json'}]],use:{baseURL:'https://royalpriesthood-commerce-preview-tmdev.vercel.app',launchOptions:{executablePath:'/home/tmdev012/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome'}}});

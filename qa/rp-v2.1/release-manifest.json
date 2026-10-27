@@ -1,0 +1,114 @@
+{
+  "changeRequestId": "RP-V2.1",
+  "project": "Royal Priesthood Commerce v2.1",
+  "date": "2026-10-27",
+  "branch": "commerce/production-upgrade-20261027",
+  "startingGitSHA": "2843d2422d479dcc92507dc8ea4a317157558c23",
+  "implementationGitSHA": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+  "endingImplementationGitSHA": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+  "testSuiteVersion": "RP-V2.1-1",
+  "releaseCandidate": "v2.1.0-rc.1",
+  "tagScope": "local annotated tag after sandbox acceptance gates; no production promotion",
+  "deployment": {
+    "id": "dpl_GssRABAMmYXbJB4sHFPSaA8Ep5om",
+    "status": "READY",
+    "environment": "preview",
+    "url": "https://royalpriesthood-commerce-preview-tmdev.vercel.app/",
+    "immutableUrl": "https://royalpriesthood-3y2un7yq1-tmdev.vercel.app/",
+    "callbackUrl": "https://royalpriesthood-payfast-itn-tmdev.vercel.app/api/commerce/payfast/notify",
+    "sourceIdentity": "PASS: live commit and 35 uploaded source file SHA1 digests match committed implementation",
+    "aggregatePostBuildFingerprint": "MISMATCH inherited diagnostic; not used as source identity proof"
+  },
+  "workItems": [
+    {
+      "id": "WI-01",
+      "status": "PASS_SANDBOX",
+      "implementationGitSHA": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+      "evidence": "requirements-traceability.md"
+    },
+    {
+      "id": "WI-02",
+      "status": "PASS_SANDBOX",
+      "implementationGitSHA": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+      "evidence": "requirements-traceability.md"
+    },
+    {
+      "id": "WI-03",
+      "status": "PASS_SANDBOX",
+      "implementationGitSHA": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+      "evidence": "requirements-traceability.md"
+    },
+    {
+      "id": "WI-04",
+      "status": "PASS_SANDBOX",
+      "implementationGitSHA": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+      "evidence": "requirements-traceability.md"
+    },
+    {
+      "id": "WI-05",
+      "status": "PASS_SANDBOX",
+      "implementationGitSHA": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+      "evidence": "requirements-traceability.md"
+    }
+  ],
+  "smoke": {
+    "PASS": 18,
+    "FAIL": 0,
+    "BLOCKED": 0,
+    "SKIPPED": 0,
+    "evidence": "smoke-final-results.json"
+  },
+  "regression": {
+    "unit": 14,
+    "apiIntegration": 19,
+    "localBrowser": 25,
+    "hostedFrontend": 10,
+    "passed": 68,
+    "failed": 0,
+    "skipped": 0,
+    "additionalHostedAssertions": 4,
+    "evidence": "regression-report.md"
+  },
+  "payment": {
+    "genuineProviderTransactionId": "3479473",
+    "orderId": "d447327199754c8aba9462b250dd2b39c8734075668cc851",
+    "paymentId": "c9fabdc39afa45421a2df14f3ba0077b2fb9246b44e2324d",
+    "amountCents": 10000,
+    "status": "paid",
+    "verifiedEvents": 1,
+    "receiptCount": 1,
+    "receiptStatus": "RECEIPT_QUEUED",
+    "actualEmailDelivery": "BLOCKED_UNCONFIGURED",
+    "realInvalidSignatureReplaysRejected": 2,
+    "validDuplicateAndFailureRegression": "controlled fixtures; not additional genuine provider transactions"
+  },
+  "database": {
+    "projectId": "wandering-truth-80965521",
+    "branchId": "br-calm-rice-b7mcxqw7",
+    "migration": "002-wishlist.sql",
+    "scope": "existing isolated Preview branch only",
+    "historicalEnquiryData": "no SQL enquiry tables/endpoints found; legacy browser storage untouched"
+  },
+  "defects": {
+    "resolved": [
+      "D-01",
+      "D-02",
+      "D-03"
+    ],
+    "notReproduced": [
+      "D-05"
+    ],
+    "open": [
+      "D-04 email delivery configuration",
+      "D-06 inherited aggregate fingerprint diagnostic"
+    ]
+  },
+  "production": {
+    "beforeDeploymentId": "dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG",
+    "afterDeploymentId": "dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG",
+    "promoted": false,
+    "livePaymentsActivated": false
+  },
+  "releaseDecision": "SANDBOX_RC_ACCEPTED_WITH_LIMITATIONS; not production authorization",
+  "nextAction": "Configure a verified receipt-email sender and verify actual provider/mailbox delivery separately."
+}

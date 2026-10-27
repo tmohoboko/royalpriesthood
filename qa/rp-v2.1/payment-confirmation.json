@@ -1,0 +1,78 @@
+{
+  "orderId": "d447327199754c8aba9462b250dd2b39c8734075668cc851",
+  "paymentId": "c9fabdc39afa45421a2df14f3ba0077b2fb9246b44e2324d",
+  "totalCents": 10000,
+  "orderStatus": "paid",
+  "paymentStatus": "paid",
+  "providerTransactionId": "3479473",
+  "receipt": [
+    {
+      "kind": "receipt",
+      "status": "pending",
+      "sent_at": null
+    }
+  ],
+  "negativeCallbacks": [
+    {
+      "status": 400,
+      "code": "BAD_SIGNATURE"
+    },
+    {
+      "status": 400,
+      "code": "BAD_SIGNATURE"
+    }
+  ],
+  "callbackBoundary": [
+    {
+      "path": "/",
+      "status": 404
+    },
+    {
+      "path": "/shop",
+      "status": 404
+    },
+    {
+      "path": "/api/commerce/me",
+      "status": 404
+    },
+    {
+      "path": "/api/commerce/payfast/notify?commercePath=admin/products",
+      "status": 404
+    }
+  ],
+  "results": [
+    {
+      "id": "SMK-14",
+      "status": "PASS",
+      "detail": "Genuine PayFast wallet transaction 3479473 recorded; no synthetic callback"
+    },
+    {
+      "id": "SMK-15",
+      "status": "PASS",
+      "detail": "Backend verified provider notification and persisted PAID R100 order; exact-once event count corroborated by SQL evidence"
+    },
+    {
+      "id": "SMK-16",
+      "status": "PASS",
+      "detail": "One receipt generated and queued; email delivery unconfigured and unclaimed"
+    },
+    {
+      "id": "SMK-17",
+      "status": "PASS",
+      "detail": "Authenticated customer owns paid order and sees it in history"
+    },
+    {
+      "id": "SMK-18",
+      "status": "PASS",
+      "detail": "Two actual invalid-signature callback replays rejected; no duplicate receipt or payment regression"
+    },
+    {
+      "id": "EXT-CALLBACK",
+      "status": "PASS",
+      "detail": "Dedicated public callback alias denies storefront, customer APIs and query spoofing"
+    }
+  ],
+  "genuineProvider": true,
+  "emailDelivered": false,
+  "emailProviderConfigured": false
+}

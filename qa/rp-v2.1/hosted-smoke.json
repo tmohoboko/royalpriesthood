@@ -1,0 +1,87 @@
+{
+  "origin": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "results": [
+    {
+      "id": "SMK-01",
+      "status": "PASS",
+      "detail": "Homepage and Shop share one approved shell and catalogue"
+    },
+    {
+      "id": "SMK-02",
+      "status": "PASS",
+      "detail": "Wishlist and Cart present; Enquiry absent"
+    },
+    {
+      "id": "SMK-03",
+      "status": "PASS",
+      "detail": "Approved imagery; configured R100 test variant only; unpriced products have no Cart action"
+    },
+    {
+      "id": "SMK-04",
+      "status": "PASS",
+      "detail": "Save updates unique-entry counter"
+    },
+    {
+      "id": "SMK-05",
+      "status": "PASS",
+      "detail": "Drawer displays saved approved product and pending availability"
+    },
+    {
+      "id": "SMK-06",
+      "status": "PASS",
+      "detail": "Removal persisted and header decremented"
+    },
+    {
+      "id": "SMK-11",
+      "status": "PASS",
+      "detail": "Registration preserves guest Cart"
+    },
+    {
+      "id": "SMK-07",
+      "status": "PASS",
+      "detail": "Refresh/navigation persistence; login merges duplicate guest entry once"
+    },
+    {
+      "id": "SMK-08",
+      "status": "PASS",
+      "detail": "Move revalidates current variant/stock and updates open Cart and counter"
+    },
+    {
+      "id": "SMK-09",
+      "status": "PASS",
+      "detail": "Server-calculated cart subtotal, shipping estimate and grand total"
+    },
+    {
+      "id": "SMK-10",
+      "status": "PASS",
+      "detail": "Unavailable quantity rejected; valid quantity recovers"
+    },
+    {
+      "id": "EXT-W01",
+      "status": "PASS",
+      "detail": "Other guest cannot delete customer saved entry"
+    },
+    {
+      "id": "SMK-12",
+      "status": "PASS",
+      "detail": "Persisted PENDING order R100 before payment"
+    },
+    {
+      "id": "SMK-13",
+      "status": "PASS",
+      "detail": "Real sandbox endpoint, merchant configured, reference and R100 amount; credentials omitted"
+    },
+    {
+      "id": "EXT-W04",
+      "status": "PASS",
+      "detail": "Mobile focus trap"
+    },
+    {
+      "id": "EXT-UI",
+      "status": "PASS",
+      "detail": "No browser exceptions or mobile overflow"
+    }
+  ],
+  "genuineProvider": false,
+  "note": "Payment initiation is real; genuine provider completion is a separate acceptance step."
+}

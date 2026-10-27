@@ -1,0 +1,50 @@
+Vercel CLI 62.2.0 (Node.js 22.22.0)
+Deploying royalpriesthood
+Uploading [--------------------] (0.0B/406.7KB)
+Uploading [=====---------------] (109.7KB/406.7KB)
+Uploading [==========----------] (206.5KB/406.7KB)
+Uploading [===============-----] (311.4KB/406.7KB)
+Uploading [====================] (406.7KB/406.7KB)
+  Inspect         https://vercel.com/tmdev/royalpriesthood/GssRABAMmYXbJB4sHFPSaA8Ep5om
+  Preview         https://royalpriesthood-3y2un7yq1-tmdev.vercel.app
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_GssRABAMmYXbJB4sHFPSaA8Ep5om",
+    "url": "https://royalpriesthood-3y2un7yq1-tmdev.vercel.app",
+    "productionUrl": null,
+    "inspectorUrl": "https://vercel.com/tmdev/royalpriesthood/GssRABAMmYXbJB4sHFPSaA8Ep5om",
+    "readyState": "INITIALIZING",
+    "target": null,
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_GssRABAMmYXbJB4sHFPSaA8Ep5om",
+    "buildMachine": {
+      "cores": 2,
+      "memory": 8192,
+      "machine": "basic",
+      "selectionType": "fixed",
+      "selectionSource": "plan-default"
+    },
+    "deploymentProtection": [
+      "vercel_authentication"
+    ]
+  },
+  "message": "Deployment royalpriesthood-3y2un7yq1-tmdev.vercel.app ready.",
+  "next": [
+    {
+      "command": "vercel git connect --scope tmdev --project prj_IZuPhIVC8rI7nLzV1SdJifoaQaRp",
+      "when": "Automatically deploy changes on every push"
+    },
+    {
+      "command": "vercel curl https://royalpriesthood-3y2un7yq1-tmdev.vercel.app",
+      "when": "Verify deployment, including when Deployment Protection is enabled"
+    },
+    {
+      "command": "vercel inspect royalpriesthood-3y2un7yq1-tmdev.vercel.app --scope tmdev",
+      "when": "Inspect deployment"
+    },
+    {
+      "command": "vercel deploy --prod --scope tmdev",
+      "when": "Promote to production"
+    }
+  ]
+}

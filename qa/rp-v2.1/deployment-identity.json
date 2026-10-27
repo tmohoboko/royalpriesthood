@@ -1,0 +1,16 @@
+{
+  "deploymentId": "dpl_GssRABAMmYXbJB4sHFPSaA8Ep5om",
+  "immutablePreview": "https://royalpriesthood-3y2un7yq1-tmdev.vercel.app",
+  "origin": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "commit": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+  "commitMatched": true,
+  "uploadedSourceMatched": true,
+  "uploadedFilesVerified": 35,
+  "postBuildAggregateMatched": false,
+  "postBuild": {
+    "commit": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+    "sourceSha256": "7fadf9cb27113bf152dcf5619cb03010009900d00560d036e5297f4c57d13921",
+    "scope": "application source/config; excludes QA, docs and unchanged approved image assets"
+  },
+  "note": "Inherited post-build workspace fingerprint difference; exact uploaded source is independently verified against Git for every application/config/migration/script file."
+}

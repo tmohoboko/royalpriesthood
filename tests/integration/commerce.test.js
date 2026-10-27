@@ -665,6 +665,10 @@ test('WI-05 / SMK-04/06/07 / EXT-W01 guest Wishlist persists, deduplicates, merg
   const account={email:'wishlist-merge@example.invalid',password:'Wishlist-test-password123',name:'Wishlist Customer'};
   assert.equal((await guest('/auth/register','POST',account)).status,200);
   assert.equal((await guest('/wishlist')).data.items.length,1);
+  await other('/auth/register','POST',{email:'wishlist-other@example.invalid',password:'Wishlist-other-password123',name:'Other Customer'});
+  assert.equal((await other('/wishlist')).data.items.length,0);
+  assert.equal((await other(`/wishlist/${saved.id}`,'DELETE')).status,404);
+  assert.equal((await other(`/wishlist/${saved.id}/move`,'POST',{})).status,404);
   await guest('/auth/logout','POST',{});
   assert.equal((await guest('/wishlist')).data.items.length,0);
   await guest('/wishlist','POST',{productId:'RP-W01'});
@@ -684,6 +688,10 @@ test('WI-02/03 / SMK-08 / EXT-W02 validates variants and current stock/price; fa
   const unpriced=(await c('/wishlist','POST',{productId:'RP-W01'})).data.items.find(i=>i.product_id==='RP-W01');
   assert.equal((await c(`/wishlist/${unpriced.id}/move`,'POST',{})).status,409);
   const valid=(await c('/wishlist','POST',{productId:'RP-T01',variantId:'test-black-l'})).data.items.find(i=>i.variant_id==='test-black-l');
+  await db.query("UPDATE variants SET stock=0 WHERE id='test-black-l'");
+  assert.equal((await c(`/wishlist/${valid.id}/move`,'POST',{})).status,409);
+  assert.equal((await c('/wishlist')).data.items.length,3);
+  await db.query("UPDATE variants SET stock=100 WHERE id='test-black-l'");
   let r=await c(`/wishlist/${valid.id}/move`,'POST',{});assert.equal(r.status,200);assert.equal(r.data.cart[0].quantity,1);
   assert.equal(r.data.items.length,2);
   assert.equal((await c(`/wishlist/${valid.id}/move`,'POST',{})).status,404);

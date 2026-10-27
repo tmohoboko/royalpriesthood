@@ -1,0 +1,9 @@
+{
+  "orderId": "d447327199754c8aba9462b250dd2b39c8734075668cc851",
+  "paymentId": "c9fabdc39afa45421a2df14f3ba0077b2fb9246b44e2324d",
+  "amountCents": 10000,
+  "realBrowserSubmission": true,
+  "actualCompletePaymentClicked": true,
+  "noMocks": true,
+  "providerText": "Secured and powered by \n\tYou're in the sandbox. This is a testing environment used to ensure correct integration with PayFast. If unexpected, please contact the merchant you are trying to pay to resolve the matter.\nRoyal Priesthood d44732719975\nPayment total:\nR 100.00\nWallet funds\nLoading...\nPlease don't close your window\nCancel transaction\nPCI DSS Service Provider Level 1\nLegal | Compliance\nContact us\n\nPayFast handles secure online payments on behalf of . By transacting with PayFast, you acknowledge that you have read and agree to the terms of our End user agreement.\nHaving trouble with your transaction? Let us help you  support@payfast.co.za"
+}

@@ -1,0 +1,133 @@
+
+> royal-priesthood-storefront@1.0.0 test:integration
+> node --test tests/integration/*.test.js
+
+TAP version 13
+# Subtest: public catalogue and inventory; anonymous checkout/admin rejected
+ok 1 - public catalogue and inventory; anonymous checkout/admin rejected
+  ---
+  duration_ms: 4226.960431
+  type: 'test'
+  ...
+# Subtest: cross-origin mutations and invalid inputs rejected
+ok 2 - cross-origin mutations and invalid inputs rejected
+  ---
+  duration_ms: 8.522889
+  type: 'test'
+  ...
+# Subtest: persistent guest cart merges exactly once across registration and login
+ok 3 - persistent guest cart merges exactly once across registration and login
+  ---
+  duration_ms: 775.971968
+  type: 'test'
+  ...
+# Subtest: checkout validates stock and recalculates prices ignoring browser totals
+ok 4 - checkout validates stock and recalculates prices ignoring browser totals
+  ---
+  duration_ms: 412.119869
+  type: 'test'
+  ...
+# Subtest: idempotency prevents duplicate orders and stock reservations
+ok 5 - idempotency prevents duplicate orders and stock reservations
+  ---
+  duration_ms: 421.792613
+  type: 'test'
+  ...
+# Subtest: only order owner can see or initiate sandbox payment; redirect is not payment
+ok 6 - only order owner can see or initiate sandbox payment; redirect is not payment
+  ---
+  duration_ms: 809.455255
+  type: 'test'
+  ...
+# {"event":"payment_notification_rejected","code":"AMOUNT_MISMATCH","payment":"0817085070a08f4ded418819bb961f4ab7c462525b87b758"}
+# Subtest: verified callback marks paid, emits one receipt, rejects amount mismatch and replay
+ok 7 - verified callback marks paid, emits one receipt, rejects amount mismatch and replay
+  ---
+  duration_ms: 444.832224
+  type: 'test'
+  ...
+# {"event":"payment_notification_rejected","code":"RECONCILIATION_REQUIRED","payment":"1083ee8597020746814a944d7c29c02b3d852eeee20c5416"}
+# Subtest: failed and cancelled callbacks never issue receipt; cancel releases stock once
+ok 8 - failed and cancelled callbacks never issue receipt; cancel releases stock once
+  ---
+  duration_ms: 831.62043
+  type: 'test'
+  ...
+# Subtest: administrator manages products and fulfilment; cannot dispatch unpaid orders
+ok 9 - administrator manages products and fulfilment; cannot dispatch unpaid orders
+  ---
+  duration_ms: 766.306562
+  type: 'test'
+  ...
+# Subtest: inventory changes roll checkout back without partial order or stock mutation
+ok 10 - inventory changes roll checkout back without partial order or stock mutation
+  ---
+  duration_ms: 383.708255
+  type: 'test'
+  ...
+# Subtest: invalid credentials, origin, forged callback and duplicate fields fail safely
+ok 11 - invalid credentials, origin, forged callback and duplicate fields fail safely
+  ---
+  duration_ms: 328.349197
+  type: 'test'
+  ...
+# Subtest: verified cancellation preserves unpaid status and permits safe inventory release
+ok 12 - verified cancellation preserves unpaid status and permits safe inventory release
+  ---
+  duration_ms: 411.656639
+  type: 'test'
+  ...
+# Subtest: failed email jobs retry with a stable idempotency key and do not regress payments
+ok 13 - failed email jobs retry with a stable idempotency key and do not regress payments
+  ---
+  duration_ms: 425.673185
+  type: 'test'
+  ...
+# Subtest: SQL data and hashed sessions survive database close and reopen
+ok 14 - SQL data and hashed sessions survive database close and reopen
+  ---
+  duration_ms: 4922.840387
+  type: 'test'
+  ...
+# Subtest: production Node adapter preserves rewritten paths, raw bodies and session cookies
+ok 15 - production Node adapter preserves rewritten paths, raw bodies and session cookies
+  ---
+  duration_ms: 394.323603
+  type: 'test'
+  ...
+# Subtest: concurrent customers competing for the last unit create exactly one order
+ok 16 - concurrent customers competing for the last unit create exactly one order
+  ---
+  duration_ms: 774.482486
+  type: 'test'
+  ...
+# {"event":"payment_notification_rejected","code":"BAD_MERCHANT","payment":"0cbebc9ae01edbdaa20b63bbeb31d8d73057ac6e57202d13"}
+# {"event":"payment_notification_rejected","code":"NOT_FOUND","payment":"ffffffffffffffffffffffffffffffffffffffffffffffff"}
+# {"event":"payment_notification_rejected","code":"BAD_STATUS","payment":"0cbebc9ae01edbdaa20b63bbeb31d8d73057ac6e57202d13"}
+# Subtest: signed callbacks reject wrong merchant, unknown order reference and unsupported status
+ok 17 - signed callbacks reject wrong merchant, unknown order reference and unsupported status
+  ---
+  duration_ms: 397.789761
+  type: 'test'
+  ...
+# Subtest: WI-05 / SMK-04/06/07 / EXT-W01 guest Wishlist persists, deduplicates, merges and isolates ownership
+ok 18 - WI-05 / SMK-04/06/07 / EXT-W01 guest Wishlist persists, deduplicates, merges and isolates ownership
+  ---
+  duration_ms: 1148.036743
+  type: 'test'
+  ...
+# Subtest: WI-02/03 / SMK-08 / EXT-W02 validates variants and current stock/price; failed moves preserve saved items
+ok 19 - WI-02/03 / SMK-08 / EXT-W02 validates variants and current stock/price; failed moves preserve saved items
+  ---
+  duration_ms: 87.681007
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 18371.770406

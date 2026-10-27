@@ -1,0 +1,17 @@
+PASS SMK-01 Homepage and Shop share one approved shell and catalogue
+PASS SMK-02 Wishlist and Cart present; Enquiry absent
+PASS SMK-03 Approved imagery; configured R100 test variant only; unpriced products have no Cart action
+PASS SMK-04 Save updates unique-entry counter
+PASS SMK-05 Drawer displays saved approved product and pending availability
+PASS SMK-06 Removal persisted and header decremented
+PASS SMK-11 Registration preserves guest Cart
+PASS SMK-07 Refresh/navigation persistence; login merges duplicate guest entry once
+PASS SMK-08 Move revalidates current variant/stock and updates open Cart and counter
+PASS SMK-09 Server-calculated cart subtotal, shipping estimate and grand total
+PASS SMK-10 Unavailable quantity rejected; valid quantity recovers
+PASS EXT-W01 Other guest cannot delete customer saved entry
+PASS SMK-12 Persisted PENDING order R100 before payment
+PASS SMK-13 Real sandbox endpoint, merchant configured, reference and R100 amount; credentials omitted
+PASS EXT-W04 Mobile focus trap
+PASS EXT-UI No browser exceptions or mobile overflow
+Pending order ready for genuine PayFast acceptance: d447327199754c8aba9462b250dd2b39c8734075668cc851

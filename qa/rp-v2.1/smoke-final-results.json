@@ -1,0 +1,125 @@
+{
+  "suite": "RP-V2.1-1",
+  "deploymentId": "dpl_GssRABAMmYXbJB4sHFPSaA8Ep5om",
+  "implementationSHA": "d44eeecfacb864b1b13265f5c1dd79935d226fae",
+  "counts": {
+    "PASS": 18,
+    "FAIL": 0,
+    "BLOCKED": 0,
+    "SKIPPED": 0
+  },
+  "cases": [
+    {
+      "id": "SMK-01",
+      "status": "PASS",
+      "detail": "Homepage and Shop share one approved shell and catalogue"
+    },
+    {
+      "id": "SMK-02",
+      "status": "PASS",
+      "detail": "Wishlist and Cart present; Enquiry absent"
+    },
+    {
+      "id": "SMK-03",
+      "status": "PASS",
+      "detail": "Approved imagery; configured R100 test variant only; unpriced products have no Cart action"
+    },
+    {
+      "id": "SMK-04",
+      "status": "PASS",
+      "detail": "Save updates unique-entry counter"
+    },
+    {
+      "id": "SMK-05",
+      "status": "PASS",
+      "detail": "Drawer displays saved approved product and pending availability"
+    },
+    {
+      "id": "SMK-06",
+      "status": "PASS",
+      "detail": "Removal persisted and header decremented"
+    },
+    {
+      "id": "SMK-07",
+      "status": "PASS",
+      "detail": "Refresh/navigation persistence; login merges duplicate guest entry once"
+    },
+    {
+      "id": "SMK-08",
+      "status": "PASS",
+      "detail": "Move revalidates current variant/stock and updates open Cart and counter"
+    },
+    {
+      "id": "SMK-09",
+      "status": "PASS",
+      "detail": "Server-calculated cart subtotal, shipping estimate and grand total"
+    },
+    {
+      "id": "SMK-10",
+      "status": "PASS",
+      "detail": "Unavailable quantity rejected; valid quantity recovers"
+    },
+    {
+      "id": "SMK-11",
+      "status": "PASS",
+      "detail": "Registration preserves guest Cart"
+    },
+    {
+      "id": "SMK-12",
+      "status": "PASS",
+      "detail": "Persisted PENDING order R100 before payment"
+    },
+    {
+      "id": "SMK-13",
+      "status": "PASS",
+      "detail": "Real sandbox endpoint, merchant configured, reference and R100 amount; credentials omitted"
+    },
+    {
+      "id": "SMK-14",
+      "status": "PASS",
+      "detail": "Genuine PayFast wallet transaction 3479473 recorded; no synthetic callback"
+    },
+    {
+      "id": "SMK-15",
+      "status": "PASS",
+      "detail": "Backend verified provider notification and persisted PAID R100 order; exact-once event count corroborated by SQL evidence"
+    },
+    {
+      "id": "SMK-16",
+      "status": "PASS",
+      "detail": "One receipt generated and queued; email delivery unconfigured and unclaimed"
+    },
+    {
+      "id": "SMK-17",
+      "status": "PASS",
+      "detail": "Authenticated customer owns paid order and sees it in history"
+    },
+    {
+      "id": "SMK-18",
+      "status": "PASS",
+      "detail": "Two actual invalid-signature callback replays rejected; no duplicate receipt or payment regression"
+    }
+  ],
+  "extendedHostedCases": [
+    {
+      "id": "EXT-W01",
+      "status": "PASS",
+      "detail": "Other guest cannot delete customer saved entry"
+    },
+    {
+      "id": "EXT-W04",
+      "status": "PASS",
+      "detail": "Mobile focus trap"
+    },
+    {
+      "id": "EXT-UI",
+      "status": "PASS",
+      "detail": "No browser exceptions or mobile overflow"
+    },
+    {
+      "id": "EXT-CALLBACK",
+      "status": "PASS",
+      "detail": "Dedicated public callback alias denies storefront, customer APIs and query spoofing"
+    }
+  ]
+}

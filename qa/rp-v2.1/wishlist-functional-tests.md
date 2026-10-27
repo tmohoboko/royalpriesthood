@@ -7,3 +7,5 @@ API coverage: persisted unique product/variant entries; validated product owners
 Browser coverage: shared Wishlist count across navigation/reload; approved product/variant display; remove; explicit clear confirmation and cancellation; mobile focus trap, Escape and focus return; confirmed Cart and open Cart list synchronization. Preferred quantity is stored by API; drawer displays it without adding unsupported quantity editing.
 
 Local API and browser cases PASS; see check.log and browser-commerce.log. Hosted run uses real Preview persistence and no provider mocks; local purchase suites use explicit test-only database/payment/email fixtures.
+
+Hosted Wishlist acceptance PASS, including real persistence and guest/customer merge, cross-session denial, eligible move and confirmed shared counters. Authenticated customer/customer denial and inventory changes after save also PASS in final integration run. See hosted-smoke.json and integration-ownership-stock-final.log. All WI-01/02/03/05 acceptance criteria pass within the sandbox scope.

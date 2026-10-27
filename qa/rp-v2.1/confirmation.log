@@ -1,0 +1,6 @@
+PASS SMK-14 Genuine PayFast wallet transaction 3479473 recorded; no synthetic callback
+PASS SMK-15 Backend verified provider notification and persisted PAID R100 order; exact-once event count corroborated by SQL evidence
+PASS SMK-16 One receipt generated and queued; email delivery unconfigured and unclaimed
+PASS SMK-17 Authenticated customer owns paid order and sees it in history
+PASS SMK-18 Two actual invalid-signature callback replays rejected; no duplicate receipt or payment regression
+PASS EXT-CALLBACK Dedicated public callback alias denies storefront, customer APIs and query spoofing
