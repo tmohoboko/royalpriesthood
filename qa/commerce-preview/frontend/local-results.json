@@ -1,0 +1,13 @@
+{
+  "unit": 14,
+  "api": 17,
+  "frontend": 10,
+  "existingCommerceBrowser": 7,
+  "originalBrowser": 7,
+  "totalPassed": 55,
+  "failed": 0,
+  "skipped": 0,
+  "lint": "PASS",
+  "build": "PASS",
+  "audit": "0 vulnerabilities"
+}

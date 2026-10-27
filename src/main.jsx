@@ -1,41 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowRight, ArrowUpRight, Check, Copy, Menu, Minus, Plus, Search, ShoppingBag, Trash2, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, Copy, Minus, Plus, Search, ShoppingBag, Trash2, X } from 'lucide-react';
 import { categories, craft, products, stories } from './data';
 import './style.css';
+import { Header, Footer } from './StorefrontShell.jsx';
+import { StorefrontContext, useStorefront } from './StorefrontContext.jsx';
+import { resolveCatalogue } from './catalogue.js';
+import ProductCard, { CatalogueImage } from './CatalogueCard.jsx';
 const Commerce = React.lazy(() => import('./Commerce.jsx'));
 
 
-function CatalogueImage({src,...props}){
- const base=src?.startsWith('/images/catalog/')?src.replace('/images/catalog/','/images/catalog/web/').replace(/\.png$/,''):null;
- return <img {...props} src={base?`${base}-960.webp`:src} srcSet={base?`${base}-480.webp 480w, ${base}-960.webp 960w, ${base}-1600.webp 1600w`:undefined} sizes={base?'(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 40vw':undefined} decoding="async"/>;
-}
 
 const MAIL = import.meta.env.VITE_CONTACT_EMAIL || '';
 async function prepareEnquiry(text, filename){try{await navigator.clipboard.writeText(text);return 'copied'}catch{const url=URL.createObjectURL(new Blob([text],{type:'text/plain'}));const a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);return 'download'}}
 
 const SIZES = ['S', 'M', 'L', 'XL', '2XL'];
-
-function Mark() {
-  return <a className="mark" href="#top" aria-label="Royal Priesthood home"><span className="mark-symbol">RP</span><span><b>ROYAL PRIESTHOOD</b><small>CROWNED WITH PURPOSE</small></span></a>;
-}
-
-function Header({ count, onBag }) {
-  const [open, setOpen] = useState(false);
-  const links = [['Women', '#women'], ['Men', '#men'], ['Catalogue', '#catalogue'], ['Shop', '/shop'], ['Account', '/shop/account'], ['Craft', '#craft'], ['Contact', '#contact']];
-  return <>
-    <div className="topline"><span>ROYAL PRIESTHOOD / SOUTH AFRICA</span><span>MADE-TO-ORDER COLLECTION</span></div>
-    <header className="header">
-      <Mark />
-      <nav className="nav desktop" aria-label="Main navigation">{links.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</nav>
-      <div className="header-tools">
-        <button className="bag-trigger" type="button" onClick={onBag} aria-label={`Open enquiry bag with ${count} items`}><ShoppingBag size={18}/><span>ENQUIRY</span><b>{count}</b></button>
-        <button className="menu-trigger" type="button" aria-expanded={open} aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(v => !v)}>{open ? <X/> : <Menu/>}</button>
-      </div>
-    </header>
-    {open && <nav className="mobile-nav" aria-label="Mobile navigation">{links.map(([label, href]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}<ArrowUpRight size={18}/></a>)}</nav>}
-  </>;
-}
 
 function Hero({ onShop }) {
   return <main id="top" className="hero">
@@ -56,7 +35,7 @@ function Hero({ onShop }) {
 
 function CategoryRail({ filter, onFilter }) {
   return <section className="category-rail" aria-label="Shop categories">
-    {categories.slice(1).map((category, index) => <button key={category} type="button" className={filter === category ? 'active' : ''} onClick={() => onFilter(category)}><span>0{index + 1}</span>{category}<ArrowUpRight size={17}/></button>)}
+    {categories.filter(c => c !== 'Accessories').slice(1).map((category, index) => <button key={category} type="button" className={filter === category ? 'active' : ''} onClick={() => onFilter(category)}><span>0{index + 1}</span>{category}<ArrowUpRight size={17}/></button>)}
   </section>;
 }
 
@@ -76,33 +55,16 @@ function EditSection({ id, story, reverse = false, onShop }) {
   </section>;
 }
 
-function ProductCard({ item, index, onAdd }) {
-  const [size, setSize] = useState('L');
-  return <article className={`product-card ${index % 7 === 0 ? 'wide' : ''}`} data-testid="product-card">
-    <div className="product-media">
-      <CatalogueImage src={item.image} alt={item.name} loading="lazy"/>
-      <span className="product-code">{item.id}</span>
-      <span className="product-department">{item.department}</span>
-    </div>
-    <div className="product-info">
-      <div><p>{item.tone}</p><h3>{item.name}</h3></div>
-      <div className="product-buy">
-        <label>SIZE<select aria-label={`Size for ${item.name}`} value={size} onChange={event => setSize(event.target.value)}>{SIZES.map(value => <option key={value}>{value}</option>)}</select></label>
-        <button type="button" onClick={() => onAdd({ ...item, size, quantity: 1 })}>ADD <Plus size={17}/></button>
-      </div>
-      <small>Price and availability on request · <a href={`/shop/products/${item.id}`}>View purchase options</a></small>
-    </div>
-  </article>;
-}
 
 function Catalogue({ initialFilter, onFilter, onAdd }) {
+  const { catalogue: products } = useStorefront();
   const [query, setQuery] = useState('');
   const visible = useMemo(() => products.filter(item => {
     const categoryMatch = initialFilter === 'All' || item.tags.includes(initialFilter);
     const term = query.trim().toLowerCase();
     const searchMatch = !term || `${item.name} ${item.department} ${item.tone}`.toLowerCase().includes(term);
     return categoryMatch && searchMatch;
-  }), [initialFilter, query]);
+  }), [initialFilter, query, products]);
 
   return <section id="catalogue" className="catalogue shell">
     <div className="catalogue-head">
@@ -141,7 +103,7 @@ function Contact({ items }) {
     setError('');try{if(MAIL){window.location.href=`mailto:${MAIL}?subject=${encodeURIComponent('Royal Priesthood enquiry')}&body=${encodeURIComponent(summary)}`;setCopied('draft')}else setCopied(await prepareEnquiry(summary,'royal-priesthood-enquiry.txt'))}catch{setError('Could not prepare your enquiry. Please try again.')}
   };
   return <section id="contact" className="contact">
-    <div><span className="overline">PRIVATE ENQUIRY</span><h2>Build your<br/>Royal wardrobe.</h2><p>Select pieces from the catalogue, then send the brief through your preferred channel. No payment is taken on this site.</p></div>
+    <div><span className="overline">PRIVATE ENQUIRY</span><h2>Build your<br/>Royal wardrobe.</h2><p>Select pieces from the catalogue, then send the brief through your preferred channel. No payment is taken for enquiries. Configured products use secure sandbox checkout.</p></div>
     <form onSubmit={copy}>
       <label>NAME<input required name="name" value={values.name} onChange={update} placeholder="Your name"/></label>
       <label>EMAIL<input required type="email" name="email" value={values.email} onChange={update} placeholder="you@example.com"/></label>
@@ -171,17 +133,19 @@ function Bag({ open, items, onClose, onQuantity, onRemove }) {
     <aside className="drawer" role="dialog" aria-modal="true" aria-label="Enquiry bag">
       <div className="drawer-head"><div><span>YOUR SELECTION</span><h2>Enquiry bag <em>{total}</em></h2></div><button type="button" onClick={onClose} aria-label="Close enquiry bag"><X/></button></div>
       <div className="drawer-body">{items.length ? items.map(item => <article key={`${item.id}-${item.size}`} className="drawer-item"><CatalogueImage src={item.image} alt=""/><div><span>{item.id}</span><h3>{item.name}</h3><p>{item.tone} / Size {item.size}</p><div className="quantity"><button type="button" aria-label="Decrease quantity" onClick={() => onQuantity(item, -1)}><Minus size={14}/></button><b>{item.quantity}</b><button type="button" aria-label="Increase quantity" onClick={() => onQuantity(item, 1)}><Plus size={14}/></button><button type="button" className="remove" aria-label={`Remove ${item.name}`} onClick={() => onRemove(item)}><Trash2 size={15}/></button></div></div></article>) : <div className="drawer-empty"><ShoppingBag size={45}/><h3>Your bag is empty.</h3><p>Add a look, tee or accessory to request availability.</p><button type="button" onClick={onClose}>BROWSE CATALOGUE</button></div>}</div>
-      <div className="drawer-foot"><p>This is an enquiry only. No payment or stock reservation is processed.</p><button type="button" disabled={!items.length} onClick={copy}>{copied==='copied'?'COPIED':copied==='download'?'DOWNLOAD STARTED':'COPY ENQUIRY'}{copied ? <Check size={17}/> : <Copy size={17}/>}</button>{error&&<p role="alert">{error}</p>}<a href="#contact" onClick={onClose}>ADD CONTACT DETAILS <ArrowRight size={15}/></a></div>
+      <div className="drawer-foot"><p>This is an enquiry only. No payment or stock reservation is processed.</p><button type="button" disabled={!items.length} onClick={copy}>{copied==='copied'?'COPIED':copied==='download'?'DOWNLOAD STARTED':'COPY ENQUIRY'}{copied ? <Check size={17}/> : <Copy size={17}/>}</button>{error&&<p role="alert">{error}</p>}<a href="/#contact" onClick={onClose}>ADD CONTACT DETAILS <ArrowRight size={15}/></a></div>
     </aside>
   </div>;
 }
 
-function Footer() {
-  return <footer><Mark/><div className="footer-word">ROYAL<br/><span>PRIESTHOOD</span></div><div className="footer-line"><span>© {new Date().getFullYear()} ROYAL PRIESTHOOD</span><a href="#top">BACK TO TOP ↑</a><span>STRAIGHTENING THE CROWNS</span></div></footer>;
-}
-
-function App() {
+function Storefront() {
   const [filter, setFilter] = useState('All');
+  const [catalogue, setCatalogue] = useState(() => resolveCatalogue());
+  const [cartCount, setCartCount] = useState(0);
+  const [user, setUser] = useState(null);
+  async function refreshCart(){const r=await fetch('/api/commerce/cart');if(!r.ok)throw Error('Cart unavailable');const c=await r.json();setCartCount(c.items.reduce((n,i)=>n+i.quantity,0));return c.items;}
+  async function addToCart(variantId){const items=await refreshCart();const r=await fetch('/api/commerce/cart',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({variantId,quantity:(items.find(i=>i.id===variantId)?.quantity||0)+1})});const c=await r.json();if(!r.ok)throw Error(c.error?.message||'Cart unavailable');setCartCount(c.items.reduce((n,i)=>n+i.quantity,0));}
+  useEffect(()=>{fetch('/api/commerce/products').then(r=>{if(!r.ok)throw Error();return r.json()}).then(d=>setCatalogue(d.products)).catch(()=>{});refreshCart().catch(()=>{});fetch('/api/commerce/me').then(r=>r.json()).then(d=>setUser(d.user)).catch(()=>{});},[]);
   const [bag, setBag] = useState(()=>{try{return JSON.parse(localStorage.getItem('royal:bag')||'[]').filter(i=>products.some(p=>p.id===i.id)&&SIZES.includes(i.size)&&Number.isInteger(i.quantity)&&i.quantity>0&&i.quantity<=99).map(i=>({...products.find(p=>p.id===i.id),size:i.size,quantity:i.quantity}))}catch{return []}});
   useEffect(()=>{try{localStorage.setItem('royal:bag',JSON.stringify(bag.map(({id,size,quantity})=>({id,size,quantity}))))}catch{}},[bag]);
   const [bagOpen, setBagOpen] = useState(false);
@@ -200,8 +164,10 @@ function App() {
   const quantity = (item, delta) => setBag(current => current.flatMap(entry => entry.id === item.id && entry.size === item.size ? (entry.quantity + delta > 0 ? [{ ...entry, quantity: Math.min(99,entry.quantity + delta) }] : []) : [entry]));
   const remove = item => setBag(current => current.filter(entry => !(entry.id === item.id && entry.size === item.size)));
 
-  return <>
-    <Header count={itemCount} onBag={() => setBagOpen(true)}/>
+  const commerce = window.location.pathname.startsWith('/shop');
+  return <StorefrontContext.Provider value={{ catalogue, setCatalogue, addQuote:add, cartCount, setCartCount, refreshCart, addToCart, user, setUser }}>
+    <Header count={itemCount} onBag={() => setBagOpen(true)} cartCount={cartCount} user={user}/>
+    {commerce ? <React.Suspense fallback={<p role="status">Loading shop…</p>}><Commerce/></React.Suspense> : <>
     <Hero onShop={() => goToCatalogue('All')}/>
     <CategoryRail filter={filter} onFilter={goToCatalogue}/>
     <EditSection id="women" story={stories.women} onShop={() => goToCatalogue('Women')}/>
@@ -210,9 +176,10 @@ function App() {
     <Craft/>
     <Statement/>
     <Contact items={bag}/>
+    </>}
     <Footer/>
     <Bag open={bagOpen} items={bag} onClose={() => setBagOpen(false)} onQuantity={quantity} onRemove={remove}/>
-  </>;
+  </StorefrontContext.Provider>;
 }
 
-createRoot(document.getElementById('root')).render(window.location.pathname.startsWith('/shop') ? <React.Suspense fallback={<p role="status">Loading shop…</p>}><Commerce/></React.Suspense> : <App/>);
+createRoot(document.getElementById('root')).render(<Storefront/>);

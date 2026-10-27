@@ -1,4 +1,5 @@
 import { z, ZodError } from "zod";
+import { resolveCatalogue } from "../src/catalogue.js";
 import { database, rows, one, transaction } from "./db.js";
 import {
   id,
@@ -279,17 +280,14 @@ export function createHandler({
       if (path === "/products" && req.method === "GET") {
         const list = await rows(
           db,
-          "SELECT * FROM products WHERE active=true ORDER BY name",
+          "SELECT * FROM products ORDER BY name",
         );
         const variants = await rows(
           db,
           "SELECT v.* FROM variants v JOIN products p ON p.id=v.product_id WHERE p.active=true ORDER BY v.id",
         );
         return json({
-          products: list.map((p) => ({
-            ...p,
-            variants: variants.filter((v) => v.product_id === p.id),
-          })),
+          products: resolveCatalogue(list, variants),
           shipping: await rows(
             db,
             "SELECT * FROM shipping_options WHERE active=true ORDER BY price",

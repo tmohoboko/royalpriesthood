@@ -166,7 +166,7 @@ after(async () => {
 });
 test("public catalogue and inventory; anonymous checkout/admin rejected", async () => {
   const c = client();
-  assert.equal((await c("/products")).data.products.length, 2);
+  assert.equal((await c("/products")).data.products.length, 16);
   assert.equal((await c("/orders")).status, 401);
   assert.equal((await c("/admin/products")).status, 401);
   assert.equal((await c("/checkout", "POST", {})).status, 401);
@@ -554,7 +554,7 @@ test("production Node adapter preserves rewritten paths, raw bodies and session 
   try {
     const catalogue = await fetch(`${base}/api/commerce?commercePath=products`);
     assert.equal(catalogue.status, 200);
-    assert.equal((await catalogue.json()).products.length, 2);
+    assert.equal((await catalogue.json()).products.length, 16);
     const registration = await fetch(
       `${base}/api/commerce?commercePath=auth/register`,
       {

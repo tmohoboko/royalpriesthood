@@ -25,7 +25,7 @@ test('department filters show category-specific looks', async ({ page }) => {
 
 test('a catalogue piece can be added to the enquiry bag', async ({ page }) => {
   await page.goto('/#catalogue');
-  await page.getByRole('button', { name: 'ADD', exact: true }).first().click();
+  await page.getByRole('button', { name: 'Enquiry', exact: true }).first().click();
   const drawer = page.getByRole('dialog', { name: 'Enquiry bag' });
   await expect(drawer).toBeVisible();
   await expect(drawer).toContainText('Women\'s Black Statement');

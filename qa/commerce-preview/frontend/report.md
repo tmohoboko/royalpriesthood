@@ -1,0 +1,13 @@
+# RP-FE-001 / RP-FE-002 — bounded frontend repair
+
+Starting branch: commerce/production-upgrade-20261027. Starting HEAD:d08c8afdf133ab4bb6a7f397b7d26d51cc6e146e; working tree clean. Baseline deployed implementation7ec7a42, deploymentdpl_9xC2hhfPwJTNY5jtWZoZfMekZgFk.
+
+Root cause RP-FE-001: all16 approved catalogue identities existed but were inactive/no variants/prices; the public active-only SQL filter hid them. Canonical src/catalogue.js now merges approved source identities/assets/tags with SQL purchasing eligibility. Approved references remain quote-required without invented pricing, variants or inventory. Configured active variants enable direct purchase; zero stock disables Add to Cart. Active extra products remain eligible, including the existing QA fixture. No database catalogue data or schema was changed.
+
+Root cause RP-FE-002: a root pathname split rendered independent App and Commerce shells. StorefrontShell and CatalogueCard now reuse the original header/footer/Mark, product layout/images, typefaces and tokens. StorefrontContext connects shared catalogue, cart count/user and the original persistent enquiry bag. Commerce supplies route bodies only. Original responsive sections/artwork are retained; category tags including Pants/Shoes are catalogue groupings, not fabricated saleable variants. Accessories is now exposed as its existing department.
+
+Local final results: **55passed/0failed/0skipped**:14unit,17API,10targeted frontend FE-001–010,7existing commerce browser,7original storefront browser. Lint, build and diff checks passed; production dependency audit zero vulnerabilities. Existing enquiry assertions retain persistence/download/focus coverage under the explicit Enquiry action. Gateway/email behavior in commerce regression uses the existing labelled mocks; no real payment was repeated for these frontend defects.
+
+Executed: npm run check; npm run build; npm run lint; npm run test:commerce; npm test; npm audit --omit=dev (browser commands use the installed Chromium executable). Run build and browser suites sequentially. Logs are in this directory. Initial targeted failures and the shared-card status-announcement regression were repaired and rerun; see existing defect-register.md and retained attempt logs.
+
+Exact committed Preview deployment and hosted FE-001–010 verification will be recorded after deploying this implementation commit. /commerce-release.json exposes only commit/source SHA256, allowing comparison with the exact clean local checkout. No production deployment, settings, domain, merchant credentials or payment mode will be changed. This is targeted frontend evidence, not full application acceptance.

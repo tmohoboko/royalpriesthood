@@ -204,3 +204,13 @@ footer .mark{width:max-content}
 }
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Shared commerce navigation uses the existing header on every route. */
+.cart-trigger{display:flex;align-items:center;text-decoration:none;white-space:nowrap;}
+.product-buy select{max-width:100%;min-width:0;}
+.product-buy{flex-wrap:wrap;}
+.product-buy button:disabled{opacity:.5;cursor:not-allowed;}
+@media(min-width:1101px){.nav{gap:18px}.header{gap:16px}}
+@media(max-width:520px){.header-tools{gap:5px}.bag-trigger{padding:8px;gap:5px}.header-tools .bag-trigger>span{display:none}.mark{gap:7px}.mark b{font-size:10px}.header{gap:8px}}
+
+.product-buy label{min-width:0;flex-wrap:wrap}

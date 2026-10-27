@@ -1,0 +1,24 @@
+{
+  "startingCommit": "d08c8afdf133ab4bb6a7f397b7d26d51cc6e146e",
+  "workingTree": "clean before implementation",
+  "deployedCommit": "7ec7a42c395b231a2dec028c1a2bd209f4d4dea4",
+  "deployment": "dpl_9xC2hhfPwJTNY5jtWZoZfMekZgFk",
+  "apiCount": 1,
+  "approvedExpected": 16,
+  "allApprovedVisible": false,
+  "sharedShell": false,
+  "home": {
+    "className": "header",
+    "background": "rgb(11, 11, 10)",
+    "font": "Manrope, sans-serif"
+  },
+  "shop": {
+    "className": "",
+    "background": "rgba(0, 0, 0, 0)",
+    "font": "Arial, sans-serif"
+  },
+  "defects": {
+    "RP-FE-001": "FAIL: API and shop omit16 inactive approved references",
+    "RP-FE-002": "FAIL: different header markup/style and duplicate commerce shell"
+  }
+}

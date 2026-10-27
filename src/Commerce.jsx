@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./commerce.css";
+import { useStorefront } from "./StorefrontContext.jsx";
+import { categories } from "./data.js";
+import CatalogueCard from "./CatalogueCard.jsx";
 const money = (v) => `R ${(v / 100).toFixed(2)}`;
 async function api(path, method = "GET", data) {
   const response = await fetch(`/api/commerce${path}`, {
@@ -75,58 +78,11 @@ function AddressFields({ values, setValues }) {
     </>
   );
 }
-function Product({ product, onAdd, busy }) {
-  const [variantId, setVariantId] = useState("");
-  const variant =
-    product.variants.find((v) => v.id === variantId) || product.variants[0];
-  return (
-    <article className="commerce-product">
-      <a href={`/shop/products/${product.id}`}>
-        <img
-          src={product.image
-            .replace("/catalog/", "/catalog/web/")
-            .replace(".png", "-960.webp")}
-          alt={product.name}
-        />
-      </a>
-      <h2>
-        <a href={`/shop/products/${product.id}`}>{product.name}</a>
-      </h2>
-      <p>{product.description}</p>
-      {variant ? (
-        <>
-          <label>
-            Size / colour
-            <select
-              aria-label={`Variant for ${product.name}`}
-              value={variant.id}
-              onChange={(e) => setVariantId(e.target.value)}
-            >
-              {product.variants.map((v) => (
-                <option key={v.id} value={v.id}>
-                  {v.size} / {v.colour} — {money(v.price)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <p>
-            {money(variant.price)} ·{" "}
-            {variant.stock > 0 ? `${variant.stock} available` : "Out of stock"}
-          </p>
-          <button
-            disabled={busy || variant.stock < 1}
-            onClick={() => onAdd(variant.id)}
-          >
-            Add to cart
-          </button>
-        </>
-      ) : (
-        <p>Variants awaiting confirmation.</p>
-      )}
-    </article>
-  );
+function Product({product, onAdd, busy, index}) {
+  return <CatalogueCard item={product} index={index} onPurchase={onAdd} busy={busy} commerce/>;
 }
 export default function Commerce() {
+  const shared = useStorefront();
   const path = window.location.pathname.replace(/\/$/, "");
   const [products, setProducts] = useState([]),
     [promotions, setPromotions] = useState([]),
@@ -160,6 +116,7 @@ export default function Commerce() {
       api("/me"),
     ]);
     setProducts(p.products);
+    shared.setCatalogue(p.products);
     setPromotions(p.promotions || []);
     setShipping(p.shipping);
     setShippingId((s) => s || p.shipping[0]?.id || "");
@@ -168,6 +125,8 @@ export default function Commerce() {
     setAddresses(m.addresses);
     return m.user;
   }
+  useEffect(()=>shared.setCartCount(items.reduce((n,i)=>n+i.quantity,0)),[items, shared.setCartCount]);
+  useEffect(()=>shared.setUser(user),[user, shared.setUser]);
   useEffect(() => {
     let alive = true;
     (async () => {
@@ -280,11 +239,10 @@ export default function Commerce() {
       form.submit();
     });
   }
-  const count = items.reduce((n, i) => n + i.quantity, 0);
   const filtered = products
     .filter(
       (p) =>
-        (category === "All" || p.category === category) &&
+        (category === "All" || p.tags?.includes(category) || p.category === category) &&
         `${p.name} ${p.description}`
           .toLowerCase()
           .includes(query.toLowerCase()),
@@ -293,8 +251,8 @@ export default function Commerce() {
       sort === "name"
         ? a.name.localeCompare(b.name)
         : (sort === "price-desc" ? -1 : 1) *
-          ((Math.min(...a.variants.map((v) => v.price)) || 0) -
-            (Math.min(...b.variants.map((v) => v.price)) || 0)),
+          ((a.variants.length ? Math.min(...a.variants.map(v=>v.price)) : Infinity) -
+            (b.variants.length ? Math.min(...b.variants.map(v=>v.price)) : Infinity)),
     );
   const currentProduct = path.startsWith("/shop/products/")
     ? products.find((p) => p.id === decodeURIComponent(path.split("/")[3]))
@@ -346,17 +304,6 @@ export default function Commerce() {
   );
   return (
     <div className="commerce">
-      <header>
-        <a href="/" className="commerce-brand">
-          ROYAL PRIESTHOOD <small>CROWNED WITH PURPOSE</small>
-        </a>
-        <nav aria-label="Shop navigation">
-          <a href="/shop">Shop</a>
-          <a href="/shop/cart">Cart ({count})</a>
-          <a href="/shop/account">{user ? "My account" : "Sign in"}</a>
-          {user?.role === "admin" && <a href="/shop/admin">Admin</a>}
-        </nav>
-      </header>
       <main>
         <p className="commerce-notice">
           SANDBOX CHECKOUT · No live payments in this release
@@ -397,18 +344,11 @@ export default function Commerce() {
                   </label>
                   <label>
                     Category
-                    <select
+                    <select aria-label="Category"
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                     >
-                      {[
-                        "All",
-                        "Women",
-                        "Men",
-                        "T-Shirts",
-                        "Accessories",
-                        "Hats",
-                      ].map((c) => (
+                      {categories.map((c) => (
                         <option key={c}>{c}</option>
                       ))}
                     </select>
@@ -425,10 +365,11 @@ export default function Commerce() {
                     </select>
                   </label>
                 </div>
+                <p className="catalogue-count" data-testid="shop-count">{filtered.length} products · {products.filter(p=>p.approved).length} approved catalogue references</p>
                 {filtered.length ? (
-                  <div className="commerce-grid">
-                    {filtered.map((p) => (
-                      <Product key={p.id} product={p} onAdd={add} busy={busy} />
+                  <div className="commerce-grid product-grid">
+                    {filtered.map((p, index) => (
+                      <Product key={p.id} product={p} index={index} onAdd={add} busy={busy} />
                     ))}
                   </div>
                 ) : (
@@ -1014,10 +955,7 @@ export default function Commerce() {
           </>
         )}
       </main>
-      <footer>
-        <a href="/">Royal Priesthood catalogue</a>
-        <p>Black / Ivory / Crown Gold</p>
-      </footer>
+
     </div>
   );
 }

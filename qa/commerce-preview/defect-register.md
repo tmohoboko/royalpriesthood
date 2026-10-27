@@ -12,3 +12,15 @@
 No reproducible application defect remains from the executed closure cases. All43 existing automated tests passed (12 unit,17 API,7 commerce browser,7 original browser). No automated tests were skipped. Lint/build passed; production dependency audit found0 vulnerabilities. Earlier payment-cycle build/test collision is retained in qa/payment-gate/initial-build-collision.log and was already resolved before this closure cycle; it was not repeated.
 
 No production deployment/domain/payment configuration/data was changed. The only database writes in this cycle concerned explicit preview fixtures, synthetic test users, their test carts/orders and normal verified sandbox state updates.
+
+## RP-FE-001 / RP-FE-002 frontend consolidation
+
+Baseline: clean branch commerce/production-upgrade-20261027 at d08c8afdf133ab4bb6a7f397b7d26d51cc6e146e. Stable preview pointed to dpl_9xC2hhfPwJTNY5jtWZoZfMekZgFk, implementation7ec7a42. frontend/baseline.json and baseline-shop.png record both failures.
+
+- **RP-FE-001:**16 approved records existed in SQL, inactive with no prices/variants; GET products filtered active=true and returned only RP-QA-001. Fixed by the canonical approved catalogue resolver with explicit quote/direct modes; unknown inactive records remain hidden. No pricing/stock/variant or approval data was fabricated. Frontend/API counts and category/variant/price assertions are covered by FE-001/002/003/006/007/008.
+- **RP-FE-002:**root routing switched between a full editorial App and a standalone Commerce tree with a separate header/footer, Arial/Georgia and hard-coded cream styling. Fixed by one approved shared shell, card/image components and brand tokens. FE-004/005/009/010 cover consistent styling, navigation, refresh and responsive layouts.
+- First check caught a removed-header count variable still unused; removed it. Initial targeted browser run15pass/2fail caught an implicit selector label and stale memoized homepage catalogue; explicit Category aria-label and products memo dependency repaired both.
+- Shared-card consolidation rerun12pass/5fail caught duplicate status announcements from card and commerce page; only the owning component now announces success. No test expectation was weakened. Final combined browser rerun17pass/0fail. Both failed-attempt logs are retained in frontend/.
+- Existing enquiry regression selectors now use the required explicit Enquiry action instead of the old generic ADD label; persistence/download/focus assertions are preserved.
+
+See frontend/report.md and release-evidence.json for final committed source, Preview identity and executed local/hosted results. This resolution is scoped to frontend defects and does not change the earlier full-prototype external-provider blocker verdict.

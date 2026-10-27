@@ -1,0 +1,4 @@
+
+> royal-priesthood-storefront@1.0.0 lint
+> eslint proxy.js server api src/Commerce.jsx src/CatalogueCard.jsx src/StorefrontShell.jsx src/StorefrontContext.jsx src/catalogue.js scripts/commerce-*.mjs tests/unit tests/integration
+

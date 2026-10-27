@@ -9,7 +9,7 @@ const product = (id, name, image, department, tags, tone = 'Black / Gold') => ({
   tone,
 });
 
-export const categories = ['All', 'Women', 'Men', 'T-Shirts', 'Pants', 'Shoes', 'Hats'];
+export const categories = ['All', 'Women', 'Men', 'T-Shirts', 'Pants', 'Shoes', 'Hats', 'Accessories'];
 
 export const products = [
   product('RP-W01', 'Women\'s Black Statement', '01_Women_Black_Statement.png', 'Women', ['Women', 'T-Shirts', 'Pants', 'Shoes', 'Hats']),

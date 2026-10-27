@@ -1,32 +1,8 @@
 .commerce {
-  background: #f8f5ee;
-  color: #171714;
+  background: var(--paper);
+  color: var(--ink);
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-}
-.commerce header {
-  position: static;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 24px 5%;
-  border-bottom: 1px solid #c4aa6d;
-  gap: 20px;
-}
-.commerce-brand {
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-.commerce-brand small {
-  display: block;
-  font-size: 10px;
-  margin-top: 6px;
-}
-.commerce nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  font-family: inherit;
 }
 .commerce main {
   max-width: 1200px;
@@ -35,12 +11,12 @@
   min-height: 70vh;
 }
 .commerce h1 {
-  font-family: Georgia, serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: clamp(32px, 5vw, 56px);
   margin: 24px 0;
 }
 .commerce h2 {
-  font-family: Georgia, serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 26px;
   margin: 24px 0 12px;
 }
@@ -52,11 +28,11 @@
   margin: 12px 0;
   overflow-wrap: anywhere;
 }
-.commerce a {
+.commerce a:not(.product-card a) {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.commerce label {
+.commerce label:not(.product-buy label) {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -64,29 +40,29 @@
   font-size: 14px;
 }
 .commerce input,
-.commerce select {
+.commerce select:not(.product-buy select) {
   background: white;
-  color: #171714;
+  color: var(--ink);
   border: 1px solid #857c68;
   padding: 12px;
   min-height: 44px;
   width: 100%;
-  border-radius: 3px;
+  border-radius: 0;
 }
 .commerce input[type="checkbox"] {
   width: 24px;
 }
-.commerce button,
+.commerce button:not(.product-buy button),
 .commerce-button {
   display: inline-block;
-  background: #171714;
+  background: var(--black);
   color: #fff;
   padding: 13px 20px;
-  border: 1px solid #171714;
+  border: 1px solid var(--gold);
   min-height: 44px;
   cursor: pointer;
   margin: 8px 8px 8px 0;
-  border-radius: 3px;
+  border-radius: 0;
 }
 .commerce button:disabled {
   opacity: 0.5;
@@ -94,7 +70,7 @@
 }
 .commerce .secondary {
   background: transparent;
-  color: #171714;
+  color: var(--ink);
 }
 .commerce :focus-visible {
   outline: 3px solid #9a7022;
@@ -124,21 +100,8 @@
 }
 .commerce-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
-}
-.commerce-product {
-  min-width: 0;
-  background: #fff;
-  padding: 16px;
-}
-.commerce-product img {
-  width: 100%;
-  max-height: 580px;
-  object-fit: contain;
-}
-.commerce-product h2 {
-  font-size: 24px;
 }
 .commerce-notice {
   padding: 12px;
@@ -187,7 +150,7 @@
   background: #e7e0d0;
 }
 .commerce-progress [aria-current="step"] {
-  background: #171714;
+  background: var(--black);
   color: white;
 }
 .commerce-summary {
@@ -195,11 +158,6 @@
   background: #fff;
   border: 1px solid #baac8b;
   margin: 24px 0;
-}
-.commerce footer {
-  padding: 30px 5%;
-  background: #171714;
-  color: #fff;
 }
 .commerce form > button {
   margin-top: 16px;
@@ -229,3 +187,18 @@
     padding: 12px;
   }
 }
+
+/* Same tokens and editorial type as the approved storefront; commerce only
+   supplies form/grid layout, never a second brand shell. */
+.commerce h1 {font-size:clamp(48px,6vw,82px);letter-spacing:-.045em;font-weight:500;}
+.commerce main {max-width:1440px;padding:48px 32px;}
+.commerce-notice {background:var(--black);color:var(--gold);font:600 10px 'DM Mono',monospace;padding:16px;letter-spacing:.08em;}
+.commerce-product {min-width:0;}
+.commerce-product h2 {font-weight:500;letter-spacing:-.03em;}
+.commerce button:not(.product-buy button),.commerce-button {font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.04em;}
+@media(max-width:700px){.commerce main{padding:24px 16px;}}
+
+.commerce .product-card p{margin:0}.commerce .product-card .product-info>div:first-child p{line-height:1.4}.commerce .product-card .product-info h3{font-family:'Cormorant Garamond',serif}.commerce .product-card .product-buy label{margin:0}.commerce .product-card .product-buy button{margin:0}.commerce .product-card .product-media img{height:100%;width:100%;object-fit:cover}
+@media(max-width:1100px){.commerce-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.commerce-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:450px){.commerce-grid{grid-template-columns:1fr}.commerce .product-card.wide{grid-column:span 1}}

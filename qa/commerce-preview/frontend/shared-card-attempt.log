@@ -1,0 +1,220 @@
+
+> royal-priesthood-storefront@1.0.0 test:commerce
+> playwright test --config=playwright.commerce.config.js
+
+[WebServer] (node:78894) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 17 tests using 1 worker
+
+(node:78925) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/commerce/frontend.spec.js:5:1 › FE-001 all approved catalogue products display (2.0s)
+  ✓   2 tests/commerce/frontend.spec.js:6:1 › FE-002 displayed count matches eligible backend catalogue (1.5s)
+  ✓   3 tests/commerce/frontend.spec.js:7:1 › FE-003 correct categories, explicit variants and actual prices (1.7s)
+  ✓   4 tests/commerce/frontend.spec.js:8:1 › FE-004 existing storefront typography and black/gold branding are reused (1.8s)
+  ✓   5 tests/commerce/frontend.spec.js:9:1 › FE-005 header navigation and footer are shared once on every route (2.7s)
+  ✓   6 tests/commerce/frontend.spec.js:10:1 › FE-006 configured direct purchase exposes Add to cart (1.6s)
+  ✓   7 tests/commerce/frontend.spec.js:11:1 › FE-007 quote product opens the existing persistent enquiry bag (2.2s)
+  ✓   8 tests/commerce/frontend.spec.js:12:1 › FE-008 existing home catalogue updates the same persistent cart and count (2.4s)
+  ✓   9 tests/commerce/frontend.spec.js:13:1 › FE-009 product/cart/account/checkout routes survive direct refresh (2.7s)
+  ✓  10 tests/commerce/frontend.spec.js:14:1 › FE-010 desktop and mobile navigation/catalogue remain usable (3.5s)
+  ✘  11 tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 1440 (1.9s)
+(node:79421) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  12 tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 375 (1.9s)
+(node:79546) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  13 tests/commerce/journey.spec.js:131:1 › failed payment remains unpaid and does not send receipt (2.4s)
+(node:79691) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  14 tests/commerce/journey.spec.js:151:1 › browser return does not mark paid; explicit cancellation is safe (2.0s)
+(node:79814) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 tests/commerce/journey.spec.js:167:1 › out of stock product cannot be added (1.3s)
+  ✓  16 tests/commerce/journey.spec.js:174:1 › customer login and admin operations are protected (2.6s)
+  ✘  17 tests/commerce/journey.spec.js:199:1 › verified cancelled gateway payment can be cancelled without a receipt (1.8s)
+
+
+  1) tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 1440 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('status')
+    Expected substring: "Added"
+    Error: strict mode violation: getByRole('status') resolved to 2 elements:
+        1) <p role="status">Added to your cart.</p> aka getByText('Added to your cart.').first()
+        2) <p role="status">Added to your cart.</p> aka getByTestId('product-card').getByText('Added to your cart.')
+
+    Call log:
+      - Expect "toContainText" getByRole('status') with timeout 5000ms
+      - waiting for getByRole('status')
+
+
+      11 |     .selectOption("test-black-l");
+      12 |   await page.getByRole("button", { name: "Add to cart", exact: true }).click();
+    > 13 |   await expect(page.getByRole("status")).toContainText("Added");
+         |                                          ^
+      14 |   await page.goto("/shop/cart");
+      15 |   await page.getByLabel("Quantity for Black Signature Tee — Front").fill("2");
+      16 |   await expect(
+        at addToCart (/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:13:42)
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:93:5
+
+    Error Context: test-results/journey-complete-purchase--3a172-x-callback-and-receipt-1440/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-complete-purchase--3a172-x-callback-and-receipt-1440/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-complete-purchase--3a172-x-callback-and-receipt-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 375 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('status')
+    Expected substring: "Added"
+    Error: strict mode violation: getByRole('status') resolved to 2 elements:
+        1) <p role="status">Added to your cart.</p> aka getByText('Added to your cart.').first()
+        2) <p role="status">Added to your cart.</p> aka getByTestId('product-card').getByText('Added to your cart.')
+
+    Call log:
+      - Expect "toContainText" getByRole('status') with timeout 5000ms
+      - waiting for getByRole('status')
+
+
+      11 |     .selectOption("test-black-l");
+      12 |   await page.getByRole("button", { name: "Add to cart", exact: true }).click();
+    > 13 |   await expect(page.getByRole("status")).toContainText("Added");
+         |                                          ^
+      14 |   await page.goto("/shop/cart");
+      15 |   await page.getByLabel("Quantity for Black Signature Tee — Front").fill("2");
+      16 |   await expect(
+        at addToCart (/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:13:42)
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:93:5
+
+    Error Context: test-results/journey-complete-purchase--1d389-ox-callback-and-receipt-375/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-complete-purchase--1d389-ox-callback-and-receipt-375/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-complete-purchase--1d389-ox-callback-and-receipt-375/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/commerce/journey.spec.js:131:1 › failed payment remains unpaid and does not send receipt 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('status')
+    Expected substring: "Added"
+    Error: strict mode violation: getByRole('status') resolved to 2 elements:
+        1) <p role="status">Added to your cart.</p> aka getByText('Added to your cart.').first()
+        2) <p role="status">Added to your cart.</p> aka getByTestId('product-card').getByText('Added to your cart.')
+
+    Call log:
+      - Expect "toContainText" getByRole('status') with timeout 5000ms
+      - waiting for getByRole('status')
+
+
+      11 |     .selectOption("test-black-l");
+      12 |   await page.getByRole("button", { name: "Add to cart", exact: true }).click();
+    > 13 |   await expect(page.getByRole("status")).toContainText("Added");
+         |                                          ^
+      14 |   await page.goto("/shop/cart");
+      15 |   await page.getByLabel("Quantity for Black Signature Tee — Front").fill("2");
+      16 |   await expect(
+        at addToCart (/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:13:42)
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:134:3
+
+    Error Context: test-results/journey-failed-payment-rem-a0116-d-and-does-not-send-receipt/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-failed-payment-rem-a0116-d-and-does-not-send-receipt/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-failed-payment-rem-a0116-d-and-does-not-send-receipt/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/commerce/journey.spec.js:151:1 › browser return does not mark paid; explicit cancellation is safe 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('status')
+    Expected substring: "Added"
+    Error: strict mode violation: getByRole('status') resolved to 2 elements:
+        1) <p role="status">Added to your cart.</p> aka getByText('Added to your cart.').first()
+        2) <p role="status">Added to your cart.</p> aka getByTestId('product-card').getByText('Added to your cart.')
+
+    Call log:
+      - Expect "toContainText" getByRole('status') with timeout 5000ms
+      - waiting for getByRole('status')
+
+
+      11 |     .selectOption("test-black-l");
+      12 |   await page.getByRole("button", { name: "Add to cart", exact: true }).click();
+    > 13 |   await expect(page.getByRole("status")).toContainText("Added");
+         |                                          ^
+      14 |   await page.goto("/shop/cart");
+      15 |   await page.getByLabel("Quantity for Black Signature Tee — Front").fill("2");
+      16 |   await expect(
+        at addToCart (/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:13:42)
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:154:3
+
+    Error Context: test-results/journey-browser-return-doe-2993a-plicit-cancellation-is-safe/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-browser-return-doe-2993a-plicit-cancellation-is-safe/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-browser-return-doe-2993a-plicit-cancellation-is-safe/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/commerce/journey.spec.js:199:1 › verified cancelled gateway payment can be cancelled without a receipt 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('status')
+    Expected substring: "Added"
+    Error: strict mode violation: getByRole('status') resolved to 2 elements:
+        1) <p role="status">Added to your cart.</p> aka getByText('Added to your cart.').first()
+        2) <p role="status">Added to your cart.</p> aka getByTestId('product-card').getByText('Added to your cart.')
+
+    Call log:
+      - Expect "toContainText" getByRole('status') with timeout 5000ms
+      - waiting for getByRole('status')
+
+
+      11 |     .selectOption("test-black-l");
+      12 |   await page.getByRole("button", { name: "Add to cart", exact: true }).click();
+    > 13 |   await expect(page.getByRole("status")).toContainText("Added");
+         |                                          ^
+      14 |   await page.goto("/shop/cart");
+      15 |   await page.getByLabel("Quantity for Black Signature Tee — Front").fill("2");
+      16 |   await expect(
+        at addToCart (/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:13:42)
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:202:3
+
+    Error Context: test-results/journey-verified-cancelled-c0aaa-cancelled-without-a-receipt/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-verified-cancelled-c0aaa-cancelled-without-a-receipt/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-verified-cancelled-c0aaa-cancelled-without-a-receipt/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 1440 
+    tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 375 
+    tests/commerce/journey.spec.js:131:1 › failed payment remains unpaid and does not send receipt ─
+    tests/commerce/journey.spec.js:151:1 › browser return does not mark paid; explicit cancellation is safe 
+    tests/commerce/journey.spec.js:199:1 › verified cancelled gateway payment can be cancelled without a receipt 
+  12 passed (48.7s)

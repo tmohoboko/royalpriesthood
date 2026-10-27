@@ -3,7 +3,7 @@ import {test,expect} from '@playwright/test';
 test('size and quantity survive refresh, contact request downloads when clipboard is unavailable',async({page})=>{
  await page.goto('/#catalogue');
  await page.getByLabel("Size for Women's Black Statement",{exact:true}).selectOption('XL');
- await page.getByRole('button',{name:'ADD',exact:true}).first().click();
+ await page.getByRole('button',{name:'Enquiry',exact:true}).first().click();
  await page.getByRole('button',{name:'Increase quantity'}).click();
  await page.keyboard.press('Escape');
  await page.locator('input[name="name"]').fill('Software QA');

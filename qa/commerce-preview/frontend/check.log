@@ -1,0 +1,243 @@
+
+> royal-priesthood-storefront@1.0.0 check
+> npm run lint && npm run test:unit && npm run test:integration && npm run build
+
+
+> royal-priesthood-storefront@1.0.0 lint
+> eslint proxy.js server api src/Commerce.jsx src/CatalogueCard.jsx src/StorefrontShell.jsx src/StorefrontContext.jsx src/catalogue.js scripts/commerce-*.mjs tests/unit tests/integration
+
+
+> royal-priesthood-storefront@1.0.0 test:unit
+> node --test tests/unit/*.test.js
+
+TAP version 13
+# Subtest: callback alias permits only exact sandbox preview POST and no query
+ok 1 - callback alias permits only exact sandbox preview POST and no query
+  ---
+  duration_ms: 42.376823
+  type: 'test'
+  ...
+# Subtest: hosted fields use callback-only alias with no bypass secret
+ok 2 - hosted fields use callback-only alias with no bypass secret
+  ---
+  duration_ms: 2.012791
+  type: 'test'
+  ...
+# Subtest: all16 approved identities remain visible as quote references without invented prices/variants
+ok 3 - all16 approved identities remain visible as quote references without invented prices/variants
+  ---
+  duration_ms: 3.290485
+  type: 'test'
+  ...
+# Subtest: only active configured variants enable direct purchase; inactive and malformed inventory stays quote-only
+ok 4 - only active configured variants enable direct purchase; inactive and malformed inventory stays quote-only
+  ---
+  duration_ms: 0.706071
+  type: 'test'
+  ...
+# Subtest: server totals use integer cents and floor percentage discount
+ok 5 - server totals use integer cents and floor percentage discount
+  ---
+  duration_ms: 3.07787
+  type: 'test'
+  ...
+# Subtest: reject empty carts, invalid quantities, prices and zero totals
+ok 6 - reject empty carts, invalid quantities, prices and zero totals
+  ---
+  duration_ms: 0.812556
+  type: 'test'
+  ...
+# Subtest: stock must be available and product active
+ok 7 - stock must be available and product active
+  ---
+  duration_ms: 0.418214
+  type: 'test'
+  ...
+# Subtest: payment transitions cannot regress successful payment
+ok 8 - payment transitions cannot regress successful payment
+  ---
+  duration_ms: 0.359982
+  type: 'test'
+  ...
+# Subtest: fulfilment requires verified payment first
+ok 9 - fulfilment requires verified payment first
+  ---
+  duration_ms: 0.410138
+  type: 'test'
+  ...
+# Subtest: password hashes are salted and verify correctly
+ok 10 - password hashes are salted and verify correctly
+  ---
+  duration_ms: 1270.06458
+  type: 'test'
+  ...
+# Subtest: PayFast canonical encoding uses PHP form encoding and excludes signature
+ok 11 - PayFast canonical encoding uses PHP form encoding and excludes signature
+  ---
+  duration_ms: 0.917819
+  type: 'test'
+  ...
+# Subtest: live and unconfigured payments fail closed
+ok 12 - live and unconfigured payments fail closed
+  ---
+  duration_ms: 0.379469
+  type: 'test'
+  ...
+# Subtest: invalid callback signature rejected before network verification
+ok 13 - invalid callback signature rejected before network verification
+  ---
+  duration_ms: 1.173883
+  type: 'test'
+  ...
+# Subtest: PayFast ITN retains empty fields and verifies source and server confirmation
+ok 14 - PayFast ITN retains empty fields and verifies source and server confirmation
+  ---
+  duration_ms: 32.89523
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1546.085653
+
+> royal-priesthood-storefront@1.0.0 test:integration
+> node --test tests/integration/*.test.js
+
+TAP version 13
+# Subtest: public catalogue and inventory; anonymous checkout/admin rejected
+ok 1 - public catalogue and inventory; anonymous checkout/admin rejected
+  ---
+  duration_ms: 3895.154563
+  type: 'test'
+  ...
+# Subtest: cross-origin mutations and invalid inputs rejected
+ok 2 - cross-origin mutations and invalid inputs rejected
+  ---
+  duration_ms: 13.303906
+  type: 'test'
+  ...
+# Subtest: persistent guest cart merges exactly once across registration and login
+ok 3 - persistent guest cart merges exactly once across registration and login
+  ---
+  duration_ms: 780.803379
+  type: 'test'
+  ...
+# Subtest: checkout validates stock and recalculates prices ignoring browser totals
+ok 4 - checkout validates stock and recalculates prices ignoring browser totals
+  ---
+  duration_ms: 459.521113
+  type: 'test'
+  ...
+# Subtest: idempotency prevents duplicate orders and stock reservations
+ok 5 - idempotency prevents duplicate orders and stock reservations
+  ---
+  duration_ms: 445.228122
+  type: 'test'
+  ...
+# Subtest: only order owner can see or initiate sandbox payment; redirect is not payment
+ok 6 - only order owner can see or initiate sandbox payment; redirect is not payment
+  ---
+  duration_ms: 690.752704
+  type: 'test'
+  ...
+# {"event":"payment_notification_rejected","code":"AMOUNT_MISMATCH","payment":"7fc545b17dbf4539ae4f617c789a676545bca6399f719aa8"}
+# Subtest: verified callback marks paid, emits one receipt, rejects amount mismatch and replay
+ok 7 - verified callback marks paid, emits one receipt, rejects amount mismatch and replay
+  ---
+  duration_ms: 376.252812
+  type: 'test'
+  ...
+# {"event":"payment_notification_rejected","code":"RECONCILIATION_REQUIRED","payment":"0a5da515a09f532cd2f1a4bf85e9b56f67a6e009f03310c6"}
+# Subtest: failed and cancelled callbacks never issue receipt; cancel releases stock once
+ok 8 - failed and cancelled callbacks never issue receipt; cancel releases stock once
+  ---
+  duration_ms: 700.665769
+  type: 'test'
+  ...
+# Subtest: administrator manages products and fulfilment; cannot dispatch unpaid orders
+ok 9 - administrator manages products and fulfilment; cannot dispatch unpaid orders
+  ---
+  duration_ms: 664.989974
+  type: 'test'
+  ...
+# Subtest: inventory changes roll checkout back without partial order or stock mutation
+ok 10 - inventory changes roll checkout back without partial order or stock mutation
+  ---
+  duration_ms: 324.181465
+  type: 'test'
+  ...
+# Subtest: invalid credentials, origin, forged callback and duplicate fields fail safely
+ok 11 - invalid credentials, origin, forged callback and duplicate fields fail safely
+  ---
+  duration_ms: 296.967671
+  type: 'test'
+  ...
+# Subtest: verified cancellation preserves unpaid status and permits safe inventory release
+ok 12 - verified cancellation preserves unpaid status and permits safe inventory release
+  ---
+  duration_ms: 359.409441
+  type: 'test'
+  ...
+# Subtest: failed email jobs retry with a stable idempotency key and do not regress payments
+ok 13 - failed email jobs retry with a stable idempotency key and do not regress payments
+  ---
+  duration_ms: 362.951644
+  type: 'test'
+  ...
+# Subtest: SQL data and hashed sessions survive database close and reopen
+ok 14 - SQL data and hashed sessions survive database close and reopen
+  ---
+  duration_ms: 3961.272869
+  type: 'test'
+  ...
+# Subtest: production Node adapter preserves rewritten paths, raw bodies and session cookies
+ok 15 - production Node adapter preserves rewritten paths, raw bodies and session cookies
+  ---
+  duration_ms: 338.911561
+  type: 'test'
+  ...
+# Subtest: concurrent customers competing for the last unit create exactly one order
+ok 16 - concurrent customers competing for the last unit create exactly one order
+  ---
+  duration_ms: 650.910489
+  type: 'test'
+  ...
+# {"event":"payment_notification_rejected","code":"BAD_MERCHANT","payment":"3a410ece343873e06cd88d852d97782bcb42902e4eb44c39"}
+# {"event":"payment_notification_rejected","code":"NOT_FOUND","payment":"ffffffffffffffffffffffffffffffffffffffffffffffff"}
+# {"event":"payment_notification_rejected","code":"BAD_STATUS","payment":"3a410ece343873e06cd88d852d97782bcb42902e4eb44c39"}
+# Subtest: signed callbacks reject wrong merchant, unknown order reference and unsupported status
+ok 17 - signed callbacks reject wrong merchant, unknown order reference and unsupported status
+  ---
+  duration_ms: 337.134394
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14963.259912
+
+> royal-priesthood-storefront@1.0.0 build
+> vite build && node scripts/commerce-provenance.mjs
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1586 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      0.94 kB │ gzip:  0.53 kB
+dist/assets/Commerce-BxYaJa6I.css    3.96 kB │ gzip:  1.22 kB
+dist/assets/index-CIC0liqs.css      24.77 kB │ gzip:  6.41 kB
+dist/assets/Commerce-AXR_mWYR.js    19.28 kB │ gzip:  6.20 kB
+dist/assets/index-Chj_AG_p.js      247.89 kB │ gzip: 78.27 kB
+✓ built in 2.96s
+{"commit":"d08c8afdf133ab4bb6a7f397b7d26d51cc6e146e","sourceSha256":"8a2dbd50f8a077f4236d27cdb7808140f9cb149cf025c0251e2e33a6357a9dbf","scope":"application source/config; excludes QA, docs and unchanged approved image assets"}

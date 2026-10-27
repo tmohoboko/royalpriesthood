@@ -1,0 +1,16 @@
+
+> royal-priesthood-storefront@1.0.0 build
+> vite build && node scripts/commerce-provenance.mjs
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1586 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      0.94 kB │ gzip:  0.53 kB
+dist/assets/Commerce-BxYaJa6I.css    3.96 kB │ gzip:  1.22 kB
+dist/assets/index-CIC0liqs.css      24.77 kB │ gzip:  6.41 kB
+dist/assets/Commerce-gCdz1feO.js    19.28 kB │ gzip:  6.20 kB
+dist/assets/index-BCpK-b_q.js      247.90 kB │ gzip: 78.28 kB
+✓ built in 2.99s
+{"commit":"d08c8afdf133ab4bb6a7f397b7d26d51cc6e146e","sourceSha256":"68e0b588d67a8e880af0bd04dec43ec5d3323c5795b57638388d42099accc99a","scope":"application source/config; excludes QA, docs and unchanged approved image assets"}
