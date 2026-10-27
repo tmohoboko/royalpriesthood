@@ -10,6 +10,7 @@ docs/commerce-deployment.md
 docs/commerce-release-report.md
 docs/commerce-requirements.md
 docs/commerce-test-matrix.md
+eslint.config.js
 migrations/001-commerce.sql
 package-lock.json
 package.json
