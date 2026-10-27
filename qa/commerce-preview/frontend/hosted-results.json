@@ -1,0 +1,458 @@
+{
+  "config": {
+    "argv": [
+      "/home/tmdev012/.local/share/fnm/node-versions/v22.22.0/installation/bin/node",
+      "/home/tmdev012/Reception/royalpriesthood-commerce/node_modules/@playwright/test/cli.js",
+      "test",
+      "--config=/tmp/royal-frontend-hosted.config.mjs"
+    ],
+    "configFile": "/tmp/royal-frontend-hosted.config.mjs",
+    "rootDir": "/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/tmdev012/Reception/royalpriesthood-commerce/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce",
+        "testIgnore": [],
+        "testMatch": [
+          "frontend.spec.js"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/home/tmdev012/Reception/royalpriesthood-commerce/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce",
+        "snapshotDir": "/home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce",
+        "testIgnore": [],
+        "testMatch": "frontend.spec.js",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "launchOptions": {
+            "executablePath": "/home/tmdev012/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+          },
+          "trace": "off"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/home/tmdev012/Reception/royalpriesthood-commerce/qa/commerce-preview/frontend/hosted-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "frontend.spec.js",
+      "file": "frontend.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "FE-001 all approved catalogue products display",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4162,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:16:06.397Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-384ac420ab56e511b4a3",
+          "file": "frontend.spec.js",
+          "line": 13,
+          "column": 1
+        },
+        {
+          "title": "FE-002 displayed count matches eligible backend catalogue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3215,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:16:10.886Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-3e5853536e20f408be74",
+          "file": "frontend.spec.js",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "FE-003 correct categories, explicit variants and actual prices",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3100,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:16:14.131Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-cfa243102b76f00fcfb0",
+          "file": "frontend.spec.js",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "FE-004 existing storefront typography and black/gold branding are reused",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4790,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:16:17.261Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-6ce7583c6b35196887f6",
+          "file": "frontend.spec.js",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "FE-005 header navigation and footer are shared once on every route",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6224,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:16:22.078Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-6c851c7a315e985fe899",
+          "file": "frontend.spec.js",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "FE-006 configured direct purchase exposes Add to cart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5839,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:16:28.331Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-321f7b440cc197577df0",
+          "file": "frontend.spec.js",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "FE-007 quote product opens the existing persistent enquiry bag",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7226,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:16:34.198Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-778ee2921f2881e2d725",
+          "file": "frontend.spec.js",
+          "line": 19,
+          "column": 1
+        },
+        {
+          "title": "FE-008 existing home catalogue updates the same persistent cart and count",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11847,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:16:41.450Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-05dd266433f991d7b67f",
+          "file": "frontend.spec.js",
+          "line": 20,
+          "column": 1
+        },
+        {
+          "title": "FE-009 product/cart/account/checkout routes survive direct refresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14231,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:16:53.324Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-e91323b30fec1fb12e1c",
+          "file": "frontend.spec.js",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "FE-010 desktop and mobile navigation/catalogue remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5565,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T16:17:07.587Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b8927c7c7abd922a0b01-457acc9399052a3279ac",
+          "file": "frontend.spec.js",
+          "line": 22,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-27T16:16:05.479Z",
+    "duration": 67807.669,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

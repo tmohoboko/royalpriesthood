@@ -1,0 +1,152 @@
+{
+  "commit": "a3ca501203fa8cd63f0bc0f318f4cb7afeb3a465",
+  "commitMatched": true,
+  "uploadedFilesVerified": [
+    {
+      "path": "api/commerce.js",
+      "sha1": "34bef1188a601773a6c3002eb051d322c29cc46f"
+    },
+    {
+      "path": "index.html",
+      "sha1": "e5c405007ec39f5916774bac15f3c8531c96255e"
+    },
+    {
+      "path": "migrations/001-commerce.sql",
+      "sha1": "9c23c7b7c7fa719fcb50bb21f577fefa2600de48"
+    },
+    {
+      "path": "package-lock.json",
+      "sha1": "ee8423123efe0bc6806d2946e30a50a17022b4ae"
+    },
+    {
+      "path": "package.json",
+      "sha1": "aecceda503c62b05e9a579a7ad246898ad3f5aad"
+    },
+    {
+      "path": "proxy.js",
+      "sha1": "c065eb15c0b10c8a512c194be57a3760214ab68b"
+    },
+    {
+      "path": "scripts/commerce-admin.mjs",
+      "sha1": "7c4fbc0caf8b3d5ad9d54ac07a821ad0de14cc18"
+    },
+    {
+      "path": "scripts/commerce-dev.mjs",
+      "sha1": "9aee25ced7e21358fbb010d1832c942b0ca30897"
+    },
+    {
+      "path": "scripts/commerce-migrate.mjs",
+      "sha1": "789378ffe0c8cfc520bf71f9c225543f66d5a15c"
+    },
+    {
+      "path": "scripts/commerce-provenance.mjs",
+      "sha1": "d00a7592719b5b46e4c24981732dc2550f79e265"
+    },
+    {
+      "path": "scripts/preflight.mjs",
+      "sha1": "5fa935e18f298a51395765ba2281e654b01781d9"
+    },
+    {
+      "path": "scripts/recover-catalogue.py",
+      "sha1": "bcd703d5924d5019cdb779f22468ee6da481fd8d"
+    },
+    {
+      "path": "scripts/release-vercel.sh",
+      "sha1": "2f2b07ab6adcc447bdcd538583eb58ad1a16b17d"
+    },
+    {
+      "path": "server/callback-policy.js",
+      "sha1": "5dbf1f3a481a63e8df402f08856f7a4ff10590f0"
+    },
+    {
+      "path": "server/db.js",
+      "sha1": "9a5f42dd59fa1d57a3628f426e8f4a74641a6a05"
+    },
+    {
+      "path": "server/domain.js",
+      "sha1": "3668bdacef18fdefa8d4568afb39097a3ccf25a3"
+    },
+    {
+      "path": "server/handler.js",
+      "sha1": "ccbe8342760c36725b659de29f115a812c807443"
+    },
+    {
+      "path": "server/node-adapter.js",
+      "sha1": "fa530d277d4796effdde0ebb48641c6d338b63ea"
+    },
+    {
+      "path": "server/notifications.js",
+      "sha1": "3966a297964292980de3e85f9c6e97b1c27f98d0"
+    },
+    {
+      "path": "server/payfast.js",
+      "sha1": "a1ddbd5633c21d478352341d09bfc723027a9ec6"
+    },
+    {
+      "path": "server/service.js",
+      "sha1": "c91defe32c874ee711e4793f684a170164403dac"
+    },
+    {
+      "path": "src/CatalogueCard.jsx",
+      "sha1": "5de0d2ae0a2d91fdc1331ce790639c245ff36523"
+    },
+    {
+      "path": "src/Commerce.jsx",
+      "sha1": "3135d0f591b89af978d0dbf4340f59dad1921e8b"
+    },
+    {
+      "path": "src/Scene.jsx",
+      "sha1": "2bd5d11d73490296c01b57b63525f27c5e5e3e76"
+    },
+    {
+      "path": "src/StorefrontContext.jsx",
+      "sha1": "36918c4d4d47bbf636f33435d764820c1e88c5b1"
+    },
+    {
+      "path": "src/StorefrontShell.jsx",
+      "sha1": "da4bad23ea101d470270f9cdd904229cfe0cfb97"
+    },
+    {
+      "path": "src/catalogue.js",
+      "sha1": "6412bd48e4c59a2078cdfee9966ef90a599ceaeb"
+    },
+    {
+      "path": "src/commerce.css",
+      "sha1": "1dfecc0522b9b9c07a3d353998df11c29410ed09"
+    },
+    {
+      "path": "src/data.js",
+      "sha1": "160848dcda311940fad9a568e8dbbda9f03a62d5"
+    },
+    {
+      "path": "src/main.jsx",
+      "sha1": "4496a4ad1a17a3551f31dfc821ddbb06551457d7"
+    },
+    {
+      "path": "src/style.css",
+      "sha1": "2689a210e79b8a1d3a3b486a1925ec3be82c7f00"
+    },
+    {
+      "path": "vercel.json",
+      "sha1": "c1657292f3be75abfbddec8cc2859c0809fb0a44"
+    },
+    {
+      "path": "vite.config.js",
+      "sha1": "3ec4b29f1a7ba9aa6756889e52c33ecef5378d75"
+    }
+  ],
+  "uploadedFileCount": 33,
+  "sourceArchiveMatchesCommit": true,
+  "postBuildWorkspaceFingerprint": {
+    "local": "68e0b588d67a8e880af0bd04dec43ec5d3323c5795b57638388d42099accc99a",
+    "hosted": "3da2b9cf3f1d4ff642be0ce96fed758975a59906aa41292f9a778d28c38beed0",
+    "matched": false,
+    "interpretation": "Non-authoritative diagnostic: post-build workspace differs; exact source archive identity verified independently. Cause not isolated in this bounded frontend repair."
+  },
+  "catalogue": {
+    "total": 17,
+    "approved": 16,
+    "direct": 1,
+    "quote": 16
+  }
+}

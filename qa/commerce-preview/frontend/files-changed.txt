@@ -1,6 +1,8 @@
 docs/commerce-api.md
 docs/commerce-architecture.md
+docs/commerce-changed-files.txt
 docs/commerce-deployment.md
+docs/commerce-release-report.md
 docs/commerce-test-matrix.md
 package.json
 qa/commerce-1440.png
@@ -14,12 +16,18 @@ qa/commerce-preview/frontend/check.log
 qa/commerce-preview/frontend/commerce-and-frontend.log
 qa/commerce-preview/frontend/dependency-audit.log
 qa/commerce-preview/frontend/files-changed.txt
+qa/commerce-preview/frontend/hosted-1440.png
+qa/commerce-preview/frontend/hosted-375.png
+qa/commerce-preview/frontend/hosted-results.json
+qa/commerce-preview/frontend/hosted-tests.log
+qa/commerce-preview/frontend/identity-check.json
 qa/commerce-preview/frontend/initial-browser-attempt.log
 qa/commerce-preview/frontend/lint.log
 qa/commerce-preview/frontend/local-1440.png
 qa/commerce-preview/frontend/local-375.png
 qa/commerce-preview/frontend/local-results.json
 qa/commerce-preview/frontend/original-regression.log
+qa/commerce-preview/frontend/release-evidence.json
 qa/commerce-preview/frontend/report.md
 qa/commerce-preview/frontend/shared-card-attempt.log
 qa/commerce-regression-results.json

@@ -24,3 +24,5 @@ Baseline: clean branch commerce/production-upgrade-20261027 at d08c8afdf133ab4bb
 - Existing enquiry regression selectors now use the required explicit Enquiry action instead of the old generic ADD label; persistence/download/focus assertions are preserved.
 
 See frontend/report.md and release-evidence.json for final committed source, Preview identity and executed local/hosted results. This resolution is scoped to frontend defects and does not change the earlier full-prototype external-provider blocker verdict.
+
+Frontend resolution final: RP-FE-001 and RP-FE-002 RESOLVED. All55 local tests plus10 hosted frontend tests passed. Deploymentdpl_4vRkuNZWnTeen5qNsbNyGEsfmJSW serves implementationa3ca501 at the stable Preview alias. Exact source archive comparison verified all33 app/config/migration files. The post-build aggregate did not match local, so it was retained as a diagnostic limitation instead of claimed as identity proof. No remaining reproducible defect within these two frontend cases; previous prototype provider blockers are unchanged. See frontend/report.md, identity-check.json and release-evidence.json.

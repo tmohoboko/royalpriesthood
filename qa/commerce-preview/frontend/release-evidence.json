@@ -1,0 +1,58 @@
+{
+  "scope": "RP-FE-001 and RP-FE-002 only; not full application acceptance",
+  "status": "RESOLVED",
+  "branch": "commerce/production-upgrade-20261027",
+  "startingCommit": "d08c8afdf133ab4bb6a7f397b7d26d51cc6e146e",
+  "implementationCommit": "a3ca501203fa8cd63f0bc0f318f4cb7afeb3a465",
+  "endingEvidenceCommit": "Commit containing final evidence; final delivery supplies hash",
+  "baselineDeployment": "dpl_9xC2hhfPwJTNY5jtWZoZfMekZgFk",
+  "baselineDeployedCommit": "7ec7a42c395b231a2dec028c1a2bd209f4d4dea4",
+  "deploymentId": "dpl_4vRkuNZWnTeen5qNsbNyGEsfmJSW",
+  "deploymentStatus": "READY",
+  "previewUrl": "https://royalpriesthood-commerce-preview-tmdev.vercel.app",
+  "immutableUrl": "https://royalpriesthood-6at5s4kzw-tmdev.vercel.app",
+  "identity": {
+    "commitMatched": true,
+    "uploadedSourceFilesCompared": 33,
+    "uploadedSourcesMatchCommittedFiles": true,
+    "postBuildAggregate": "Different from local; diagnostic only. Exact source identity independently proven via platform source archive SHA1 for all33 app/config/migration files."
+  },
+  "catalogue": {
+    "total": 17,
+    "approved": 16,
+    "direct": 1,
+    "quote": 16
+  },
+  "tests": {
+    "local": {
+      "passed": 55,
+      "failed": 0,
+      "skipped": 0,
+      "unit": 14,
+      "api": 17,
+      "frontend": 10,
+      "existingCommerceBrowser": 7,
+      "originalBrowser": 7
+    },
+    "hostedFrontend": {
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0
+    },
+    "lint": "PASS",
+    "build": "PASS",
+    "dependencyAudit": "0 vulnerabilities"
+  },
+  "dataChanges": "No product, price, stock, variant, category approval or schema writes; hosted cart tests create guest cart records only",
+  "brandAssetsChanged": false,
+  "production": {
+    "changed": false,
+    "deployment": "dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG"
+  },
+  "remainingFrontendDefects": [],
+  "limitations": [
+    "Approved quote products still require owner pricing/variant/stock configuration before direct purchase; no values invented.",
+    "Existing payment failure/replay acceptance blockers and email dependency were not changed or re-accepted by these frontend tests.",
+    "Post-build workspace aggregate difference was recorded; source archive verification establishes commit identity."
+  ]
+}

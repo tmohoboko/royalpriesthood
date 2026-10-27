@@ -77,3 +77,7 @@ Production domain still resolves to original dpl_9vFzqtHSBVXwgEZSv3cm1WZtoAzG. N
 ## Strict prototype closure gate
 
 The later master closure scope requires real provider failure and real valid-ITN replay. Final gate: **BLOCKED —32PASS/0FAIL/2BLOCKED**, despite verified real R100 success(transaction3479203) and43 passing regression tests. The PayFast sandbox cannot supply those two real scenarios under its documented funded-wallet/once-only notification behavior. Earlier payment-gate PASS used a narrower scope with clearly labelled controlled failure/replay coverage; it is not substituted for this stricter closure. Canonical closure package: qa/commerce-preview/prototype-closure-report.md. No runtime/production change was made during closure.
+
+## RP-FE-001 / RP-FE-002 frontend resolution
+
+Both frontend defects are resolved in implementationa3ca501, Previewdpl_4vRkuNZWnTeen5qNsbNyGEsfmJSW.55local tests and10hosted FE cases pass. All16 approved references are visible as quotes alongside the existing QA direct-purchase item; shared approved shell/cards/navigation are used throughout. No prices/variants/stock/artwork were invented or changed. Exact33-file source archive comparison verifies the deployed commit. Canonical evidence: qa/commerce-preview/frontend/report.md and release-evidence.json. This targeted acceptance does not change the earlier strict prototype payment/real-provider blocker verdict.

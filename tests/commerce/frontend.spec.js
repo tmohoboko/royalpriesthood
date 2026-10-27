@@ -1,5 +1,13 @@
 import {test,expect} from '@playwright/test';
 import {products as approved} from '../../src/data.js';
+// Hosted acceptance sends the short-lived tester token only to this origin.
+test.beforeEach(async({page,baseURL})=>{
+ if(process.env.FRONTEND_HOSTED){
+  if(!process.env.VERCEL_OIDC_TOKEN)throw Error('Hosted acceptance requires linked-project OIDC credentials');
+  const origin=new URL(baseURL).origin;
+  await page.route('**/*',r=>new URL(r.request().url()).origin===origin?r.continue({headers:{...r.request().headers(),'x-vercel-trusted-oidc-idp-token':process.env.VERCEL_OIDC_TOKEN}}):r.continue());
+ }
+});
 const catalogue=page=>page.evaluate(async()=>await(await fetch('/api/commerce/products')).json());
 async function shop(page){await page.goto('/shop');const d=await catalogue(page);await expect(page.locator('.commerce-product')).toHaveCount(d.products.length);return d.products;}
 test('FE-001 all approved catalogue products display',async({page})=>{await shop(page);for(const p of approved)await expect(page.locator(`.commerce-product[data-product-id="${p.id}"]`)).toBeVisible();});
