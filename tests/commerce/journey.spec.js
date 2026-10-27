@@ -100,7 +100,7 @@ for (const viewport of [
       page.getByRole("heading", { name: "Order confirmed", exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByText("Confirmation and receipt email: sent", { exact: true }),
+      page.getByText("Confirmation and receipt email: RECEIPT_SENT", { exact: true }),
     ).toBeVisible();
     await page
       .getByRole("link", { name: "Order history", exact: true })
@@ -139,7 +139,7 @@ test("failed payment remains unpaid and does not send receipt", async ({
   await page.goto(orderURL);
   await expect(page.getByRole("status")).toContainText("Payment: failed");
   await expect(
-    page.getByText("Confirmation and receipt email: sent", { exact: true }),
+    page.getByText("Confirmation and receipt email: RECEIPT_SENT", { exact: true }),
   ).toHaveCount(0);
   await expect(
     page.getByRole("button", {
@@ -161,7 +161,7 @@ test("browser return does not mark paid; explicit cancellation is safe", async (
     .click();
   await expect(page.getByRole("status")).toContainText("Order: cancelled");
   await expect(
-    page.getByText("Confirmation and receipt email: sent", { exact: true }),
+    page.getByText("Confirmation and receipt email: RECEIPT_SENT", { exact: true }),
   ).toHaveCount(0);
 });
 test("out of stock product cannot be added", async ({ page }) => {
@@ -211,6 +211,6 @@ test("verified cancelled gateway payment can be cancelled without a receipt", as
     .click();
   await expect(page.getByRole("status")).toContainText("Order: cancelled");
   await expect(
-    page.getByText("Confirmation and receipt email: sent", { exact: true }),
+    page.getByText("Confirmation and receipt email: RECEIPT_SENT", { exact: true }),
   ).toHaveCount(0);
 });

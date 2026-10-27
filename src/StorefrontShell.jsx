@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Menu, ShoppingBag, X } from 'lucide-react';
+import { ArrowUpRight, Menu, Heart, ShoppingBag, X } from 'lucide-react';
 function Mark() {
   return <a className="mark" href="/#top" aria-label="Royal Priesthood home"><span className="mark-symbol">RP</span><span><b>ROYAL PRIESTHOOD</b><small>CROWNED WITH PURPOSE</small></span></a>;
 }
@@ -13,7 +13,7 @@ function Header({ count, onBag, cartCount, user }) {
       <Mark />
       <nav className="nav desktop" aria-label="Main navigation">{links.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</nav>
       <div className="header-tools"><a className="bag-trigger cart-trigger" href="/shop/cart" aria-label={`Shopping cart with ${cartCount} items`}><ShoppingBag size={18}/><span>CART</span><b>{cartCount}</b></a>
-        <button className="bag-trigger" type="button" onClick={onBag} aria-label={`Open enquiry bag with ${count} items`}><ShoppingBag size={18}/><span>ENQUIRY</span><b>{count}</b></button>
+        <button className="bag-trigger" type="button" onClick={onBag} aria-label={`Open Wishlist with ${count} items`}><Heart size={18}/><span>WISHLIST</span><b>{count}</b></button>
         <button className="menu-trigger" type="button" aria-expanded={open} aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(v => !v)}>{open ? <X/> : <Menu/>}</button>
       </div>
     </header>

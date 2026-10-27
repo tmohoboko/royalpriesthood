@@ -653,3 +653,39 @@ test('signed callbacks reject wrong merchant, unknown order reference and unsupp
   assert.equal((await rows(db, 'SELECT * FROM payment_events WHERE payment_id=$1', [payment.id])).length, 0);
   assert.equal((await rows(db, 'SELECT * FROM notifications WHERE order_id=$1', [data.order.id])).length, 0);
 });
+
+test('WI-05 / SMK-04/06/07 / EXT-W01 guest Wishlist persists, deduplicates, merges and isolates ownership', async()=>{
+  const guest=client(), other=client();
+  let r=await guest('/wishlist','POST',{productId:'RP-W01'});
+  assert.equal(r.status,200); const saved=r.data.items[0];
+  assert.equal((await guest('/wishlist','POST',{productId:'RP-W01'})).data.items.length,1);
+  assert.equal((await guest('/wishlist')).data.items[0].id,saved.id);
+  assert.equal((await other(`/wishlist/${saved.id}`,'DELETE')).status,404);
+  assert.equal((await other(`/wishlist/${saved.id}/move`,'POST',{})).status,404);
+  const account={email:'wishlist-merge@example.invalid',password:'Wishlist-test-password123',name:'Wishlist Customer'};
+  assert.equal((await guest('/auth/register','POST',account)).status,200);
+  assert.equal((await guest('/wishlist')).data.items.length,1);
+  await guest('/auth/logout','POST',{});
+  assert.equal((await guest('/wishlist')).data.items.length,0);
+  await guest('/wishlist','POST',{productId:'RP-W01'});
+  await guest('/wishlist','POST',{productId:'RP-T01',variantId:'test-black-m'});
+  await guest('/auth/login','POST',{email:account.email,password:account.password});
+  r=await guest('/wishlist');assert.equal(r.data.items.length,2);
+  await guest(`/wishlist/${r.data.items.find(i=>i.product_id==='RP-W01').id}`,'DELETE');
+  assert.equal((await guest('/wishlist')).data.items.length,1);
+});
+test('WI-02/03 / SMK-08 / EXT-W02 validates variants and current stock/price; failed moves preserve saved items', async()=>{
+  const c=client();
+  assert.equal((await c('/wishlist','POST',{productId:'RP-W01',variantId:'test-black-m'})).status,400);
+  assert.equal((await c('/wishlist','POST',{productId:'invented'})).status,404);
+  const saved=(await c('/wishlist','POST',{productId:'RP-T03',variantId:'test-white-m'})).data.items[0];
+  assert.equal((await c(`/wishlist/${saved.id}/move`,'POST',{})).status,409);
+  assert.equal((await c('/wishlist')).data.items.length,1);
+  const unpriced=(await c('/wishlist','POST',{productId:'RP-W01'})).data.items.find(i=>i.product_id==='RP-W01');
+  assert.equal((await c(`/wishlist/${unpriced.id}/move`,'POST',{})).status,409);
+  const valid=(await c('/wishlist','POST',{productId:'RP-T01',variantId:'test-black-l'})).data.items.find(i=>i.variant_id==='test-black-l');
+  let r=await c(`/wishlist/${valid.id}/move`,'POST',{});assert.equal(r.status,200);assert.equal(r.data.cart[0].quantity,1);
+  assert.equal(r.data.items.length,2);
+  assert.equal((await c(`/wishlist/${valid.id}/move`,'POST',{})).status,404);
+  assert.equal((await c('/cart')).data.items[0].quantity,1);
+});

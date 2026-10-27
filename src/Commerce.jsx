@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./commerce.css";
 import { useStorefront } from "./StorefrontContext.jsx";
 import { categories } from "./data.js";
-import CatalogueCard from "./CatalogueCard.jsx";
+import CatalogueCard, { CatalogueImage } from "./CatalogueCard.jsx";
 const money = (v) => `R ${(v / 100).toFixed(2)}`;
 async function api(path, method = "GET", data) {
   const response = await fetch(`/api/commerce${path}`, {
@@ -90,6 +90,7 @@ export default function Commerce() {
     [items, setItems] = useState([]),
     [user, setUser] = useState(null),
     [addresses, setAddresses] = useState([]);
+  const [cartSummary, setCartSummary] = useState(null);
   const [loading, setLoading] = useState(true),
     [error, setError] = useState(""),
     [message, setMessage] = useState(""),
@@ -121,10 +122,12 @@ export default function Commerce() {
     setShipping(p.shipping);
     setShippingId((s) => s || p.shipping[0]?.id || "");
     setItems(c.items);
+    setCartSummary(c.summary);
     setUser(m.user);
     setAddresses(m.addresses);
     return m.user;
   }
+  useEffect(()=>{if(shared.cartItems){setItems(shared.cartItems);setCartSummary(shared.cartSummary)}},[shared.cartItems,shared.cartSummary]);
   useEffect(()=>shared.setCartCount(items.reduce((n,i)=>n+i.quantity,0)),[items, shared.setCartCount]);
   useEffect(()=>shared.setUser(user),[user, shared.setUser]);
   useEffect(() => {
@@ -190,6 +193,7 @@ export default function Commerce() {
     await run(async () => {
       const c = await api("/cart", "PUT", { variantId, quantity });
       setItems(c.items);
+    setCartSummary(c.summary);
       setReview(null);
     });
   }
@@ -200,6 +204,7 @@ export default function Commerce() {
         quantity: (items.find((i) => i.id === variantId)?.quantity || 0) + 1,
       });
       setItems(c.items);
+    setCartSummary(c.summary);
       setMessage("Added to your cart.");
     });
   }
@@ -376,7 +381,7 @@ export default function Commerce() {
                   <p>
                     No products available for this selection.{" "}
                     <a href="/#catalogue">
-                      Explore the catalogue or make an enquiry.
+                      Explore the catalogue and save your favourites.
                     </a>
                   </p>
                 )}
@@ -403,6 +408,7 @@ export default function Commerce() {
                     <ul className="commerce-cart">
                       {items.map((i) => (
                         <li key={i.id}>
+                          <CatalogueImage src={i.image} alt="" style={{width:64,height:80,objectFit:"cover"}}/>
                           <div>
                             <a href={`/shop/products/${i.product_id}`}>
                               {i.name}
@@ -441,8 +447,9 @@ export default function Commerce() {
                       {money(
                         items.reduce((n, i) => n + i.quantity * i.price, 0),
                       )}
-                      . Delivery and discounts calculated at checkout.
+                       . Shipping: calculated after delivery selection. Grand total: confirmed by the server at checkout.
                     </p>
+                    {cartSummary && <p>Shipping estimate ({cartSummary.shippingName}): {money(cartSummary.shipping)} · Estimated grand total: {money(cartSummary.total)}. Final delivery and discounts confirmed at checkout.</p>}
                     <a className="commerce-button" href="/shop/checkout">
                       Proceed to checkout
                     </a>
@@ -692,12 +699,13 @@ export default function Commerce() {
                   {detail.payment.provider_id ||
                     "Awaiting gateway confirmation"}
                 </p>
+                <p>Receipt SENT means accepted by the email provider; mailbox delivery is not confirmed here.</p>
                 {detail.notifications.map((n) => (
                   <p key={n.kind}>
                     {n.kind === "receipt"
                       ? "Confirmation and receipt email"
                       : n.kind}
-                    : {n.status}
+                    : {n.kind === "receipt" ? ({pending:"RECEIPT_QUEUED",sent:"RECEIPT_SENT",failed:"RECEIPT_FAILED"}[n.status] || n.status) : n.status}
                   </p>
                 ))}
                 {detail.order.status === "pending" && (

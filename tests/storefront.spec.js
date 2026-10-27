@@ -23,13 +23,14 @@ test('department filters show category-specific looks', async ({ page }) => {
   await expect(page.getByTestId('product-card')).toHaveCount(10);
 });
 
-test('a catalogue piece can be added to the enquiry bag', async ({ page }) => {
+test('a catalogue piece can be saved to Wishlist', async ({ page }) => {
   await page.goto('/#catalogue');
-  await page.getByRole('button', { name: 'Enquiry', exact: true }).first().click();
-  const drawer = page.getByRole('dialog', { name: 'Enquiry bag' });
+  await page.getByRole('button', { name: 'Save to Wishlist', exact: true }).first().click();
+  await page.getByRole('button',{name:'Open Wishlist with 1 items'}).click();
+  const drawer = page.getByRole('dialog', { name: 'My Wishlist' });
   await expect(drawer).toBeVisible();
   await expect(drawer).toContainText('Women\'s Black Statement');
-  await expect(drawer).toContainText('No payment');
+  await expect(drawer).toContainText('Pricing or availability pending');
 });
 
 test('mobile menu opens without horizontal overflow', async ({ page }) => {

@@ -12,7 +12,7 @@
     "test:integration": "node --test tests/integration/*.test.js",
     "test:commerce": "playwright test --config=playwright.commerce.config.js",
     "db:migrate": "node --env-file-if-exists=.env scripts/commerce-migrate.mjs",
-    "lint": "eslint proxy.js server api src/Commerce.jsx src/CatalogueCard.jsx src/StorefrontShell.jsx src/StorefrontContext.jsx src/catalogue.js scripts/commerce-*.mjs tests/unit tests/integration",
+    "lint": "eslint proxy.js server api src/Commerce.jsx src/Wishlist.jsx src/CatalogueCard.jsx src/StorefrontShell.jsx src/StorefrontContext.jsx src/catalogue.js scripts/commerce-*.mjs tests/unit tests/integration",
     "check": "npm run lint && npm run test:unit && npm run test:integration && npm run build",
     "dev:commerce": "node --env-file-if-exists=.env scripts/commerce-dev.mjs",
     "admin:grant": "node --env-file-if-exists=.env scripts/commerce-admin.mjs"

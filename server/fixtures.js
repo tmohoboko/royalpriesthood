@@ -18,6 +18,7 @@ export async function seedFixtures(db) {
   );
   if (db.exec) await db.exec(schema);
   else await db.query(schema);
+  await db.query(await readFile(new URL("../migrations/002-wishlist.sql", import.meta.url), "utf8"));
   await db.query(
     "INSERT INTO products(id,name,image,category,active,description) VALUES('RP-T01','Black Signature Tee — Front','/images/catalog/09_Tshirt_Front_Black.png','T-Shirts',true,'AUTOMATED TEST FIXTURE: one tee only, not the complete styled look.'),('RP-T03','White Signature Tee — Front','/images/catalog/11_Tshirt_Front_White.png','T-Shirts',true,'AUTOMATED TEST FIXTURE') ON CONFLICT DO NOTHING",
   );

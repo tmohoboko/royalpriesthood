@@ -7,6 +7,6 @@ export function resolveCatalogue(records = [], variants = []) {
   return identities.map(p => {
     const record = byId.get(p.id);
     const configured = record?.active ? variants.filter(v => v.product_id === p.id && Number.isInteger(v.price) && v.price >= 500 && Number.isInteger(v.stock) && v.stock >= 0) : [];
-    return {...p, tags:[...new Set([...(p.tags || []),p.department])], category:p.department, description:record?.description || 'Price and availability confirmed by enquiry.', approved:approved.some(a => a.id === p.id), purchaseMode:configured.length ? 'direct' : 'quote', variants:configured};
+    return {...p, tags:[...new Set([...(p.tags || []),p.department])], category:p.department, description:record?.description || 'Pricing or availability pending.', approved:approved.some(a => a.id === p.id), purchaseMode:configured.length ? 'direct' : 'quote', variants:configured};
   });
 }

@@ -48,6 +48,8 @@ export async function mergeCart(db, guestId, userId) {
           "INSERT INTO cart_items(cart_id,variant_id,quantity) VALUES($1,$2,$3) ON CONFLICT(cart_id,variant_id) DO UPDATE SET quantity=LEAST(99,cart_items.quantity+excluded.quantity)",
           [target.id, item.variant_id, item.quantity],
         );
+      await tx.query("DELETE FROM wishlist_items g USING wishlist_items t WHERE g.cart_id=$1 AND t.cart_id=$2 AND g.product_id=t.product_id AND g.variant_id=t.variant_id",[guest.id,target.id]);
+      await tx.query("UPDATE wishlist_items SET cart_id=$1,updated_at=now() WHERE cart_id=$2",[target.id,guest.id]);
       await tx.query("DELETE FROM carts WHERE id=$1", [guest.id]);
     }
     return target.id;

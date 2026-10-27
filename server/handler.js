@@ -5,6 +5,7 @@ import {
   id,
   hash,
   fail,
+  totals,
   credentialsSchema,
   passwordHash,
   passwordValid,
@@ -298,8 +299,45 @@ export function createHandler({
           ),
         });
       }
+      const cartResponse = async (cartId) => {
+        const items = await cart(db,cartId);
+        const shipping = await one(db,"SELECT id,name,price FROM shipping_options WHERE active=true ORDER BY price,id LIMIT 1");
+        return {items, summary: items.length && shipping ? {...totals(items,0,shipping.price),shippingId:shipping.id,shippingName:shipping.name,estimated:true} : null};
+      };
+      if (path === "/wishlist" || path.startsWith("/wishlist/")) {
+        const cartId = await ensureCart();
+        const list = async () => ({ items: await rows(db,
+          "SELECT id,product_id,variant_id,quantity,created_at,updated_at FROM wishlist_items WHERE cart_id=$1 ORDER BY created_at,id", [cartId]) });
+        if (path === "/wishlist" && req.method === "GET") return json(await list());
+        if (path === "/wishlist" && req.method === "POST") {
+          const input = z.object({ productId:z.string().min(1).max(80), variantId:z.string().max(80).default(""), quantity:z.number().int().min(1).max(99).default(1) }).parse(body);
+          const records = await rows(db,"SELECT * FROM products WHERE id=$1",[input.productId]);
+          if (!resolveCatalogue(records).some(p=>p.id===input.productId)) fail(404,"NOT_FOUND","Product not found");
+          if (input.variantId && !await one(db,"SELECT id FROM variants WHERE id=$1 AND product_id=$2",[input.variantId,input.productId])) fail(400,"INVALID_VARIANT","Variant does not belong to this product");
+          await db.query("INSERT INTO wishlist_items(id,cart_id,product_id,variant_id,quantity) VALUES($1,$2,$3,$4,$5) ON CONFLICT(cart_id,product_id,variant_id) DO UPDATE SET quantity=excluded.quantity,updated_at=now()",[id(),cartId,input.productId,input.variantId,input.quantity]);
+          return json(await list());
+        }
+        const route = path.match(/^\/wishlist\/([a-f0-9]{48})(\/move)?$/);
+        if (route && ((!route[2] && req.method === "DELETE") || (route[2] && req.method === "POST"))) {
+          await transaction(db,async tx=>{
+            await tx.query("SELECT id FROM carts WHERE id=$1 FOR UPDATE",[cartId]);
+            const item=await one(tx,"SELECT * FROM wishlist_items WHERE id=$1 AND cart_id=$2 FOR UPDATE",[route[1],cartId]);
+            if(!item) fail(404,"NOT_FOUND","Saved item not found");
+            if(route[2]) {
+              const v=await one(tx,"SELECT v.*,p.active FROM variants v JOIN products p ON p.id=v.product_id WHERE v.id=$1 AND v.product_id=$2 FOR UPDATE OF v",[item.variant_id,item.product_id]);
+              const existing=await one(tx,"SELECT quantity FROM cart_items WHERE cart_id=$1 AND variant_id=$2",[cartId,item.variant_id]);
+              const quantity=(existing?.quantity||0)+item.quantity;
+              if(!v || !v.active || !Number.isInteger(v.price) || v.price<500 || quantity>99 || quantity>v.stock) fail(409,"UNAVAILABLE","Current price, variant or inventory is unavailable. Item remains saved.");
+              await tx.query("INSERT INTO cart_items(cart_id,variant_id,quantity) VALUES($1,$2,$3) ON CONFLICT(cart_id,variant_id) DO UPDATE SET quantity=excluded.quantity",[cartId,v.id,quantity]);
+            }
+            await tx.query("DELETE FROM wishlist_items WHERE id=$1 AND cart_id=$2",[item.id,cartId]);
+          });
+          return json({...await list(),cart:await cart(db,cartId)});
+        }
+        fail(405,"METHOD_NOT_ALLOWED","Unsupported wishlist operation");
+      }
       if (path === "/cart" && req.method === "GET")
-        return json({ items: await cart(db, await ensureCart()) });
+        return json(await cartResponse(await ensureCart()));
       if (path === "/cart" && req.method === "PUT") {
         const input = z
           .object({
@@ -318,7 +356,7 @@ export function createHandler({
             [input.variantId],
           );
           if (!v) fail(404, "NOT_FOUND", "Variant not found");
-          if (input.quantity && (!v.active || input.quantity > v.stock))
+          if (input.quantity && (!v.active || !Number.isInteger(v.price) || v.price < 500 || input.quantity > v.stock))
             fail(409, "OUT_OF_STOCK", "Requested quantity is unavailable");
           if (!input.quantity)
             await tx.query(
@@ -331,7 +369,7 @@ export function createHandler({
               [cartId, input.variantId, input.quantity],
             );
         });
-        return json({ items: await cart(db, cartId) });
+        return json(await cartResponse(cartId));
       }
       if (path === "/quote" && req.method === "POST") {
         requireUser();

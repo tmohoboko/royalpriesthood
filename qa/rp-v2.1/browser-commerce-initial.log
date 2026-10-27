@@ -1,0 +1,142 @@
+
+> royal-priesthood-storefront@1.0.0 test:commerce
+> playwright test --config=playwright.commerce.config.js
+
+[WebServer] (node:94846) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 19 tests using 1 worker
+
+(node:94857) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/commerce/frontend.spec.js:13:1 › FE-001 all approved catalogue products display (1.7s)
+  ✓   2 tests/commerce/frontend.spec.js:14:1 › FE-002 displayed count matches eligible backend catalogue (1.3s)
+  ✓   3 tests/commerce/frontend.spec.js:15:1 › FE-003 correct categories, explicit variants and actual prices (1.6s)
+  ✓   4 tests/commerce/frontend.spec.js:16:1 › FE-004 existing storefront typography and black/gold branding are reused (1.7s)
+  ✓   5 tests/commerce/frontend.spec.js:17:1 › FE-005 header navigation and footer are shared once on every route (2.4s)
+  ✓   6 tests/commerce/frontend.spec.js:18:1 › FE-006 configured direct purchase exposes Add to cart (1.4s)
+  ✓   7 tests/commerce/frontend.spec.js:19:1 › FE-007 pending-price product saves in persistent Wishlist (2.5s)
+  ✓   8 tests/commerce/frontend.spec.js:20:1 › FE-008 existing home catalogue updates the same persistent cart and count (2.3s)
+  ✓   9 tests/commerce/frontend.spec.js:21:1 › FE-009 product/cart/account/checkout routes survive direct refresh (2.6s)
+  ✓  10 tests/commerce/frontend.spec.js:22:1 › FE-010 desktop and mobile navigation/catalogue remain usable (3.1s)
+  ✘  11 tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 1440 (10.4s)
+(node:95442) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  12 tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 375 (11.1s)
+(node:95639) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 tests/commerce/journey.spec.js:131:1 › failed payment remains unpaid and does not send receipt (5.2s)
+  ✓  14 tests/commerce/journey.spec.js:151:1 › browser return does not mark paid; explicit cancellation is safe (4.7s)
+  ✓  15 tests/commerce/journey.spec.js:167:1 › out of stock product cannot be added (1.2s)
+  ✓  16 tests/commerce/journey.spec.js:174:1 › customer login and admin operations are protected (2.4s)
+  ✓  17 tests/commerce/journey.spec.js:199:1 › verified cancelled gateway payment can be cancelled without a receipt (5.0s)
+  ✘  18 tests/commerce/wishlist.spec.js:3:1 › WI-01/02/03 SMK-02/04/05/06/07 mobile keyboard, persistence, removal and clear (7.2s)
+(node:96010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 tests/commerce/wishlist.spec.js:29:1 › WI-03 SMK-08 move priced variant updates confirmed shared cart (2.4s)
+
+
+  1) tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 1440 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Confirmation and receipt email: sent', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Confirmation and receipt email: sent', { exact: true }) with timeout 5000ms
+      - waiting for getByText('Confirmation and receipt email: sent', { exact: true })
+
+
+      102 |     await expect(
+      103 |       page.getByText("Confirmation and receipt email: sent", { exact: true }),
+    > 104 |     ).toBeVisible();
+          |       ^
+      105 |     await page
+      106 |       .getByRole("link", { name: "Order history", exact: true })
+      107 |       .click();
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:104:7
+
+    Error Context: test-results/journey-complete-purchase--3a172-x-callback-and-receipt-1440/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-complete-purchase--3a172-x-callback-and-receipt-1440/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-complete-purchase--3a172-x-callback-and-receipt-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 375 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Confirmation and receipt email: sent', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Confirmation and receipt email: sent', { exact: true }) with timeout 5000ms
+      - waiting for getByText('Confirmation and receipt email: sent', { exact: true })
+
+
+      102 |     await expect(
+      103 |       page.getByText("Confirmation and receipt email: sent", { exact: true }),
+    > 104 |     ).toBeVisible();
+          |       ^
+      105 |     await page
+      106 |       .getByRole("link", { name: "Order history", exact: true })
+      107 |       .click();
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/journey.spec.js:104:7
+
+    Error Context: test-results/journey-complete-purchase--1d389-ox-callback-and-receipt-375/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/journey-complete-purchase--1d389-ox-callback-and-receipt-375/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/journey-complete-purchase--1d389-ox-callback-and-receipt-375/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/commerce/wishlist.spec.js:3:1 › WI-01/02/03 SMK-02/04/05/06/07 mobile keyboard, persistence, removal and clear 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Open Wishlist with 0 items' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'Open Wishlist with 0 items' }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Open Wishlist with 0 items' })
+
+
+      17 |  await page.getByRole('button',{name:'Open Wishlist with 1 items'}).click();
+      18 |  await drawer.getByRole('button',{name:/^Remove /}).click();
+    > 19 |  await expect(page.getByRole('button',{name:'Open Wishlist with 0 items'})).toBeVisible();
+         |                                                                             ^
+      20 |  await page.keyboard.press('Escape');await page.goto('/shop');
+      21 |  await card(page).getByRole('button',{name:'Save to Wishlist'}).click();
+      22 |  await page.getByRole('button',{name:'Open Wishlist with 1 items'}).click();
+        at /home/tmdev012/Reception/royalpriesthood-commerce/tests/commerce/wishlist.spec.js:19:77
+
+    Error Context: test-results/wishlist-WI-01-02-03-SMK-0-4415c-rsistence-removal-and-clear/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/wishlist-WI-01-02-03-SMK-0-4415c-rsistence-removal-and-clear/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/wishlist-WI-01-02-03-SMK-0-4415c-rsistence-removal-and-clear/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 1440 
+    tests/commerce/journey.spec.js:87:3 › complete purchase with mocked sandbox callback and receipt 375 
+    tests/commerce/wishlist.spec.js:3:1 › WI-01/02/03 SMK-02/04/05/06/07 mobile keyboard, persistence, removal and clear 
+  16 passed (1.3m)
