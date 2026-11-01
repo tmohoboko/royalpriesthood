@@ -62,9 +62,7 @@
             "width": 1440,
             "height": 900
           },
-          "launchOptions": {
-            "executablePath": "/home/tmdev012/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
-          }
+          "launchOptions": {}
         },
         "dependencies": [],
         "ignoreSnapshots": false,
@@ -95,8 +93,8 @@
     "version": "1.64.1",
     "workers": 2,
     "webServer": {
-      "command": "npm run preview -- --host 127.0.0.1 --port 4173",
-      "url": "http://127.0.0.1:4173",
+      "command": "node scripts/commerce-test-server.mjs",
+      "url": "http://127.0.0.1:4173/api/commerce/health",
       "reuseExistingServer": false,
       "timeout": 30000
     }
@@ -108,40 +106,6 @@
       "column": 0,
       "line": 0,
       "specs": [
-        {
-          "title": "size and quantity survive refresh, contact request downloads when clipboard is unavailable",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2611,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-10-27T16:09:53.407Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "74b67bee087fe691cfc1-8cd93ab1cfc0f7c2e309",
-          "file": "enquiry.spec.js",
-          "line": 3,
-          "column": 1
-        },
         {
           "title": "catalogue images load on desktop/mobile and drawer traps keyboard focus",
           "ok": true,
@@ -158,12 +122,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 7383,
+                  "duration": 8712,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T16:09:56.560Z",
+                  "startTime": "2026-11-01T10:58:13.206Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -173,7 +137,7 @@
           ],
           "id": "74b67bee087fe691cfc1-aeeaa94a8b20ecf035ef",
           "file": "enquiry.spec.js",
-          "line": 26,
+          "line": 3,
           "column": 1
         }
       ]
@@ -200,12 +164,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1639,
+                  "duration": 2879,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T16:09:53.329Z",
+                  "startTime": "2026-11-01T10:58:13.184Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -234,12 +198,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1554,
+                  "duration": 1665,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T16:09:55.402Z",
+                  "startTime": "2026-11-01T10:58:16.272Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -268,12 +232,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1714,
+                  "duration": 1346,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T16:09:56.997Z",
+                  "startTime": "2026-11-01T10:58:17.974Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -287,7 +251,7 @@
           "column": 1
         },
         {
-          "title": "a catalogue piece can be added to the enquiry bag",
+          "title": "a catalogue piece can be saved to Wishlist",
           "ok": true,
           "tags": [],
           "tests": [
@@ -302,12 +266,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1427,
+                  "duration": 2680,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T16:09:58.776Z",
+                  "startTime": "2026-11-01T10:58:19.360Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -315,7 +279,7 @@
               "status": "expected"
             }
           ],
-          "id": "1a751405fdc293de64aa-fb4c8a683d309f68853a",
+          "id": "1a751405fdc293de64aa-999176b7ccfdcf25e359",
           "file": "storefront.spec.js",
           "line": 26,
           "column": 1
@@ -336,12 +300,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1397,
+                  "duration": 1275,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T16:10:00.239Z",
+                  "startTime": "2026-11-01T10:58:22.068Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -351,7 +315,7 @@
           ],
           "id": "1a751405fdc293de64aa-b1284129bc85978e6c41",
           "file": "storefront.spec.js",
-          "line": 35,
+          "line": 36,
           "column": 1
         }
       ]
@@ -359,9 +323,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-27T16:09:51.186Z",
-    "duration": 12930.361,
-    "expected": 7,
+    "startTime": "2026-11-01T10:58:07.161Z",
+    "duration": 16353.285999999998,
+    "expected": 6,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
