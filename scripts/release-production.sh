@@ -29,7 +29,7 @@ npm run test:commerce
 
 echo "Staging production deployment for verified database and payment checks"
 deployment_json="$(vercel deploy --prod --skip-domain --project "$PROJECT_ID" --scope "$TEAM" --yes --json --build-env "COMMERCE_COMMIT=$SHA")"
-DEPLOYMENT_URL="$(node --input-type=module -e 'const d=JSON.parse(process.argv[1]); const u=d.url??d.alias?.[0]; if(!u) throw Error("Vercel did not return a deployment URL"); console.log(u.startsWith("https://")?u:`https://${u}`)' "$deployment_json")"
+DEPLOYMENT_URL="$(node --input-type=module -e 'const d=JSON.parse(process.argv[1]); function find(v){if(typeof v==="string"&&/^https:\/\/[a-z0-9.-]+\.vercel\.app\/?$/i.test(v))return v.replace(/\/$/,""); if(Array.isArray(v)){for(const x of v){const u=find(x);if(u)return u}} else if(v&&typeof v==="object"){for(const x of Object.values(v)){const u=find(x);if(u)return u}}} const u=find(d); if(!u) throw Error("Vercel did not return a deployment URL"); console.log(u)' "$deployment_json")"
 
 DEPLOYMENT_URL="$DEPLOYMENT_URL" EXPECTED_SHA="$SHA" node --input-type=module <<'NODE'
 const base = process.env.DEPLOYMENT_URL;
