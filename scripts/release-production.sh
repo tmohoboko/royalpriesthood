@@ -31,13 +31,13 @@ echo "Staging production deployment for verified database and payment checks"
 deployment_json="$(vercel deploy --prod --skip-domain --project "$PROJECT_ID" --scope "$TEAM" --yes --json --build-env "COMMERCE_COMMIT=$SHA")"
 DEPLOYMENT_URL="$(node --input-type=module -e 'const d=JSON.parse(process.argv[1]); function find(v){if(typeof v==="string"&&/^https:\/\/[a-z0-9.-]+\.vercel\.app\/?$/i.test(v))return v.replace(/\/$/,""); if(Array.isArray(v)){for(const x of v){const u=find(x);if(u)return u}} else if(v&&typeof v==="object"){for(const x of Object.values(v)){const u=find(x);if(u)return u}}} const u=find(d); if(!u) throw Error("Vercel did not return a deployment URL"); console.log(u)' "$deployment_json")"
 
-DEPLOYMENT_URL="$DEPLOYMENT_URL" EXPECTED_SHA="$SHA" node --input-type=module <<'NODE'
+DEPLOYMENT_URL="$DEPLOYMENT_URL" EXPECTED_SHA="$SHA" TEAM="$TEAM" node --input-type=module <<'NODE'
+import { execFileSync } from 'node:child_process';
 const base = process.env.DEPLOYMENT_URL;
 const expected = process.env.EXPECTED_SHA;
-async function json(path) {
-  const response = await fetch(new URL(path, base));
-  if (!response.ok) throw Error(`${path} returned HTTP ${response.status}`);
-  return response.json();
+function json(path) {
+  const result = execFileSync('vercel', ['curl', '--yes', '--json', '--trace', `${base}${path}`, '--scope', process.env.TEAM, '--', '--silent'], { encoding: 'utf8' });
+  return JSON.parse(JSON.parse(result).response);
 }
 const release = await json('/commerce-release.json');
 if (release.commit !== expected) throw Error(`Deployment commit ${release.commit} does not match ${expected}`);
@@ -54,16 +54,17 @@ NODE
 echo "Promoting verified deployment"
 vercel promote "$DEPLOYMENT_URL" --scope "$TEAM" --yes
 
-LIVE_URL="$LIVE_URL" EXPECTED_SHA="$SHA" node --input-type=module <<'NODE'
+LIVE_URL="$LIVE_URL" EXPECTED_SHA="$SHA" TEAM="$TEAM" node --input-type=module <<'NODE'
+import { execFileSync } from 'node:child_process';
 const base = process.env.LIVE_URL;
 const expected = process.env.EXPECTED_SHA;
-const response = await fetch(new URL('/commerce-release.json', base));
-if (!response.ok) throw Error(`Live release metadata returned HTTP ${response.status}`);
-const release = await response.json();
+function json(path) {
+  const result = execFileSync('vercel', ['curl', '--yes', '--json', '--trace', `${base}${path}`, '--scope', process.env.TEAM, '--', '--silent'], { encoding: 'utf8' });
+  return JSON.parse(JSON.parse(result).response);
+}
+const release = json('/commerce-release.json');
 if (release.commit !== expected) throw Error(`Live alias serves ${release.commit}, expected ${expected}`);
-const healthResponse = await fetch(new URL('/api/commerce/health', base));
-if (!healthResponse.ok) throw Error(`Live health endpoint returned HTTP ${healthResponse.status}`);
-const health = await healthResponse.json();
+const health = json('/api/commerce/health');
 if (!health.ok || health.paymentMode !== 'disabled') throw Error('Live payment mode is not disabled');
 console.log(JSON.stringify({liveUrl:base,commit:release.commit,databaseConfigured:health.databaseConfigured,paymentMode:health.paymentMode}));
 NODE
