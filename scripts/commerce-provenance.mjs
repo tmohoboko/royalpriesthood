@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {readdir,readFile,writeFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 let commit=process.env.COMMERCE_COMMIT || process.env.VERCEL_GIT_COMMIT_SHA;
+commit ||= process.env.VERCEL_GIT_COMMIT_SHA || "";
 if(!commit){try{commit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim()}catch{throw Error('Set COMMERCE_COMMIT to the exact deployed commit')}}
 if(!/^[a-f0-9]{40}$/.test(commit))throw Error('Invalid build commit');
 const files=['package.json','package-lock.json','vercel.json','proxy.js','index.html','vite.config.js'];
